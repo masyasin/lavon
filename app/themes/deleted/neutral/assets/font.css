@@ -1,0 +1,38 @@
+@font-face {
+	font-family: 'MuseoSlab500';
+	src: url('fonts/MuseoSlab500/Museo_Slab_500-webfont.eot');
+	src: local('☺'), url('fonts/MuseoSlab500/Museo_Slab_500-webfont.woff') format('woff'),
+	url('fonts/MuseoSlab500/Museo_Slab_500-webfont.ttf') format('truetype'),
+	url('fonts/MuseoSlab500/Museo_Slab_500-webfont.svg#webfontCg7ZQgsV') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+    font-family: 'proxima_novabold';
+    src: url('fonts/ProximaNovaBold/proximanova-bold-webfont.eot');
+	src: local('☺'), url('fonts/ProximaNovaBold/proximanova-bold-webfont.woff') format('woff'),
+	url('fonts/ProximaNovaBold/proximanova-bold-webfont.ttf') format('truetype'),
+	url('fonts/ProximaNovaBold/proximanova-bold-webfont.svg#webfontGzHF7sw7') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'proxima_novaregular';
+    src: url('fonts/ProximaNovaRegular/proximanova-regular-webfont.eot');
+	src: local('☺'), url('fonts/ProximaNovaRegular/proximanova-regular-webfont.woff') format('woff'),
+	url('fonts/ProximaNovaRegular/proximanova-regular-webfont.ttf') format('truetype'),
+	url('fonts/ProximaNovaRegular/proximanova-regular-webfont.svg#webfont9XTyvyi4') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: "proxima_novalight";
+    font-style: normal;
+    font-weight: normal;
+    src: url("fonts/proximanova-light-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/proximanova-light-webfont.woff2") format("woff2"), url("fonts/proximanova-light-webfont.woff") format("woff"), url("fonts/proximanova-light-webfont.ttf") format("truetype"), url("fonts/proximanova-light-webfont.svg#proxima_novalight") format("svg");
+}

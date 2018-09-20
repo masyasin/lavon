@@ -1,0 +1,9 @@
+<?php 
+define("CLI_APP",true);
+require_once __DIR__ . '/index.php'; 
+// require_once __DIR__ . '/app/vendor/autoload.php'; 
+// use Symfony\Component\Console\Application; 
+// use Artisan\ModuleGenerateCommand;
+// $app = new Application();
+// $app->add(new ModuleGenerateCommand());
+// $app->run();
