@@ -123,7 +123,7 @@ $autoload['helper'] = array('app','url','cms_db','admin_helper');
 |
 */
 
-$autoload['config'] = array('custom_keywords','public_menu','cms_config','date_column','main_module','app_config');
+$autoload['config'] = array('custom_keywords', 'cms_config','date_column','main_module','app_config');
 
 
 /*
