@@ -7,11 +7,5 @@ $config['custom_keywords'] = array(
 
 
 
-	/***** SOCIAL ACCOUNT ****/
-	'fb_id' => 'bkpptangsel',
-	'twitter_id' => 'bkpptangsel',
-	'instagram_id' => 'bkpptangsel',
-	// 'youtube_id' => 'bkpp-tangsel',
-	// 'google_id' => '+bkpp-tangsel',
-	// 'linked_in' => 'bkpp-tangsel',
+	
 );

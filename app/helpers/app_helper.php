@@ -201,7 +201,7 @@ function slugify($text,$rplc='-')
 
 function underscorize($str)
 {
-    return str_replace('-','_',slugify($str)) ;
+    return slugify($str,'_') ;
 }
 function p($a)
 {
@@ -218,7 +218,7 @@ function v($a)
 
 }
 
-
+// clean table header
 function clean_header($array){
     $CI = get_instance();
     $CI->load->helper('inflector');
@@ -235,7 +235,7 @@ function ci_config_item($key)
 }
 
 function frozen_loading_tag($class,$width=318,$height=73,$border=false,$border_color='#666666'){
-    return '<div class="frozen-loading '.($class?"frz_${class}":'').'" style="z-index:100000;'.($border?"border:solid 1px ${border_color};":'').'width:'.$width.'px;height:'.$height.'px;position:absolute;background: transparent url('.theme_url().'images/Windows8_loader.gif) no-repeat center center"></div>';
+    return '<div class="frozen-loading ' .($class?"frz_${class}":'').'" style="z-index:100000;'.($border?"border:solid 1px ${border_color};":'').'width:'.$width.'px;height:'.$height.'px;position:absolute;background: transparent url('.theme_url().'images/Windows8_loader.gif) no-repeat center center"></div>';
 }
 
 function theme_url($inside=''){
@@ -280,8 +280,8 @@ function array_default_keyval(&$array,$key,$value)
 }
 function my_simple_crypt( $string, $action = 'e' ) {
     // you may change these values to your own
-    $secret_key = 'sunokong';
-    $secret_iv = 'biksutong';
+    $secret_key = 'sun-gho-khong';
+    $secret_iv = 'thong-sam-chong';
  
     $output = false;
     $encrypt_method = "AES-256-CBC";
@@ -374,9 +374,9 @@ function combine_assets($files,$ext='',$import=false)
 }
 
 function bkpp_m($method,$a='3',$b='',$c=''){
-    $ci =& get_instance();
-    $ci->load->model('homepage/bkpp_m');
-    return $ci->bkpp_m->${method}($a,$b,$c);
+//    $ci =& get_instance();
+//    $ci->load->model('homepage/bkpp_m');
+//    return $ci->bkpp_m->${method}($a,$b,$c);
 }
 function ci_template($method,$a='',$b='',$c=''){
     $ci =& get_instance();
@@ -384,15 +384,15 @@ function ci_template($method,$a='',$b='',$c=''){
 }
 function get_share_count($url)
 {
-    $ci   =& get_instance();
-    $url  = str_replace(base_url(), '', $url);
-    $hash = md5($url);
-
-    $rs = $ci->db->select("SUM(cx) total")->where('hash',$hash)->get('shares');
-
-    if($rs->num_rows() > 0){
-        return $rs->row()->total + 0;
-    }
+//    $ci   =& get_instance();
+//    $url  = str_replace(base_url(), '', $url);
+//    $hash = md5($url);
+//
+//    $rs = $ci->db->select("SUM(cx) total")->where('hash',$hash)->get('shares');
+//
+//    if($rs->num_rows() > 0){
+//        return $rs->row()->total + 0;
+//    }
 
     return '0';
 }
@@ -428,10 +428,10 @@ function thumb_image($source,$destination,$width,$height)
 
 function share_counter_text()
 {
-    $sc = get_share_count(current_url());
-    $sc_txt = $sc > 0 ? 'Dibagikan ' . $sc .' kali.' : 'Bagikan halaman ini.';
-
-    return $sc_txt;
+//    $sc = get_share_count(current_url());
+//    $sc_txt = $sc > 0 ? 'Dibagikan ' . $sc .' kali.' : 'Bagikan halaman ini.';
+//
+//    return $sc_txt;
 }
 
 function gc_theme_script_tag($path){

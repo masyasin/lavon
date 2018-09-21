@@ -9,7 +9,6 @@ class Artisan extends MX_Controller{
 	// }
 	public function hello()
 	{
-		
 		echo "Hello World";
 	}
 	public function console($cmd='',$a='',$b='',$c='',$d='',$e='')
@@ -30,58 +29,13 @@ class Artisan extends MX_Controller{
 
 	public function import_articles($a='')
 	{
-		// echo "Importing articles .....\n";
-
-
-		// $articles = $this->db->from('bkpp_content')->get()->result_array();
-		// $cx;
-		// foreach ($articles as $article) {
-			
-		// 	$data = array(
-		// 		'article_title' => $article['judul_content'],
-		// 		'article_url' => slugify($article['judul_content']),
-		// 		'date'=>$article['tanggal'],
-		// 		'content'=>$article['content'],
-		// 		'author_user_id' => '1',
-		// 		'allow_comment' => '1',
-		// 		'keyword'=>$article['tags'],
-		// 		'description'=> $article['deskripsi'],
-		// 		'file'=>$article['file'],
-		// 		'view'=>$article['counter'],
-		// 		'alt_image'=>$article['image_detail'],
-
-
-		// 	);
-		// 	$this->db->insert('blog_article',$data);
-		// 	$cx++;
-		// 	// break;
-		// }
-		// echo "Done importing $cx record data.";
+		
 	}
 
 	public function import_info_dinas($value='')
 	{
-		// echo "Importing articles .....\n";
+		
 
-
-		// $articles = $this->db->from('bkpp_content')->where('kategori','dinas')->get()->result_array();
-		// $cx;
-		// foreach ($articles as $article) {
-			
-		// 	$data = array(
-		// 		'judul' => $article['judul_content'],
-		// 		'slug' => slugify($article['judul_content']),
-		// 		'date'=>$article['tanggal'],
-		// 		'isi'=>$article['content'],
-		// 		'file'=>$article['file']
-
-		// 	);
-		// 	$this->db->insert('bkpp_info_dinas',$data);
-		// 	$this->db->where('kode_content',$article['kode_content'])->delete('bkpp_content');
-		// 	$cx++;
-		// 	// break;
-		// }
-		// echo "Done importing $cx record data.";
 	}
 
 	public function add_widget($name,$module,$method='')
@@ -295,29 +249,29 @@ class Artisan extends MX_Controller{
 
 	public function attach_navprivil($nav)
 	{
-		if(empty($nav)){
-			echo "attach:navprivil <nav>\n";
-			exit;
-		}
-		$nav = $this->db->where('navigation_name',$nav)->get('main_navigation')->row();
-
-		if(empty($nav)){
-			echo "navigation name $name DOESNT EXISTS\n";
-			exit;
-		}
-		$navprivils = config_item('konsultan_group');
-
-		foreach($navprivils as $group_id){
-			$ck = $this->db->select("count(*) cx")
-					   ->from('main_goup_navigation gn')
-			           ->join('main_navigation mn','mn.group_id=gn.group_id')
-			           ->where('mn.navigation_name',$nav)
-			           ->where('gn.group_id',$group_id)
-			           ->get()
-			           ->row()
-			           ->cx > 0;
-
-		}
-
+//		if(empty($nav)){
+//			echo "attach:navprivil <nav>\n";
+//			exit;
+//		}
+//		$nav = $this->db->where('navigation_name',$nav)->get('main_navigation')->row();
+//
+//		if(empty($nav)){
+//			echo "navigation name $name DOESNT EXISTS\n";
+//			exit;
+//		}
+//		$navprivils = config_item('konsultan_group');
+//
+//		foreach($navprivils as $group_id){
+//			$ck = $this->db->select("count(*) cx")
+//					   ->from('main_goup_navigation gn')
+//			           ->join('main_navigation mn','mn.group_id=gn.group_id')
+//			           ->where('mn.navigation_name',$nav)
+//			           ->where('gn.group_id',$group_id)
+//			           ->get()
+//			           ->row()
+//			           ->cx > 0;
+//
+//		}
+//
 	}
 }
