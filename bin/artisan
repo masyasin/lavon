@@ -1,0 +1,9 @@
+#!/bin/bash
+
+shell_arguments="$1"
+shift
+for i in "$@" ; do
+	shell_arguments="${shell_arguments} $i"
+done
+
+php ./console artisan/console/$sell_arguments
