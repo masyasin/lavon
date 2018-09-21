@@ -1,9 +1,9 @@
 #!/bin/bash
 
-shell_arguments="$1"
+ARGS="$1"
 shift
 for i in "$@" ; do
-	shell_arguments="${shell_arguments} $i"
+	ARGS="${ARGS} $i"
 done
 
-php5 console artisan/console/$sell_arguments
+php5 console artisan console $ARGS

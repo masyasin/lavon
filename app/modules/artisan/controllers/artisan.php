@@ -9,6 +9,10 @@ class Artisan extends MX_Controller{
 	// }
 	public function hello()
 	{
+		echo "Hello";
+	}
+	public function hello_world()
+	{
 		echo "Hello World";
 	}
 	public function console($cmd='',$a='',$b='',$c='',$d='',$e='')
@@ -19,7 +23,7 @@ class Artisan extends MX_Controller{
 			return $this->{$method}($a,$b,$c,$d,$e);
 		}
 
-		echo ('Unexistent command'."\n");
+		echo ('Unexistent command '."$cmd\n");
 	}
 
 	public function encrypt_str($a='',$b='',$c='')

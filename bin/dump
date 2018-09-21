@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mysqldump -h rumahapp.com -u bbd33 -p lavon>db/lavon.sql
