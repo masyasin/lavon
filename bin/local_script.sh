@@ -1,7 +1,7 @@
 cd /var/www/html/lavon
 echo "DELETING LOG FILES"
 
-rm -v app/logs/log-*
+rm -v app/logs/*.log
 
 echo "DELETING CACHE FILES"
 
