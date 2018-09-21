@@ -178,7 +178,7 @@
 //$route['admin/bkpp/pengumuman(:any)/(:any)/(:any)'] 	= 'admin/bkpp/pengumuman/$1/$2/$3';
 //$route['admin/bkpp/pengumuman(:any)/(:any)/(:any)/(:any)'] 	= 'admin/bkpp/pengumuman/$1/$2/$3/$4';
 //
-$route['default_controller'] = 'artisan/hello';
+$route['default_controller'] = 'theming';
 //$route['404_override'] = '';
 //
 //$route['admin/pengaturan/situs'] = "main/config";
