@@ -322,8 +322,7 @@ if( CMS_SUBSITE != '' &&
  * And away we go...
  */
 date_default_timezone_set('Asia/Jakarta');
-require_once APPPATH . 'vendor/autoload.php';
-require_once APPPATH . 'models/propel/generated-conf/config.php';
+require_once APPPATH . 'vendor/autoload.php'; 
 require_once APPPATH.'core/MY_CodeIgniter.php';
 
 /* End of file index.php */
