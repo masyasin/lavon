@@ -1,9 +1,4 @@
-#!/bin/bash
-
-DATE=`date '+%Y-%m-%d %H:%M:%S'`
-
-message="up@"$DATE
-
+cd /var/www/html/lavon
 echo "DELETING LOG FILES"
 
 rm -v app/logs/log-*
@@ -15,8 +10,4 @@ rm -f app/cache/assets/*
 rm -f app/cache/cookie/*
 rm -f app/cache/query/*
 
-git add *
-git commit -m "$message"
-git push
-
-ssh bbd33@rumahapp.com 'bash -s' < bin/local_script.sh
+git pull
