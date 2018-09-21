@@ -1,6 +1,9 @@
 #!/bin/bash
 
-message="up"
+DATE=`date '+%Y-%m-%d %H:%M:%S'`
+
+message="up@"$DATE
+
 echo "DELETING LOG FILES"
 
 rm -v app/logs/log-*
