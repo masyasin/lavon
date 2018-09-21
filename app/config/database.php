@@ -80,11 +80,11 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-    'dsn'        => 'mysql:host=127.0.0.1;port=3306;dbname=cms',
-    'hostname'   => '127.0.0.1',
-    'username'   => 'root',
-	'password' => 'Lu8qf8FmAbKndCzP',
-    'database'   => 'db_bkpp',
+    'port' => '3306',
+    'hostname'   => 'rumahapp.com',
+    'username'   => 'bbd33',
+	'password' => 'sejati86',
+    'database'   => 'lavon',
     'dbdriver'   => 'mysqli',
     'dbprefix'   => '',
     'pconnect'   => TRUE,
@@ -100,6 +100,6 @@ $db['default'] = array(
     'stricton'   => FALSE,
     'failover'   => array()
 );
-
+$db['default']['dsn'] = "mysql:host=".$db['default']['host'].";port=".$db['default']['port'].";dbname=".$db['default']['database'];
 /* End of file database.php */
 /* Location: ./application/config/database.php */

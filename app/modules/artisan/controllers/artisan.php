@@ -7,6 +7,11 @@ class Artisan extends MX_Controller{
 	// 	parent::__construct();
 	// 	$this->load_database();
 	// }
+	public function hello()
+	{
+		
+		echo "Hello World";
+	}
 	public function console($cmd='',$a='',$b='',$c='',$d='',$e='')
 	{
 		$method = str_replace(':', '_', $cmd);
