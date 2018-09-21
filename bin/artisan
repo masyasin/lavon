@@ -6,4 +6,4 @@ for i in "$@" ; do
 	shell_arguments="${shell_arguments} $i"
 done
 
-php ./console artisan/console/$sell_arguments
+php bin/console artisan/console/$sell_arguments
