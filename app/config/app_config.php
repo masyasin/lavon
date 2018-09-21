@@ -1,2 +1,2 @@
 <?php 
-//$config["category_article_slider"] = 4;
+$config["category_article_slider"] = 4;
