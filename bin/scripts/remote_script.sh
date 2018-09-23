@@ -10,4 +10,5 @@ rm -f app/cache/assets/*
 rm -f app/cache/cookie/*
 rm -f app/cache/query/*
 
-git pull
+bin/pull
+bin/seed
