@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-09-21 15:42:38
+Date: 2018-09-23 20:43:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,6 +32,13 @@ CREATE TABLE `ci_sessions` (
 -- Records of ci_sessions
 -- ----------------------------
 INSERT INTO `ci_sessions` VALUES ('bade96e5532a6bba8f10584446d00521', '::1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36', '1525687458', 'a:6:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"popup_session\";b:1;s:13:\"cms_user_name\";s:10:\"superadmin\";s:11:\"cms_user_id\";s:1:\"8\";s:18:\"cms_user_real_name\";s:13:\"Putra Budiman\";s:14:\"cms_user_email\";s:20:\"cristminix@gmail.com\";}');
+INSERT INTO `ci_sessions` VALUES ('63eae5f1e654c64913795f6692884518', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537690478', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('72a3b7a1da200c86399dc58aaf35f76c', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537702766', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('f7863bd5f154c1cf50c5ab0ade758453', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537707661', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('1f578017b8bb4f6b12271d62bb2c9ac0', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537707760', '');
+INSERT INTO `ci_sessions` VALUES ('fe59ac2b8563de03bdc510ddc34aef6a', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537709356', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('99d2177a092b6da6c9b8a7dc31904601', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537709588', '');
+INSERT INTO `ci_sessions` VALUES ('8bc550f4de6067f16961ded21998b9d8', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537709958', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
 
 -- ----------------------------
 -- Table structure for `main_authorization`
@@ -64,7 +71,7 @@ CREATE TABLE `main_config` (
   `value` text,
   `description` text,
   PRIMARY KEY (`config_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of main_config
@@ -146,6 +153,24 @@ INSERT INTO `main_group_navigation` VALUES ('2', '2', '41');
 INSERT INTO `main_group_navigation` VALUES ('3', '1', '41');
 
 -- ----------------------------
+-- Table structure for `main_group_navigation_bak`
+-- ----------------------------
+DROP TABLE IF EXISTS `main_group_navigation_bak`;
+CREATE TABLE `main_group_navigation_bak` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `group_id` int(5) NOT NULL,
+  `navigation_id` int(5) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+-- Records of main_group_navigation_bak
+-- ----------------------------
+INSERT INTO `main_group_navigation_bak` VALUES ('1', '1', '45');
+INSERT INTO `main_group_navigation_bak` VALUES ('2', '2', '41');
+INSERT INTO `main_group_navigation_bak` VALUES ('3', '1', '41');
+
+-- ----------------------------
 -- Table structure for `main_group_privilege`
 -- ----------------------------
 DROP TABLE IF EXISTS `main_group_privilege`;
@@ -203,13 +228,15 @@ CREATE TABLE `main_module` (
   `version` varchar(50) DEFAULT NULL,
   `user_id` int(5) DEFAULT NULL,
   PRIMARY KEY (`module_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of main_module
 -- ----------------------------
 INSERT INTO `main_module` VALUES ('1', 'artisan', 'artisan', '1.0', '1');
 INSERT INTO `main_module` VALUES ('2', 'main', 'main', '1.0', '1');
+INSERT INTO `main_module` VALUES ('3', 'lavon', 'lavon', '1.0', '1');
+INSERT INTO `main_module` VALUES ('4', 'account', 'account', '1.0', '4');
 
 -- ----------------------------
 -- Table structure for `main_module_dependency`
@@ -254,36 +281,66 @@ CREATE TABLE `main_navigation` (
 -- ----------------------------
 -- Records of main_navigation
 -- ----------------------------
-INSERT INTO `main_navigation` VALUES ('1', 'main_login', null, 'Login', 'glyphicon-home', 'Login', null, 'Visitor need to login for authentication', 'main/login', '2', '1', '3', '0', null, '0', null, 'default-one-column');
-INSERT INTO `main_navigation` VALUES ('2', 'main_forgot', null, 'Lupa Password', 'glyphicon-th-large', 'Forgot', null, 'Accidentally forgot password', 'main/forgot', '2', '0', '6', '0', null, '0', null, null);
-INSERT INTO `main_navigation` VALUES ('3', 'main_logout', null, 'Logout', 'glyphicon-th-large', 'Logout', null, 'Logout for deauthentication', 'main/logout', '3', '1', '5', '0', null, '0', null, null);
-INSERT INTO `main_navigation` VALUES ('4', 'main_management', null, 'Dashboard', 'glyphicon-th-large', 'Dashboard', null, 'Dashboard', 'main/management', '4', '1', '8', '0', null, '0', null, null);
-INSERT INTO `main_navigation` VALUES ('5', 'main_register', null, 'Register', 'glyphicon-th-large', 'Register', null, 'New User Registration', 'main/register', '2', '0', '7', '0', null, '0', null, null);
-INSERT INTO `main_navigation` VALUES ('6', 'main_change_profile', null, 'Profile', 'glyphicon-th-large', 'Profil', null, 'Change Current Profile', 'main/change_profile', '3', '1', '9', '0', null, '0', null, null);
-INSERT INTO `main_navigation` VALUES ('7', 'main_group_management', '4', 'Group', 'glyphicon-th-large', 'Group', null, 'Group', 'main/group', '4', '1', '0', '0', null, '0', null, null);
-INSERT INTO `main_navigation` VALUES ('8', 'main_navigation_management', '4', 'Menu', 'glyphicon-th-large', 'Pengaturan Menu', null, 'Pengaturan Menu', 'main/navigation', '4', '1', '3', '0', null, '0', null, null);
-INSERT INTO `main_navigation` VALUES ('9', 'main_privilege_management', '4', 'Role', 'glyphicon-th-large', 'Role', null, 'Pengaturan Role', 'main/privilege', '4', '1', '2', '0', null, '0', null, null);
-INSERT INTO `main_navigation` VALUES ('10', 'main_user_management', '4', 'User', 'glyphicon-th-large', 'User', null, 'Manage User', 'main/user', '4', '1', '1', '0', null, '0', null, null);
-INSERT INTO `main_navigation` VALUES ('11', 'main_module_management', '4', 'Module', 'glyphicon-th-large', 'Module', null, 'Kelola Module', 'main/module_management', '4', '1', '5', '0', null, '0', null, null);
-INSERT INTO `main_navigation` VALUES ('13', 'main_widget_management', '4', 'Widget', 'glyphicon-th-large', 'Widget', null, 'Kelola Widget', 'main/widget', '4', '1', '4', '0', null, '0', null, null);
-INSERT INTO `main_navigation` VALUES ('14', 'main_quicklink_management', '4', 'Link', 'glyphicon-th-large', 'Link', null, 'Kelola Link', 'main/quicklink', '4', '1', '7', '0', null, '0', null, null);
-INSERT INTO `main_navigation` VALUES ('15', 'main_config_management', '4', 'Variabel', 'glyphicon-th-large', 'Variabel', null, 'Manage Variabel', 'main/config', '4', '1', '8', '0', null, '0', null, null);
-INSERT INTO `main_navigation` VALUES ('16', 'main_layout', '4', 'Layout', 'glyphicon-th-large', 'Layout', null, 'Pengaturan Layout', 'main/layout', '4', '1', '9', '0', null, '0', null, null);
-INSERT INTO `main_navigation` VALUES ('17', 'homepage_beranda', null, 'Home', 'glyphicon-home', 'Selamat Datang di Web BKPP Kota Tangerang Selatan', null, 'Website resmin BKPP kota Tangerang Selatan', 'homepage/beranda', '1', '1', '1', '0', '<style type=\"text/css\">body{\r\nbackground-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, white), color-stop(1, white))!important;\r\nbackground-image: -webkit-linear-gradient(top left, white 0%, white 100%)!important;\r\nbackground-image: linear-gradient(top left, white 0%, white 100%)!important;\r\n}\r\n#__section-left-and-content {\r\nbackground-image: -ms-linear-gradient(top left, #EEEEEE 0%, #EEEEEE 100%)!important;\r\nbackground-image: -moz-linear-gradient(top left, #EEEEEE 0%, #EEEEEE 100%)!important;\r\nbackground-image: -o-linear-gradient(top left, #EEEEEE 0%, #EEEEEE 100%)!important;\r\nbackground-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #EEEEEE), color-stop(1, #EEEEEE))!important;\r\nbackground-image: -webkit-linear-gradient(top left, #EEEEEE 0%, #EEEEEE 100%)!important;\r\nbackground-image: linear-gradient(top left, #EEEEEE 0%, #EEEEEE 100%)!important;\r\n}\r\n.thumbnail .caption p{\r\nfont-size:small;\r\n}\r\n.thumbnail{\r\nborder:none!important;\r\nbackground-color:#EEEEEE!important;\r\ntext-align:center;\r\n}\r\n.page-header, .page-header h1{\r\nmargin-top:0px;\r\n}\r\n#__section-left-and-content hr, #__section-left-and-content .breadcrumb{\r\nmargin:0px;\r\n}\r\n#__section-left-and-content p.lead{\r\nmargin-top:20px;\r\n}\r\n</style>\r\n<div class=\"page-header\">\r\n    <h1>Halaman Home</h1></div>\r\n<script type=\"text/javascript\">\r\n    $(window).load(function(){\r\n        function __adjust_component(identifier){\r\n            var max_height = 0;\r\n            $(identifier).each(function(){\r\n                $(this).css(\'margin-bottom\', 0);\r\n                if($(this).height()>max_height){\r\n                    max_height = $(this).height();\r\n                }\r\n            });\r\n            console.log(max_height);\r\n            $(identifier).each(function(){\r\n                var margin_bottom = 0;               \r\n                if($(this).height()<max_height){\r\n                    margin_bottom = max_height - $(this).height();\r\n                    console.log([max_height, $(this).height()]);\r\n                }\r\n                margin_bottom += 10;\r\n                $(this).css(\'margin-bottom\', margin_bottom);\r\n            });\r\n        }\r\n        function adjust_thumbnail(){\r\n            __adjust_component(\'.thumbnail img\');\r\n            __adjust_component(\'.thumbnail div.caption\');\r\n        }\r\n        adjust_thumbnail();\r\n\r\n        // resize\r\n        $(window).resize(function(){\r\n            adjust_thumbnail();\r\n        });\r\n    });\r\n</script>', '0', null, 'homepage');
-INSERT INTO `main_navigation` VALUES ('19', 'main_third_party_auth', null, 'Third Party Authentication', 'glyphicon-th-large', 'Third Party Authentication', null, 'Third Party Authentication', 'main/hauth/index', '1', '0', '4', '0', null, '0', null, null);
-INSERT INTO `main_navigation` VALUES ('32', 'main_bkpp_layanan', null, 'Layanan', null, 'Admin Layanan', '-', '-', 'main/bkpp/layanan', '3', '1', '10', '0', null, '0', null, 'management');
-INSERT INTO `main_navigation` VALUES ('33', 'homepage_layanan', null, 'Publik Layanan', null, 'Layanan', '-', '-', 'layanan', '1', '1', '11', '0', null, '0', null, 'homepage');
-INSERT INTO `main_navigation` VALUES ('34', 'homepage_profile', null, 'Homepage Profile', null, 'Profile', 'Profile', 'Profile', 'profile', '1', '1', '12', '0', null, '0', null, 'homepage');
-INSERT INTO `main_navigation` VALUES ('35', 'main_bkpp_profile', null, 'Admin Profile', null, 'BKPP Profile', '-', '-', 'main/bkpp/profile', '3', '1', '13', '0', null, '0', null, 'homepage');
-INSERT INTO `main_navigation` VALUES ('36', 'homepage_konten', null, 'Homepage Konten', null, 'Konten', '-', '-', 'konten', '1', '1', '14', '0', null, '0', null, 'homepage');
-INSERT INTO `main_navigation` VALUES ('37', 'homepage_pencarian', null, 'Homepage Pencarian', null, 'Pencarian', '-', '-', 'pencarian', '1', '1', '15', '0', null, '0', null, 'homepage');
-INSERT INTO `main_navigation` VALUES ('38', 'homepage_buku_tamu', null, 'Homepage Buku Tamu', null, 'Buku Tamu', '-', '-', 'buku-tamu', '1', '1', '16', '0', null, '0', null, 'homepage');
-INSERT INTO `main_navigation` VALUES ('39', 'homepage_konsultasi', null, 'Homepage Konsultasi', null, 'Konsultasi', '-', '-', 'konsultasi', '1', '1', '17', '0', null, '0', null, 'homepage');
-INSERT INTO `main_navigation` VALUES ('40', 'blog_index', null, 'Blog', 'glyphicon-pencil', null, null, 'Blog', 'blog', '1', '1', '18', '0', null, '0', null, null);
-INSERT INTO `main_navigation` VALUES ('41', 'blog_manage_article', '40', 'Manage Article', null, null, null, 'Add, edit, and delete blog articles', 'blog/manage_article', '4', '1', '1', '0', null, '0', null, null);
-INSERT INTO `main_navigation` VALUES ('42', 'blog_manage_category', '40', 'Manage Category', null, null, null, 'Add, edit, and delete categories. Each article can has one or more categories', 'blog/manage_category', '4', '1', '2', '0', null, '0', null, null);
-INSERT INTO `main_navigation` VALUES ('43', 'public_files', null, 'Public Files', null, 'Public Files', '-', '-', 'files', '1', '1', '19', '0', null, '0', null, 'homepage');
-INSERT INTO `main_navigation` VALUES ('45', 'admin_area', null, 'Admin Area', null, 'Admin Area', null, null, 'admin', '4', '1', '20', '0', null, '0', 'neutral', 'management');
+INSERT INTO `main_navigation` VALUES ('1', 'account_login', null, 'Account Login', 'glyphicon-home', 'Account Login', 'Login to Lavon', 'Visitor need to login for authentication', 'account/login', '2', '1', '1', '0', null, '0', 'metronic', 'single');
+
+-- ----------------------------
+-- Table structure for `main_navigation_bak`
+-- ----------------------------
+DROP TABLE IF EXISTS `main_navigation_bak`;
+CREATE TABLE `main_navigation_bak` (
+  `navigation_id` int(20) NOT NULL AUTO_INCREMENT,
+  `navigation_name` varchar(50) NOT NULL,
+  `parent_id` int(5) DEFAULT NULL,
+  `title` varchar(50) NOT NULL,
+  `bootstrap_glyph` varchar(50) DEFAULT NULL,
+  `page_title` varchar(50) DEFAULT NULL,
+  `page_keyword` varchar(100) DEFAULT NULL,
+  `description` text,
+  `url` varchar(100) DEFAULT NULL,
+  `authorization_id` int(5) NOT NULL DEFAULT '1',
+  `active` int(5) NOT NULL DEFAULT '1',
+  `index` int(5) NOT NULL DEFAULT '0',
+  `is_static` int(5) NOT NULL DEFAULT '0',
+  `static_content` text,
+  `only_content` int(5) NOT NULL DEFAULT '0',
+  `default_theme` varchar(50) DEFAULT NULL,
+  `default_layout` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`navigation_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+-- Records of main_navigation_bak
+-- ----------------------------
+INSERT INTO `main_navigation_bak` VALUES ('1', 'main_login', null, 'Login', 'glyphicon-home', 'Login', null, 'Visitor need to login for authentication', 'main/login', '2', '1', '3', '0', null, '0', null, 'default-one-column');
+INSERT INTO `main_navigation_bak` VALUES ('2', 'main_forgot', null, 'Lupa Password', 'glyphicon-th-large', 'Forgot', null, 'Accidentally forgot password', 'main/forgot', '2', '0', '6', '0', null, '0', null, null);
+INSERT INTO `main_navigation_bak` VALUES ('3', 'main_logout', null, 'Logout', 'glyphicon-th-large', 'Logout', null, 'Logout for deauthentication', 'main/logout', '3', '1', '5', '0', null, '0', null, null);
+INSERT INTO `main_navigation_bak` VALUES ('4', 'main_management', null, 'Dashboard', 'glyphicon-th-large', 'Dashboard', null, 'Dashboard', 'main/management', '4', '1', '8', '0', null, '0', null, null);
+INSERT INTO `main_navigation_bak` VALUES ('5', 'main_register', null, 'Register', 'glyphicon-th-large', 'Register', null, 'New User Registration', 'main/register', '2', '0', '7', '0', null, '0', null, null);
+INSERT INTO `main_navigation_bak` VALUES ('6', 'main_change_profile', null, 'Profile', 'glyphicon-th-large', 'Profil', null, 'Change Current Profile', 'main/change_profile', '3', '1', '9', '0', null, '0', null, null);
+INSERT INTO `main_navigation_bak` VALUES ('7', 'main_group_management', '4', 'Group', 'glyphicon-th-large', 'Group', null, 'Group', 'main/group', '4', '1', '0', '0', null, '0', null, null);
+INSERT INTO `main_navigation_bak` VALUES ('8', 'main_navigation_management', '4', 'Menu', 'glyphicon-th-large', 'Pengaturan Menu', null, 'Pengaturan Menu', 'main/navigation', '4', '1', '3', '0', null, '0', null, null);
+INSERT INTO `main_navigation_bak` VALUES ('9', 'main_privilege_management', '4', 'Role', 'glyphicon-th-large', 'Role', null, 'Pengaturan Role', 'main/privilege', '4', '1', '2', '0', null, '0', null, null);
+INSERT INTO `main_navigation_bak` VALUES ('10', 'main_user_management', '4', 'User', 'glyphicon-th-large', 'User', null, 'Manage User', 'main/user', '4', '1', '1', '0', null, '0', null, null);
+INSERT INTO `main_navigation_bak` VALUES ('11', 'main_module_management', '4', 'Module', 'glyphicon-th-large', 'Module', null, 'Kelola Module', 'main/module_management', '4', '1', '5', '0', null, '0', null, null);
+INSERT INTO `main_navigation_bak` VALUES ('13', 'main_widget_management', '4', 'Widget', 'glyphicon-th-large', 'Widget', null, 'Kelola Widget', 'main/widget', '4', '1', '4', '0', null, '0', null, null);
+INSERT INTO `main_navigation_bak` VALUES ('14', 'main_quicklink_management', '4', 'Link', 'glyphicon-th-large', 'Link', null, 'Kelola Link', 'main/quicklink', '4', '1', '7', '0', null, '0', null, null);
+INSERT INTO `main_navigation_bak` VALUES ('15', 'main_config_management', '4', 'Variabel', 'glyphicon-th-large', 'Variabel', null, 'Manage Variabel', 'main/config', '4', '1', '8', '0', null, '0', null, null);
+INSERT INTO `main_navigation_bak` VALUES ('16', 'main_layout', '4', 'Layout', 'glyphicon-th-large', 'Layout', null, 'Pengaturan Layout', 'main/layout', '4', '1', '9', '0', null, '0', null, null);
+INSERT INTO `main_navigation_bak` VALUES ('17', 'homepage_beranda', null, 'Home', 'glyphicon-home', 'Selamat Datang di Web BKPP Kota Tangerang Selatan', null, 'Website resmin BKPP kota Tangerang Selatan', 'homepage/beranda', '1', '1', '1', '0', '<style type=\"text/css\">body{\r\nbackground-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, white), color-stop(1, white))!important;\r\nbackground-image: -webkit-linear-gradient(top left, white 0%, white 100%)!important;\r\nbackground-image: linear-gradient(top left, white 0%, white 100%)!important;\r\n}\r\n#__section-left-and-content {\r\nbackground-image: -ms-linear-gradient(top left, #EEEEEE 0%, #EEEEEE 100%)!important;\r\nbackground-image: -moz-linear-gradient(top left, #EEEEEE 0%, #EEEEEE 100%)!important;\r\nbackground-image: -o-linear-gradient(top left, #EEEEEE 0%, #EEEEEE 100%)!important;\r\nbackground-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #EEEEEE), color-stop(1, #EEEEEE))!important;\r\nbackground-image: -webkit-linear-gradient(top left, #EEEEEE 0%, #EEEEEE 100%)!important;\r\nbackground-image: linear-gradient(top left, #EEEEEE 0%, #EEEEEE 100%)!important;\r\n}\r\n.thumbnail .caption p{\r\nfont-size:small;\r\n}\r\n.thumbnail{\r\nborder:none!important;\r\nbackground-color:#EEEEEE!important;\r\ntext-align:center;\r\n}\r\n.page-header, .page-header h1{\r\nmargin-top:0px;\r\n}\r\n#__section-left-and-content hr, #__section-left-and-content .breadcrumb{\r\nmargin:0px;\r\n}\r\n#__section-left-and-content p.lead{\r\nmargin-top:20px;\r\n}\r\n</style>\r\n<div class=\"page-header\">\r\n    <h1>Halaman Home</h1></div>\r\n<script type=\"text/javascript\">\r\n    $(window).load(function(){\r\n        function __adjust_component(identifier){\r\n            var max_height = 0;\r\n            $(identifier).each(function(){\r\n                $(this).css(\'margin-bottom\', 0);\r\n                if($(this).height()>max_height){\r\n                    max_height = $(this).height();\r\n                }\r\n            });\r\n            console.log(max_height);\r\n            $(identifier).each(function(){\r\n                var margin_bottom = 0;               \r\n                if($(this).height()<max_height){\r\n                    margin_bottom = max_height - $(this).height();\r\n                    console.log([max_height, $(this).height()]);\r\n                }\r\n                margin_bottom += 10;\r\n                $(this).css(\'margin-bottom\', margin_bottom);\r\n            });\r\n        }\r\n        function adjust_thumbnail(){\r\n            __adjust_component(\'.thumbnail img\');\r\n            __adjust_component(\'.thumbnail div.caption\');\r\n        }\r\n        adjust_thumbnail();\r\n\r\n        // resize\r\n        $(window).resize(function(){\r\n            adjust_thumbnail();\r\n        });\r\n    });\r\n</script>', '0', null, 'homepage');
+INSERT INTO `main_navigation_bak` VALUES ('19', 'main_third_party_auth', null, 'Third Party Authentication', 'glyphicon-th-large', 'Third Party Authentication', null, 'Third Party Authentication', 'main/hauth/index', '1', '0', '4', '0', null, '0', null, null);
+INSERT INTO `main_navigation_bak` VALUES ('32', 'main_bkpp_layanan', null, 'Layanan', null, 'Admin Layanan', '-', '-', 'main/bkpp/layanan', '3', '1', '10', '0', null, '0', null, 'management');
+INSERT INTO `main_navigation_bak` VALUES ('33', 'homepage_layanan', null, 'Publik Layanan', null, 'Layanan', '-', '-', 'layanan', '1', '1', '11', '0', null, '0', null, 'homepage');
+INSERT INTO `main_navigation_bak` VALUES ('34', 'homepage_profile', null, 'Homepage Profile', null, 'Profile', 'Profile', 'Profile', 'profile', '1', '1', '12', '0', null, '0', null, 'homepage');
+INSERT INTO `main_navigation_bak` VALUES ('35', 'main_bkpp_profile', null, 'Admin Profile', null, 'BKPP Profile', '-', '-', 'main/bkpp/profile', '3', '1', '13', '0', null, '0', null, 'homepage');
+INSERT INTO `main_navigation_bak` VALUES ('36', 'homepage_konten', null, 'Homepage Konten', null, 'Konten', '-', '-', 'konten', '1', '1', '14', '0', null, '0', null, 'homepage');
+INSERT INTO `main_navigation_bak` VALUES ('37', 'homepage_pencarian', null, 'Homepage Pencarian', null, 'Pencarian', '-', '-', 'pencarian', '1', '1', '15', '0', null, '0', null, 'homepage');
+INSERT INTO `main_navigation_bak` VALUES ('38', 'homepage_buku_tamu', null, 'Homepage Buku Tamu', null, 'Buku Tamu', '-', '-', 'buku-tamu', '1', '1', '16', '0', null, '0', null, 'homepage');
+INSERT INTO `main_navigation_bak` VALUES ('39', 'homepage_konsultasi', null, 'Homepage Konsultasi', null, 'Konsultasi', '-', '-', 'konsultasi', '1', '1', '17', '0', null, '0', null, 'homepage');
+INSERT INTO `main_navigation_bak` VALUES ('40', 'blog_index', null, 'Blog', 'glyphicon-pencil', null, null, 'Blog', 'blog', '1', '1', '18', '0', null, '0', null, null);
+INSERT INTO `main_navigation_bak` VALUES ('41', 'blog_manage_article', '40', 'Manage Article', null, null, null, 'Add, edit, and delete blog articles', 'blog/manage_article', '4', '1', '1', '0', null, '0', null, null);
+INSERT INTO `main_navigation_bak` VALUES ('42', 'blog_manage_category', '40', 'Manage Category', null, null, null, 'Add, edit, and delete categories. Each article can has one or more categories', 'blog/manage_category', '4', '1', '2', '0', null, '0', null, null);
+INSERT INTO `main_navigation_bak` VALUES ('43', 'public_files', null, 'Public Files', null, 'Public Files', '-', '-', 'files', '1', '1', '19', '0', null, '0', null, 'homepage');
+INSERT INTO `main_navigation_bak` VALUES ('45', 'admin_area', null, 'Admin Area', null, 'Admin Area', null, null, 'admin', '4', '1', '20', '0', null, '0', 'neutral', 'management');
 
 -- ----------------------------
 -- Table structure for `main_privilege`
