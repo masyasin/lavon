@@ -10,5 +10,5 @@ rm -f app/cache/assets/*
 rm -f app/cache/cookie/*
 rm -f app/cache/query/*
 
-bin/pull
-bin/seed
+bash bin/pull
+bash bin/seed
