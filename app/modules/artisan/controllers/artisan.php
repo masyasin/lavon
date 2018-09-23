@@ -265,10 +265,8 @@ class Artisan extends MX_Controller{
 		// $dom = pQuery::parseStr($src_html);
 		// $script_tags = $dom->query('link');
 
-	$unexistens = "global/img/social/linkedin.png
-global/img/social/facebook.png
-global/img/social/googleplus.png
-global/img/social/twitter.png";
+	$unexistens = "pages/css/error.min.css
+pages/media/pages/earth.jpg";
 		
 		$files = explode("\n",$unexistens);
 		foreach ($files as $file) {

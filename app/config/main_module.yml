@@ -1,42 +1,24 @@
-homepage:
-    module_id: '5'
-    module_name: homepage
-    module_path: homepage
-    version: '1.0'
-    user_id: '1'
-blog:
-    module_id: '6'
-    module_name: blog
-    module_path: blog
-    version: 0.0.0
-    user_id: '1'
 artisan:
-    module_id: '7'
+    module_id: '1'
     module_name: artisan
     module_path: artisan
     version: '1.0'
     user_id: '1'
-admin:
-    module_id: '8'
-    module_name: admin
-    module_path: admin
-    version: '1'
-    user_id: '1'
-app:
-    module_id: '9'
-    module_name: app
-    module_path: app
-    version: '1'
-    user_id: '1'
-widget:
-    module_id: '10'
-    module_name: widget
-    module_path: widget
-    version: '1'
-    user_id: '1'
-client:
-    module_id: '12'
-    module_name: client
-    module_path: client
+main:
+    module_id: '2'
+    module_name: main
+    module_path: main
     version: '1.0'
     user_id: '1'
+lavon:
+    module_id: '3'
+    module_name: lavon
+    module_path: lavon
+    version: '1.0'
+    user_id: '1'
+account:
+    module_id: '4'
+    module_name: account
+    module_path: account
+    version: '1.0'
+    user_id: '2'
