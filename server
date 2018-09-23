@@ -1,3 +1,0 @@
-#!/bin/bash
-
-dev_appserver.py app.yml --php_executable_path `which php-cgi`

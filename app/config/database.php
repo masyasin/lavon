@@ -81,9 +81,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
     'port' => '3306',
-    'hostname'   => 'rumahapp.com',
-    'username'   => 'bbd33',
-	'password' => 'sejati86',
+    'hostname'   => '127.0.0.1',
+    'username'   => 'root',
+	'password' => '',
     'database'   => 'lavon',
     'dbdriver'   => 'mysqli',
     'dbprefix'   => '',
@@ -100,6 +100,28 @@ $db['default'] = array(
     'stricton'   => FALSE,
     'failover'   => array()
 );
+// $db['default'] = array(
+//     'port' => '3306',
+//     'hostname'   => 'rumahapp.com',
+//     'username'   => 'bbd33',
+//     'password' => 'sejati86',
+//     'database'   => 'lavon',
+//     'dbdriver'   => 'mysqli',
+//     'dbprefix'   => '',
+//     'pconnect'   => TRUE,
+//     'db_debug'   => TRUE,
+//     'cache_on'   => FALSE,
+//     'cachedir'   => '',
+//     'char_set'   => 'utf8',
+//     'dbcollat'   => 'utf8_general_ci',
+//     'swap_pre'   => '',
+//     'autoinit'   => TRUE,
+//     'encrypt'    => FALSE,
+//     'compress'   => FALSE,
+//     'stricton'   => FALSE,
+//     'failover'   => array()
+// );
+
 $db['default']['dsn'] = "mysql:host=".$db['default']['host'].";port=".$db['default']['port'].";dbname=".$db['default']['database'];
 /* End of file database.php */
 /* Location: ./application/config/database.php */

@@ -1,8 +1,0 @@
-#!/bin/bash
-
-theargs="$1"
-shift
-for i in "$@" ; do
-   theargs="${theargs} $i"
-done
-php ./console artisan/console/$theargs

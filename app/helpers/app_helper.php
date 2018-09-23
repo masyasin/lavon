@@ -242,7 +242,14 @@ function theme_url($inside=''){
 
     return  site_url() . APPPATH .'themes/'.ci_config_item('site_theme').'/'.$inside;
 }
+function theme_path($inside=''){
 
+    return  APPPATH .'themes/'.ci_config_item('site_theme').'/'.$inside;
+}
+function module_path($inside)
+{
+    return APPPATH . "modules/$inside/";
+}
 function get_img_tag($htmlContent){
     $dom = new DOMDocument();
     $dom->loadHTML( $htmlContent );

@@ -29,7 +29,7 @@ class Theming extends CMS_Controller{
 			'title' => "Artikel"
 		);
 		//$this->load->view('theming/d')
-		$this->view('theming/design', $data, '',$view_config);
+		$this->view('theming/login', $data, '',$view_config);
 //		$this->template->render();
 	}
 }

@@ -6,4 +6,4 @@ for i in "$@" ; do
 	ARGS="${ARGS} $i"
 done
 
-php5 console artisan console $ARGS
+php console artisan console $ARGS

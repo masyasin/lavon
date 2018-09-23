@@ -2,11 +2,13 @@
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException;
 class Artisan extends MX_Controller{
-	// public function __construct($value='')
-	// {
-	// 	parent::__construct();
-	// 	$this->load_database();
-	// }
+	public function __construct($value='')
+	{
+		parent::__construct();
+		// $this->load_database();
+
+		error_reporting(E_ALL);
+	}
 	public function hello()
 	{
 		echo "Hello";
@@ -29,17 +31,6 @@ class Artisan extends MX_Controller{
 	public function encrypt_str($a='',$b='',$c='')
 	{
 		echo my_simple_crypt($a,'e') . "\n";
-	}
-
-	public function import_articles($a='')
-	{
-		
-	}
-
-	public function import_info_dinas($value='')
-	{
-		
-
 	}
 
 	public function add_widget($name,$module,$method='')
@@ -192,29 +183,6 @@ class Artisan extends MX_Controller{
 		echo "WRITE $config_path\n";
 	}
 
-	public function article_main()
-	{
-		$this->load->model('homepage/artikel_m');
-
-		$artikel_caraosel_data = $this->artikel_m->get_caraousel();
-
-		$artikel_cat_with_list = $this->artikel_m->get_cat_with_list();
-
-		$artikel_most_shares = $this->artikel_m->get_most_sv();
-		//$artikel = $this->artikel_m->get_by_id(133);
-		
-		//print_r($artikel_caraosel_data);
-		print_r($artikel_cat_with_list);
-		//print_r($artikel_most_shares);
-	}
-
-	public function sholat_chk($value='')
-	{
-		$this->load->library('sholat');
-		$kota_select_data = $this->sholat->get_kota_select_data();
-		print_r($kota_select_data);
-	}
-
 	public function cache_clear()
 	{
 		$cache_path = APPPATH . 'cache/';
@@ -280,4 +248,81 @@ class Artisan extends MX_Controller{
 	}
 	
 	/* Lavon script start here */
+	public function cp_assets()
+	{
+		$src_theme_dir = realpath(FCPATH.'../metronic/assets').'/';
+		$dst_theme_dir = realpath(theme_path('assets')).'/';
+
+		$file_to_proc = APPPATH.'views/theming/login.php';
+
+		echo "SRC:". $src_theme_dir."\n";
+		echo "DST:". $dst_theme_dir."\n";
+		echo "FILE:". $file_to_proc."\n";
+
+		$src_html = $this->load->view('theming/design', array(), 1);
+		$src_html = str_replace('{{ theme_assets }}/',$src_theme_dir,$src_html);
+
+		// $dom = pQuery::parseStr($src_html);
+		// $script_tags = $dom->query('link');
+
+	$unexistens = "global/img/social/linkedin.png
+global/img/social/facebook.png
+global/img/social/googleplus.png
+global/img/social/twitter.png";
+		
+		$files = explode("\n",$unexistens);
+		foreach ($files as $file) {
+			$file = trim($file);
+
+			$src = $src_theme_dir . $file; 
+			$dst = $dst_theme_dir . $file; 
+
+			$dir = dirname($dst);
+			if(!is_dir($dir)){
+				echo "MD $dir\n";
+				mkdir($dir,0777,true);
+			}
+			echo "CP $src --> $dst \n";
+			copy($src,$dst);
+		}
+		/*$script_tags = $dom->query('script');
+		foreach ($script_tags as $tag) {
+			$src = $tag->attr('src'); //. "\n";
+			if(preg_match('/^http/',$src)){
+				continue;
+			}
+			$src=trim($src);
+			$dst = str_replace($src_theme_dir,$dst_theme_dir,$src);
+			// $file = basename($dst);
+			$dir = dirname($dst);
+			if(!is_dir($dir)){
+				echo "MD $dir\n";
+				mkdir($dir,0777,true);
+			}
+			echo "CP $src --> $dst \n";
+			copy($src,$dst);
+		}
+		
+		$script_tags = $dom->query('link');
+		foreach ($script_tags as $tag) {
+			$src = $tag->attr('href'); //. "\n";
+			if(preg_match('/^http/',$src)){
+				continue;
+			}
+			if($tag->attr('rel' != 'stylesheet')){
+				continue;
+			}
+			$dst = str_replace($src_theme_dir,$dst_theme_dir,$src);
+			// $file = basename($dst);
+			$dir = dirname($dst);
+			if(!is_dir($dir)){
+				echo "MD $dir\n";
+				mkdir($dir,0777,true);
+			}
+			echo "CP $src --> $dst \n";
+			copy($src,$dst);
+		}
+		*/
+		// echo $src_html;
+	}
 }
