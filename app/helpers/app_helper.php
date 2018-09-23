@@ -240,7 +240,7 @@ function frozen_loading_tag($class,$width=318,$height=73,$border=false,$border_c
 
 function theme_url($inside=''){
 
-    return  site_url() . APPPATH .'themes/'.ci_config_item('site_theme').'/'.$inside;
+    return  site_url() . basename(APPPATH) .'/themes/'.ci_config_item('site_theme').'/'.$inside;
 }
 function theme_path($inside=''){
 

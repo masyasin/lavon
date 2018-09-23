@@ -765,6 +765,7 @@ class CMS_Controller extends MX_Controller
      */
     protected function view($view_url, $data = NULL, $navigation_name = NULL, $config = NULL, $return_as_string = FALSE)
     {
+
         $result   = NULL;
         $view_url = $this->cms_parse_keyword($view_url);
         
@@ -848,11 +849,10 @@ class CMS_Controller extends MX_Controller
                     $static_content = '';
                 }
                 $data['cms_content'] = $static_content;
-                $view_url            = 'CMS_View';
+                $view_url            = 'static_page';
 
             }
         }
-
 
         /**
          * SHOW THE PAGE IF IT IS ACCESSIBLE  *****************************************************************************
@@ -900,6 +900,7 @@ class CMS_Controller extends MX_Controller
             $only_content = TRUE;
         }
 
+ 
         // ASSIGN THEME
         if (isset($custom_theme) && $custom_theme !== NULL && $custom_theme != '') {
             $theme = $custom_theme;
@@ -998,13 +999,19 @@ class CMS_Controller extends MX_Controller
         }
 
         // IT'S SHOW TIME        
-        if ($only_content || $this->__cms_dynamic_widget || (isset($_REQUEST['_only_content'])) || $this->input->is_ajax_request()) {            
+       
+        if ($only_content || $this->__cms_dynamic_widget || (isset($_REQUEST['_only_content'])) || $this->input->is_ajax_request()) {   
+
             $result = $this->load->view($view_url, $data, TRUE);
         } else {
+
             // set theme, layout and title
             $this->template->title($title);
             $this->template->set_theme($theme);
             $this->template->set_layout($layout);
+
+            // echo $layout;
+            // die();
 
             // set keyword metadata
             if ($keyword != '') {
@@ -1338,7 +1345,7 @@ class CMS_Controller extends MX_Controller
         $data = array(
             'cms_content' => '<pre>' . print_r($variable, TRUE) . '</pre>'
         );
-        $this->load->view('CMS_View', $data);
+        $this->load->view('static_page', $data);
     }
 
     /**
@@ -1351,7 +1358,7 @@ class CMS_Controller extends MX_Controller
         $data = array(
             'cms_content' => $html
         );
-        $this->load->view('CMS_View', $data);
+        $this->load->view('static_page', $data);
     }
 
     /**
@@ -1925,7 +1932,7 @@ class CMS_Module_Installer extends CMS_Controller
 
     public function setting(){
         $data['cms_content'] = '<p>Setting is not available</p>'.anchor(site_url('main/module_management'),'Back');
-        $this->view('CMS_View',$data,'main_module_management');
+        $this->view('static_page',$data,'main_module_management');
     }
 
     protected function do_install()
