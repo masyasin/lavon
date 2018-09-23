@@ -1,4 +1,4 @@
 #!/bin/bash
 
 echo "Seeding DB"
-mysql -h rumahapp.com -u bbd33 -p lavon<db/lavon.sql
+mysql -h rumahapp.com -u bbd33 -psejati86 lavon<db/lavon.sql
