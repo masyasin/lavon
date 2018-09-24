@@ -693,6 +693,8 @@ class Template
 		// Only bother looking in themes if there is a theme
 		if ( ! empty($this->_theme))
 		{
+			 
+
 			foreach ($this->_theme_locations as $location)
 			{
 				$theme_views = array(

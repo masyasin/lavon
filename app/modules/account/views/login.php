@@ -348,7 +348,7 @@
             </form>
             <!-- END REGISTRATION FORM -->
         </div>
-        <div class="copyright"> 2014 © Metronic. Admin Dashboard Template. </div>
+        <div class="copyright"> 2018 © Lavon. PT Sintech Berkah Abadi </div>
         <!--[if lt IE 9]>
 <script src="{{ theme_assets }}/global/plugins/respond.min.js"></script>
 <script src="{{ theme_assets }}/global/plugins/excanvas.min.js"></script> 

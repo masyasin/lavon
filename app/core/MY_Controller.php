@@ -982,9 +982,9 @@ class CMS_Controller extends MX_Controller
         // ADJUST THEME AND LAYOUT
         if (!$this->cms_layout_exists($theme, $layout)) {
             if ($layout == 'mobile' && $this->cms_layout_exists($theme, 'default')) {
-                $layout = 'default';
+                $layout = 'full';
             } else {
-                $theme = 'neutral';
+                $theme = 'metronic';
             }
         }
 

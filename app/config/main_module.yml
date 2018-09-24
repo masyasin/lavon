@@ -12,8 +12,8 @@ main:
     user_id: '1'
 lavon:
     module_id: '3'
-    module_name: lavon
-    module_path: lavon
+    module_name: apps
+    module_path: apps
     version: '1.0'
     user_id: '1'
 account:
@@ -21,4 +21,16 @@ account:
     module_name: account
     module_path: account
     version: '1.0'
-    user_id: '2'
+    user_id: '4'
+dashboard:
+    module_id: '5'
+    module_name: dashboard
+    module_path: dashboard
+    version: '1.0'
+    user_id: '1'
+navigation:
+    module_id: '6'
+    module_name: navigation
+    module_path: navigation
+    version: '1.0'
+    user_id: '1'

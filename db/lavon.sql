@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-09-23 20:43:40
+Date: 2018-09-24 16:24:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -39,6 +39,9 @@ INSERT INTO `ci_sessions` VALUES ('1f578017b8bb4f6b12271d62bb2c9ac0', '::1', 'Mo
 INSERT INTO `ci_sessions` VALUES ('fe59ac2b8563de03bdc510ddc34aef6a', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537709356', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
 INSERT INTO `ci_sessions` VALUES ('99d2177a092b6da6c9b8a7dc31904601', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537709588', '');
 INSERT INTO `ci_sessions` VALUES ('8bc550f4de6067f16961ded21998b9d8', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537709958', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('b00214b8ee5bb446cc8348fabe08f7c5', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537780031', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('5ca2060bd90c7606c24e5137535fb7a1', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537780739', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('5f44b5f5ea0f5486e1b4f476f210291d', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537780764', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
 
 -- ----------------------------
 -- Table structure for `main_authorization`
@@ -80,7 +83,7 @@ INSERT INTO `main_config` VALUES ('1', 'site_name', 'Lavon', 'Site title');
 INSERT INTO `main_config` VALUES ('2', 'site_slogan', 'Lavon Property', 'Site slogan');
 INSERT INTO `main_config` VALUES ('5', 'site_footer', 'Sintech Berkah Abadi &copy; 2018', 'Site footer');
 INSERT INTO `main_config` VALUES ('6', 'site_theme', 'metronic', 'Site theme');
-INSERT INTO `main_config` VALUES ('7', 'site_layout', 'default', 'Site layout');
+INSERT INTO `main_config` VALUES ('7', 'site_layout', 'full', 'Site layout');
 INSERT INTO `main_config` VALUES ('8', 'site_language', 'indonesian', 'Site language');
 INSERT INTO `main_config` VALUES ('9', 'max_menu_depth', '5', 'Depth of menu recursive');
 INSERT INTO `main_config` VALUES ('10', 'cms_email_reply_address', 'no-reply@rumahapp.com', 'Email address');
@@ -228,15 +231,17 @@ CREATE TABLE `main_module` (
   `version` varchar(50) DEFAULT NULL,
   `user_id` int(5) DEFAULT NULL,
   PRIMARY KEY (`module_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of main_module
 -- ----------------------------
 INSERT INTO `main_module` VALUES ('1', 'artisan', 'artisan', '1.0', '1');
 INSERT INTO `main_module` VALUES ('2', 'main', 'main', '1.0', '1');
-INSERT INTO `main_module` VALUES ('3', 'lavon', 'lavon', '1.0', '1');
+INSERT INTO `main_module` VALUES ('3', 'apps', 'apps', '1.0', '1');
 INSERT INTO `main_module` VALUES ('4', 'account', 'account', '1.0', '4');
+INSERT INTO `main_module` VALUES ('5', 'dashboard', 'dashboard', '1.0', '1');
+INSERT INTO `main_module` VALUES ('6', 'navigation', 'navigation', '1.0', '1');
 
 -- ----------------------------
 -- Table structure for `main_module_dependency`
@@ -276,12 +281,13 @@ CREATE TABLE `main_navigation` (
   `default_theme` varchar(50) DEFAULT NULL,
   `default_layout` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`navigation_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of main_navigation
 -- ----------------------------
 INSERT INTO `main_navigation` VALUES ('1', 'account_login', null, 'Account Login', 'glyphicon-home', 'Account Login', 'Login to Lavon', 'Visitor need to login for authentication', 'account/login', '2', '1', '1', '0', null, '0', 'metronic', 'single');
+INSERT INTO `main_navigation` VALUES ('2', 'apps', null, 'Apps', 'glyphicon-home', 'Apps', 'Apps', 'Apps', 'apps', '2', '1', '0', '0', null, '0', 'metronic', 'full');
 
 -- ----------------------------
 -- Table structure for `main_navigation_bak`

@@ -79,28 +79,28 @@
 $active_group = 'default';
 $query_builder = TRUE;
 
-// $db['default'] = array(
-//     'port' => '3306',
-//     'hostname'   => '127.0.0.1',
-//     'username'   => 'root',
-// 	'password' => '',
-//     'database'   => 'lavon',
-//     'dbdriver'   => 'mysqli',
-//     'dbprefix'   => '',
-//     'pconnect'   => TRUE,
-//     'db_debug'   => TRUE,
-//     'cache_on'   => FALSE,
-//     'cachedir'   => '',
-//     'char_set'   => 'utf8',
-//     'dbcollat'   => 'utf8_general_ci',
-//     'swap_pre'   => '',
-//     'autoinit'   => TRUE,
-//     'encrypt'    => FALSE,
-//     'compress'   => FALSE,
-//     'stricton'   => FALSE,
-//     'failover'   => array()
-// );
-$db['default'] = array(
+$db['local'] = array(
+    'port' => '3306',
+    'hostname'   => '127.0.0.1',
+    'username'   => 'root',
+	'password' => '',
+    'database'   => 'lavon',
+    'dbdriver'   => 'mysqli',
+    'dbprefix'   => '',
+    'pconnect'   => TRUE,
+    'db_debug'   => TRUE,
+    'cache_on'   => FALSE,
+    'cachedir'   => '',
+    'char_set'   => 'utf8',
+    'dbcollat'   => 'utf8_general_ci',
+    'swap_pre'   => '',
+    'autoinit'   => TRUE,
+    'encrypt'    => FALSE,
+    'compress'   => FALSE,
+    'stricton'   => FALSE,
+    'failover'   => array()
+);
+$db['remote'] = array(
     'port' => '3306',
     'hostname'   => 'rumahapp.com',
     'username'   => 'bbd33',
@@ -122,6 +122,11 @@ $db['default'] = array(
     'failover'   => array()
 );
 
+$db['default']= $db['remote']; 
+
+if($_SERVER['REMOTE_ADDR']  == '127.0.0.1' || $_SERVER['REMOTE_ADDR'] == 'localhost' || $_SERVER['REMOTE_ADDR'] = '::1'){
+    $db['default'] = $db['local'];
+}
 $db['default']['dsn'] = "mysql:host=".$db['default']['host'].";port=".$db['default']['port'].";dbname=".$db['default']['database'];
 /* End of file database.php */
 /* Location: ./application/config/database.php */

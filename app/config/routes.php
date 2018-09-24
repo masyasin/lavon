@@ -178,9 +178,9 @@
 //$route['admin/bkpp/pengumuman(:any)/(:any)/(:any)'] 	= 'admin/bkpp/pengumuman/$1/$2/$3';
 //$route['admin/bkpp/pengumuman(:any)/(:any)/(:any)/(:any)'] 	= 'admin/bkpp/pengumuman/$1/$2/$3/$4';
 //
-$route['default_controller'] = 'theming';
+$route['default_controller'] = 'apps';
 //$route['404_override'] = '';
 //
 //$route['admin/pengaturan/situs'] = "main/config";
 //$route['admin/dashboard'] = "main/management";
-$route['login'] = "main/login";
+// $route['login'] = "main/login";

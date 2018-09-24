@@ -3,17 +3,28 @@
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
-<html lang="en">
+<html  lang="{{ language:language_alias }}">
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
 
     <head>
         <meta charset="utf-8" />
-        <title>Metronic Admin Theme #1 | User Login 1</title>
+        <title><?php echo $template['title'];?></title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <meta content="Preview page of Metronic Admin Theme #1 for " name="description" />
-        <meta content="" name="author" />
+        <?php echo $template['metadata'];?>
+        <link rel="icon" href="{{ site_favicon }}">
+         <!-- Le styles -->
+        <?php
+            $asset = new CMS_Asset();       
+            // $asset->add_cms_css('bootstrap/css/bootstrap.min.css');
+            // $asset->add_themes_css('bootstrap.min.css', '{{ used_theme }}', 'default');
+            // $asset->add_themes_css('style.css', '{{ used_theme }}', 'default');
+            echo $asset->compile_css();
+        ?>
+        <!-- Le fav and touch icons -->
+        <link rel="shortcut icon" href="{{ site_favicon }}">
+        {{ widget_name:section_custom_script }}
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
         <link href="{{ theme_assets }}/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -34,7 +45,9 @@
         <!-- END PAGE LEVEL STYLES -->
         <!-- BEGIN THEME LAYOUT STYLES -->
         <!-- END THEME LAYOUT STYLES -->
-        <link rel="shortcut icon" href="favicon.ico" /> </head>
+      
+      
+    </head>
     <!-- END HEAD -->
 
     
