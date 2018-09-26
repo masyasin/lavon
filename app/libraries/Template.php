@@ -694,7 +694,8 @@ class Template
 		if ( ! empty($this->_theme))
 		{
 			 
-
+			
+			
 			foreach ($this->_theme_locations as $location)
 			{
 				$theme_views = array(

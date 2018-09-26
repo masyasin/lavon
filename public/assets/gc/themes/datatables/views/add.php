@@ -1,6 +1,4 @@
-<?
-$form_title = $this->l('form_add').' '.$subject;
-?>
+<?$form_title = $this->l('form_add').' '.$subject;?>
 <div class="modal "  aria-hidden="true"
 aria-labelledby="exampleModalTitle" role="dialog" tabindex="-1" id="modalForm" mode="add">
   <div class="modal-dialog modal-lg">
@@ -13,7 +11,7 @@ aria-labelledby="exampleModalTitle" role="dialog" tabindex="-1" id="modalForm" m
       </div>
       <div class="modal-body">
          <form class="form-horizontal" id="crudForm" enctype="multipart/form-data" action="<?=$insert_url?>">
-      <? foreach($fields as $field): ?>
+      <?  foreach($fields as $field): ?>
     
       <div class="form-group" v-bind:class="{'has-error':verror.<?=$field->field_name?>}">
         <label class="col-sm-3 control-label"><?= $input_fields[$field->field_name]->display_as?> <?= ($input_fields[$field->field_name]->required)? "<span class='required'>*</span> " : ""?> </label>
@@ -23,13 +21,13 @@ aria-labelledby="exampleModalTitle" role="dialog" tabindex="-1" id="modalForm" m
         </div>
       </div>
 
-      <? endforeach  ?>
+      <?  endforeach  ?>
      
-      <? foreach($hidden_fields as $hidden_field): ?>
+      <?  foreach($hidden_fields as $hidden_field): ?>
             <?= $hidden_field->input; ?>
-      <? endforeach ?>
+      <?  endforeach ?>
       
-      <?php if ($is_ajax):?>
+      <?  if ($is_ajax):?>
         <input type="hidden" name="is_ajax" value="true" />
       <?endif?>
 
@@ -48,11 +46,11 @@ aria-labelledby="exampleModalTitle" role="dialog" tabindex="-1" id="modalForm" m
   </div>
 </div>
 <script type="text/javascript">
-  var validation_url = '<?php echo $validation_url?>';
-  var list_url = '<?php echo $list_url?>';
+  var validation_url = '<?=  $validation_url?>';
+  var list_url = '<?=  $list_url?>';
 
-  var message_alert_add_form = "<?php echo $this->l('alert_add_form')?>";
-  var message_insert_error = "<?php echo $this->l('insert_error')?>";
+  var message_alert_add_form = "<?=  $this->l('alert_add_form')?>";
+  var message_insert_error = "<?=  $this->l('insert_error')?>";
 
    gc.form_vm = new Vue({
     el:'#modalForm',
@@ -63,3 +61,5 @@ aria-labelledby="exampleModalTitle" role="dialog" tabindex="-1" id="modalForm" m
 </script>
 <?=gc_theme_script_tag('twitter-bootstrap/js/jquery.form.js');?>
 <?=gc_theme_script_tag('datatables/js/datatables-add.js');?>
+
+

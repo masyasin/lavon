@@ -16,6 +16,7 @@ class Apps extends CMS_Controller{
 	}
 	public function index()
 	{
+		redirect('navigation/grid','refresh');
 		$data = [];
 		$config = [];
 

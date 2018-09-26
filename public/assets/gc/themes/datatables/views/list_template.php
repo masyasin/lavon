@@ -1,5 +1,4 @@
-<link rel="stylesheet" type="text/css" href="{{ base_url }}www_static/assets/gc_template.css">
-<script type="text/javascript" src="{{ base_url }}www_static/assets/gc_template.js"></script>
+
 
 
 <div id="modalForm"></div>

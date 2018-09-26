@@ -58,8 +58,9 @@ class Www_static extends CI_Controller{
 	}
 	public function js($filename)
 	{ 
+		// error_reporting(E_ALL);
 
-		$tmu = "public/assets/themes/center";
+		$tmu = "app/themes/metronic/assets/";
 		
 		$js_code = "var gc={exclude_js:['jquery-ui-1.10.3.custom.min.js']};var site_url=function(){return '".site_url()."'};var base_url=function(){return '".base_url()."'};var gbs=function(){return '".base_url()."';};var tmu=function(){return '".site_url($tmu)."/';}";
 		$cache_path =  APPPATH ."cache/assets/".$filename;

@@ -2845,7 +2845,7 @@ class grocery_CRUD_Layout extends grocery_CRUD_Model_Driver
         #region buffering...
         ob_start();
 
-        include($path);
+        require_once($path);
 
         $buffer = ob_get_contents();
         @ob_end_clean();
@@ -4310,6 +4310,7 @@ class Grocery_CRUD extends grocery_CRUD_States
             break;
 
             case 2://add
+
                 if($this->unset_add)
                 {
                     throw new Exception('You don\'t have permissions for this operation', 14);
@@ -4318,6 +4319,8 @@ class Grocery_CRUD extends grocery_CRUD_States
 
                 if($this->theme === null)
                     $this->set_theme($this->default_theme);
+
+
                 $this->setThemeBasics();
 
                 $this->set_basic_Layout();

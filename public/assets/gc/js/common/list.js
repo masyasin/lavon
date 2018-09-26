@@ -48,11 +48,11 @@ var fnOpenEditForm = function(this_element,event){
 				dataType: 'json',
 				beforeSend: function() {
 					// this_element.closest('.flexigrid').addClass('loading-opacity');
-					$.components.get('animsition').init();
+					//$.components.get('animsition').init();
 				},
 				complete: function(){
 					// this_element.closest('.flexigrid').removeClass('loading-opacity');
-					$('.animsition').animsition('in');
+					//$('.animsition').animsition('in');
 				},
 				success: function (data) {
 					if (typeof CKEDITOR !== 'undefined' && typeof CKEDITOR.instances !== 'undefined') {

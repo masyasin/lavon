@@ -868,6 +868,9 @@ class CMS_Controller extends MX_Controller
         $page_keyword       = NULL;
         $page_description   = NULL;
         $page_author        = NULL;
+
+        // echo $navigation_name_provided;
+
         if ($navigation_name_provided) {
             $query = $this->db->select('title, page_title, page_keyword, description, default_theme, default_layout, only_content')
                 ->from(cms_table_name('main_navigation'))
@@ -890,14 +893,14 @@ class CMS_Controller extends MX_Controller
                 // keyword
                 $page_description = isset($row->description) && $row->description !== NULL ? $row->description : '';
                 // only content
-                if (!isset($only_content)) {
-                    $only_content = ($row->only_content == 1);
+                if ($row->only_content == 1) {
+                    $only_content = true;
                 }
 
             }
         }
         if (!isset($only_content)) {
-            $only_content = TRUE;
+            // $only_content = TRUE;
         }
 
  
