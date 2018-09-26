@@ -157,6 +157,12 @@ class Artisan extends MX_Controller{
 			'is_static' => 0,
 			'authorization_id'=> $auth,
 			'index'=>$last_index,
+			'default_theme' => 'metronic',
+			'default_layout' => 'full',
+			'page_keyword' => $name,
+			'description' => ucfirst($name),
+			'page_title' => ucfirst($name),
+			'bootstrap_glyph' => 'glyphicon-home',
 			'title'=>$name
 
 		);

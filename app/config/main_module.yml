@@ -10,7 +10,7 @@ main:
     module_path: main
     version: '1.0'
     user_id: '1'
-lavon:
+apps:
     module_id: '3'
     module_name: apps
     module_path: apps
@@ -32,5 +32,17 @@ navigation:
     module_id: '6'
     module_name: navigation
     module_path: navigation
+    version: '1.0'
+    user_id: '1'
+unit:
+    module_id: '7'
+    module_name: unit
+    module_path: unit
+    version: '1.0'
+    user_id: '1'
+cluster:
+    module_id: '8'
+    module_name: cluster
+    module_path: cluster
     version: '1.0'
     user_id: '1'
