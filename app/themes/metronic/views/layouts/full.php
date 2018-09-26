@@ -32,7 +32,7 @@
     
     <!-- END HEAD -->
 
-    <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-content-white page-sidebar-closed">
+    <body class="page-header-fixed page-sidebar-open-hide-logo page-container-bg-solid page-content-white page-sidebar-open">
         <div class="page-wrapper">
             <!-- BEGIN HEADER -->
             <!-- full/page-header.php -->
