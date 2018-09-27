@@ -12,7 +12,7 @@ class Cluster extends CMS_Controller{
 	}
 	public function index()
 	{
-		# code...
+		redirect('cluster/grid');
 	}
 	public function grid()
 	{

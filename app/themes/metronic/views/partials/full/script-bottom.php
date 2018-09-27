@@ -12,6 +12,8 @@
         <script src="{{ theme_assets }}/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
         <script src="{{ theme_assets }}/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
         <script src="{{ theme_assets }}/global/plugins/bootstrap-summernote/summernote.min.js" type="text/javascript"></script>
+        <script src="{{ theme_assets }}/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+        <script src="{{ theme_assets }}/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
         <!-- END CORE PLUGINS -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         <script src="{{ theme_assets }}/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>

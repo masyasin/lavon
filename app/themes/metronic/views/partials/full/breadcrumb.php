@@ -1,9 +1,9 @@
 <ul class="page-breadcrumb">
                                 <li>
-                                    <a href="index.html">Home</a>
+                                    <a href="{{ base_url }}">Home</a>
                                     <i class="fa fa-circle"></i>
                                 </li>
                                 <li>
-                                    <span>Apps</span>
+                                    <span>..</span>
                                 </li>
                             </ul>

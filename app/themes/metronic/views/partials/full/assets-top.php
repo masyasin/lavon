@@ -21,6 +21,8 @@
         <link href="{{ theme_assets }}/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
         <link href="{{ theme_assets }}/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
         <link href="{{ theme_assets }}/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="{{ theme_assets }}/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{ theme_assets }}/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="{{ theme_assets }}/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />

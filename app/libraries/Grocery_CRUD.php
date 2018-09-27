@@ -2245,11 +2245,11 @@ class grocery_CRUD_Layout extends grocery_CRUD_Model_Driver
 
     protected function get_datetime_input($field_info,$value)
     {
-        $this->set_css($this->default_css_path.'/ui/simple/'.grocery_CRUD::JQUERY_UI_CSS);
-        $this->set_css($this->default_css_path.'/jquery_plugins/jquery.ui.datetime.css');
-        $this->set_css($this->default_css_path.'/jquery_plugins/jquery-ui-timepicker-addon.css');
-        $this->set_js_lib($this->default_javascript_path.'/jquery_plugins/ui/'.grocery_CRUD::JQUERY_UI_JS);
-        $this->set_js_lib($this->default_javascript_path.'/jquery_plugins/jquery-ui-timepicker-addon.js');
+        // $this->set_css($this->default_css_path.'/ui/simple/'.grocery_CRUD::JQUERY_UI_CSS);
+        // $this->set_css($this->default_css_path.'/jquery_plugins/jquery.ui.datetime.css');
+        // $this->set_css($this->default_css_path.'/jquery_plugins/jquery-ui-timepicker-addon.css');
+        // $this->set_js_lib($this->default_javascript_path.'/jquery_plugins/ui/'.grocery_CRUD::JQUERY_UI_JS);
+        // $this->set_js_lib($this->default_javascript_path.'/jquery_plugins/jquery-ui-timepicker-addon.js');
 
         if($this->language !== 'english')
         {
