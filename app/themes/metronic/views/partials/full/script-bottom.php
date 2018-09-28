@@ -44,3 +44,23 @@
                 });
             })
         </script>
+
+
+        <style type="text/css">
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+    display: inline;
+    padding: 0;
+}            
+
+.btn.refresh-data{
+    display: none;
+}
+th.no{
+    width: 10px;
+    text-align: right;
+}
+th.actions{
+    width: 105px;
+    text-align: right;
+}
+        </style>

@@ -110,12 +110,12 @@ function loadListenersForDatatables() {
 		var new_container = $("<div/>").addClass('dataTablesContainer');
 
 		this_container.after(new_container);
-		$.components.get('animsition').init();
+		// $.components.get('animsition').init();
 
 		$.ajax({
 			url: $(this).attr('data-url')+'?uuidv4='+uuidv4(),
 			success: function(my_output){
-				$('.animsition').animsition('in');
+				// $('.animsition').animsition('in');
 				this_container.remove();
 				new_container.html(my_output);
 				oTable = null;

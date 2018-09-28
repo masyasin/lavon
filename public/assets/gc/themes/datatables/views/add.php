@@ -1,5 +1,5 @@
 <?$form_title = $this->l('form_add').' '.$subject;?>
-<div class="modal "  aria-hidden="true"
+<div class="modal " 
 aria-labelledby="exampleModalTitle" role="dialog" tabindex="-1" id="modalForm" mode="add">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">

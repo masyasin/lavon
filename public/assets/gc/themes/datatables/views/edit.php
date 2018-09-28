@@ -1,7 +1,7 @@
 <?
 $form_title = $this->l('form_edit').' '.$subject;
 ?>
-<div class="modal fade"  aria-hidden="true"
+<div class="modal fade" 
 aria-labelledby="exampleModalTitle" role="dialog" tabindex="-1" id="modalForm" mode="edit">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">

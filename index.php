@@ -148,7 +148,7 @@ switch (ERROR_REPORTING)
     case 'development':
     case 'testing':
     case 'production':    
-    error_reporting(E_ERROR & ~E_WARNING & ~E_NOTICE & ~E_DEPRECATED);
+    error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE & ~E_DEPRECATED);
 
 
     

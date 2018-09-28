@@ -1,4 +1,14 @@
-        <div class="panel-body">
+<div class="row">        
+        <div class="col-md-12">
+        	<div class="portlet light bordered">
+        		<div class="portlet-title">
+        			<div class="caption font-dark">
+                                            <i class="icon-settings font-dark"></i>
+                                            <span class="caption-subject bold uppercase"> Cluster</span>
+                                        </div>
+        		</div>
+        		<div class="portlet-body">
+
 <?php
 	$asset = new CMS_Asset();
 	$asset->add_module_css('styles/navigation.css','navigation');
@@ -25,4 +35,7 @@
     }
 	echo $output;
 ?>
+</div>
+</div>
+ </div>
  </div>

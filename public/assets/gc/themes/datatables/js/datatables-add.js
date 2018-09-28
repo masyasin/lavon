@@ -14,10 +14,10 @@ $(function(){
 				url: validation_url,
 				dataType: 'json',
 				beforeSend: function(){
-					$.components.get('animsition').init();
+					// $.components.get('animsition').init();
 				},
 				success: function(data){
-					$('.animsition').animsition('in');
+					// $('.animsition').animsition('in');
 					if(data.success)
 					{
 						$('#crudForm').ajaxSubmit({

@@ -19,9 +19,9 @@ class Cluster extends CMS_Controller{
 		
 		$crud = $this->new_crud();
         $crud->unset_jquery();
-        
+		$crud->set_subject('Cluster');        
         $crud->set_theme('datatables');
-
+        $crud->columns('nama','kode');
         $crud->set_table('m_cluster');
         // $crud->set_table('m_unit');
 
