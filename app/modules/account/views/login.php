@@ -8,11 +8,11 @@
         <!-- BEGIN LOGIN -->
         <div class="content">
             <!-- BEGIN LOGIN FORM -->
-            <form class="login-form" action="index.html" method="post">
-                <h3 class="form-title font-green">Sign In</h3>
+            <form class="login-form" action="{{ base_url }}account/login" method="post">
+                <h3 class="form-title font-green">Masuk</h3>
                 <div class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button>
-                    <span> Enter any username and password. </span>
+                    <span> Masukkan username dan password. </span>
                 </div>
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
@@ -23,13 +23,13 @@
                     <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" /> </div>
                 <div class="form-actions">
                     <button type="submit" class="btn green uppercase">Login</button>
-                    <label class="rememberme check mt-checkbox mt-checkbox-outline">
-                        <input type="checkbox" name="remember" value="1" />Remember
+                 <!--    <label class="rememberme check mt-checkbox mt-checkbox-outline">
+                        <input type="checkbox" name="remember" value="1" />Ingat
                         <span></span>
-                    </label>
-                    <a href="javascript:;" id="forget-password" class="forget-password">Forgot Password?</a>
+                    </label> -->
+                    <!-- <a href="javascript:;" id="forget-password" class="forget-password">Lupa Password?</a> -->
                 </div>
-                <div class="login-options">
+               <!--  <div class="login-options">
                     <h4>Or login with</h4>
                     <ul class="social-icons">
                         <li>
@@ -50,11 +50,11 @@
                     <p>
                         <a href="javascript:;" id="register-btn" class="uppercase">Create an account</a>
                     </p>
-                </div>
+                </div> -->
             </form>
             <!-- END LOGIN FORM -->
             <!-- BEGIN FORGOT PASSWORD FORM -->
-            <form class="forget-form" action="index.html" method="post">
+            <form class="forget-form" action="{{ base_url }}account/login" method="post">
                 <h3 class="font-green">Forget Password ?</h3>
                 <p> Enter your e-mail address below to reset your password. </p>
                 <div class="form-group">

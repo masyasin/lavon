@@ -52,3 +52,9 @@ tenan:
     module_path: tenan
     version: '1.0'
     user_id: '1'
+member:
+    module_id: '10'
+    module_name: member
+    module_path: member
+    version: '1.0'
+    user_id: '1'

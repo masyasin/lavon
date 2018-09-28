@@ -16,6 +16,9 @@ class Account extends CMS_Controller{
 	}
 	public function login()
 	{
+		if($this->input->method() == 'post'){
+
+		}
 		$view_config = array(
 			// 'layout' => 'login_layout'
 		);

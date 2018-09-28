@@ -19,6 +19,7 @@ class Unit extends CMS_Controller{
         $crud->set_theme('datatables');
         $crud->columns('card_number','unit_number','id_cluster');
         $crud->set_table('m_unit');
+        $crud->unset_read();
         $crud->display_as('id_cluster','Cluster');
         $crud->set_relation('id_cluster','m_cluster','nama');
         $output = $crud->render();
