@@ -46,3 +46,9 @@ cluster:
     module_path: cluster
     version: '1.0'
     user_id: '1'
+tenan:
+    module_id: '9'
+    module_name: tenan
+    module_path: tenan
+    version: '1.0'
+    user_id: '1'
