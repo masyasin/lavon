@@ -4,10 +4,10 @@ class Member extends CMS_Controller{
 	{
 		# code...
 	}
-	public function tr()
+	public function entry()
 	{
 		$config=array(
-			'title'=>'Member Detail'
+			'title'=>'Entry Card/Member Detail'
 		);
 		$this->view('member_details', $output, 'navi',$config);
 	}

@@ -1,4 +1,6 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
 /**
  * The Main Controller of No-CMS
@@ -9,17 +11,17 @@ class Main extends CMS_Controller
 {
     private function unique_field_name($field_name)
     {
-        return 's'.substr(md5($field_name),0,8); //This s is because is better for a string to begin with a letter and not with a number
+        return 's'.substr(md5($field_name), 0, 8); //This s is because is better for a string to begin with a letter and not with a number
     }
 
-    private function __random_string($length=10)
+    private function __random_string($length = 10)
     {
         $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-        $size = strlen( $chars );
+        $size = strlen($chars);
         $str = '';
-        for( $i = 0; $i < $length; $i++ ){
-            $str .= $chars[ rand( 0, $size - 1 ) ];
+        for ($i = 0; $i < $length; $i++) {
+            $str .= $chars[ rand(0, $size - 1) ];
         }
         return $str;
     }
@@ -27,99 +29,100 @@ class Main extends CMS_Controller
     protected function upload($upload_path, $input_file_name = 'userfile', $submit_name = 'upload')
     {
         $data = array(
-            "uploading" => TRUE,
-            "success" => FALSE,
+            "uploading" => true,
+            "success" => false,
             "message" => ""
         );
         if (isset($_POST[$submit_name])) {
             $config['upload_path']   = $upload_path;
             $config['allowed_types'] = 'zip';
             $config['max_size']      = 8 * 1024;
-            $config['overwrite']     = TRUE;
+            $config['overwrite']     = true;
             $this->load->library('upload', $config);
             if (!$this->upload->do_upload($input_file_name)) {
-                $data['uploading'] = TRUE;
-                $data['success']   = FALSE;
+                $data['uploading'] = true;
+                $data['success']   = false;
                 $data['message']   = $this->upload->display_errors();
             } else {
                 $this->load->library('unzip');
                 $upload_data = $this->upload->data();
                 $this->unzip->extract($upload_data['full_path']);
                 unlink($upload_data['full_path']);
-                $data['uploading'] = TRUE;
-                $data['success']   = TRUE;
+                $data['uploading'] = true;
+                $data['success']   = true;
                 $data['message']   = '';
             }
         } else {
-            $data['uploading'] = FALSE;
-            $data['success']   = FALSE;
+            $data['uploading'] = false;
+            $data['success']   = false;
             $data['message']   = '';
         }
         return $data;
     }
 
-    protected function recurse_copy($src,$dst) { 
-        $dir = opendir($src); 
-        @mkdir($dst); 
-        while(false !== ( $file = readdir($dir)) ) { 
-            if (( $file != '.' ) && ( $file != '..' )) { 
-                if ( is_dir($src . '/' . $file) ) { 
-                    $this->recurse_copy($src . '/' . $file,$dst . '/' . $file); 
-                } 
-                else { 
-                    copy($src . '/' . $file,$dst . '/' . $file); 
-                } 
-            } 
-        } 
-        closedir($dir); 
+    protected function recurse_copy($src, $dst)
+    {
+        $dir = opendir($src);
+        @mkdir($dst);
+        while (false !== ( $file = readdir($dir))) {
+            if (( $file != '.' ) && ( $file != '..' )) {
+                if (is_dir($src . '/' . $file)) {
+                    $this->recurse_copy($src . '/' . $file, $dst . '/' . $file);
+                } else {
+                    copy($src . '/' . $file, $dst . '/' . $file);
+                }
+            }
+        }
+        closedir($dir);
     }
     
-    protected function rrmdir($dir) {
-        foreach(glob($dir . '/*') as $file) {
-            if(is_dir($file)){
+    protected function rrmdir($dir)
+    {
+        foreach (glob($dir . '/*') as $file) {
+            if (is_dir($file)) {
                 $this->rrmdir($file);
             } else {
                 unlink($file);
             }
         }
         unlink($dir.'/.htaccess');
-        rmdir($dir); 
+        rmdir($dir);
     }
 
     public function module_management()
     {
         $this->cms_guard_page('main_module_management');
         
-        if(isset($_FILES['userfile'])){
-            // upload new module        
-            $directory = basename($_FILES['userfile']['name'],'.zip');
+        if (isset($_FILES['userfile'])) {
+            // upload new module
+            $directory = basename($_FILES['userfile']['name'], '.zip');
             
             // subsite_auth
             $subsite_auth_file = APPPATH.'modules/'.$directory.'/subsite_auth.php';
             $backup_subsite_auth_file = APPPATH.'modules/'.$directory.'_subsite_auth.php';
-            $subsite_backup = FALSE;
-            if(file_exists($subsite_auth_file)){
+            $subsite_backup = false;
+            if (file_exists($subsite_auth_file)) {
                 copy($subsite_auth_file, $backup_subsite_auth_file);
-                $subsite_backup = TRUE;
+                $subsite_backup = true;
             }
             // config
             $config_dir = APPPATH.'modules/'.$directory.'/config';
             $backup_config_dir = APPPATH.'modules/'.$directory.'_config';
-            $config_backup = FALSE;
-            if(file_exists($config_dir) && is_dir($config_dir)){
+            $config_backup = false;
+            if (file_exists($config_dir) && is_dir($config_dir)) {
                 $this->recurse_copy($config_dir, $backup_config_dir);
-                $config_backup = TRUE;
+                $config_backup = true;
             }
         }
         
         
         $data['upload'] = $this->upload(APPPATH.'modules/', 'userfile', 'upload');
-        if($data['upload']['success']){
-            if($subsite_backup){
+        if ($data['upload']['success']) {
+            if ($subsite_backup) {
                 copy($backup_subsite_auth_file, $subsite_auth_file);
                 unlink($backup_subsite_auth_file);
             }
-            if($config_backup){
+            if ($config_backup) {
                 $this->recurse_copy($backup_config_dir, $config_dir);
                 $this->rrmdir($backup_config_dir);
             }
@@ -127,7 +130,7 @@ class Main extends CMS_Controller
 
         // show the view
         $modules = $this->cms_get_module_list();
-        for($i=0; $i<count($modules); $i++){
+        for ($i=0; $i<count($modules); $i++) {
             $module = $modules[$i];
             $module_path = $module['module_path'];
         }
@@ -136,30 +139,30 @@ class Main extends CMS_Controller
         $view_config = array(
             'layout' => 'management'
         );
-        $this->view('main/main_module_management', $data, 'main_module_management',$view_config);
+        $this->view('main/main_module_management', $data, 'main_module_management', $view_config);
     }
 
-    public function change_theme($theme = NULL)
+    public function change_theme($theme = null)
     {
         $this->cms_guard_page('main_change_theme');
-        if(isset($_FILES['userfile'])){
-            // upload new module        
-            $directory = basename($_FILES['userfile']['name'],'.zip');
+        if (isset($_FILES['userfile'])) {
+            // upload new module
+            $directory = basename($_FILES['userfile']['name'], '.zip');
             
             // subsite_auth
             $subsite_auth_file = FCPATH.'themes'.$directory.'/subsite_auth.php';
             $backup_subsite_auth_file = FCPATH.'themes/'.$directory.'_subsite_auth.php';
-            $subsite_backup = FALSE;
-            if(file_exists($subsite_auth_file)){
+            $subsite_backup = false;
+            if (file_exists($subsite_auth_file)) {
                 copy($subsite_auth_file, $backup_subsite_auth_file);
-                $subsite_backup = TRUE;
+                $subsite_backup = true;
             }
         }
         // upload new theme
         $data['upload'] = $this->upload('./themes/', 'userfile', 'upload');
         
-        if($data['upload']['success']){
-            if($subsite_backup){
+        if ($data['upload']['success']) {
+            if ($subsite_backup) {
                 copy($backup_subsite_auth_file, $subsite_auth_file);
                 unlink($backup_subsite_auth_file);
             }
@@ -179,7 +182,7 @@ class Main extends CMS_Controller
     //this is used for the real static page which doesn't has any URL in navigation management
     public function static_page($navigation_name)
     {
-        $this->view('static_page', NULL, $navigation_name);
+        $this->view('static_page', null, $navigation_name);
     }
 
     public function login()
@@ -205,7 +208,7 @@ class Main extends CMS_Controller
             if ($this->cms_do_login($identity, $password)) {
                 //if old_url exist, redirect to old_url, else redirect to main/index
                 if (isset($old_url)) {
-                    $this->session->set_flashdata('cms_old_url', NULL);
+                    $this->session->set_flashdata('cms_old_url', null);
                     // seek for the closest url that exist in navigation table to avoid something like manage_x/index/edit/1/error to be appeared
                     $old_url_part = explode('/', $old_url);
                     
@@ -231,7 +234,7 @@ class Main extends CMS_Controller
                     "register_caption" => $this->cms_lang("Register"),
                     "allow_register"=> $allow_register,
                 );
-                $this->view('main/main_login', $data, 'main_login', $view_config );
+                $this->view('main/main_login', $data, 'main_login', $view_config);
             }
         } else {
             //save the old_url again
@@ -248,7 +251,7 @@ class Main extends CMS_Controller
                 "register_caption" => $this->cms_lang("Register"),
                 "allow_register" => $allow_register,
             );
-            $this->view('main/main_login', $data, 'main_login',$view_config);
+            $this->view('main/main_login', $data, 'main_login', $view_config);
         }
     }
 
@@ -258,7 +261,7 @@ class Main extends CMS_Controller
         redirect('');
     }
 
-    public function forgot($activation_code = NULL)
+    public function forgot($activation_code = null)
     {
         $this->cms_guard_page('main_forgot');
         if (isset($activation_code)) {
@@ -290,7 +293,7 @@ class Main extends CMS_Controller
             $this->form_validation->set_rules('identity', 'Identity', 'required|xss_clean');
 
             if ($this->form_validation->run()) {
-                if ($this->cms_generate_activation_code($identity, TRUE, 'FORGOT')) {
+                if ($this->cms_generate_activation_code($identity, true, 'FORGOT')) {
                     redirect('');
                 } else {
                     $data = array(
@@ -319,13 +322,13 @@ class Main extends CMS_Controller
             (strlen($this->input->post('real_name', ''))==0) &&
             (strlen($this->input->post('password', ''))==0) &&
             (strlen($this->input->post('confirm_password'))==0);
-        if(!$honey_pot_pass){
+        if (!$honey_pot_pass) {
             $this->m_cms->cms_user_id();
             die();
         }
 
         $previous_secret_code = $this->session->userdata('__main_registration_secret_code');
-        if($previous_secret_code === NULL){
+        if ($previous_secret_code === null) {
             $previous_secret_code = $this->__random_string();
         }
         //get user input
@@ -369,19 +372,19 @@ class Main extends CMS_Controller
             $email_exists        = $this->cms_is_user_exists($email);
             $valid_email = preg_match('/@.+\./', $email);
             $message   = "";
-            $error = FALSE;
+            $error = false;
             if ($user_name == "") {
                 $message = $this->cms_lang("Username is empty");
-                $error = TRUE;
-            } else if ($user_name_exists) {
+                $error = true;
+            } elseif ($user_name_exists) {
                 $message = $this->cms_lang("Username already exists");
-                $error = TRUE;
-            } else if (!$valid_email){
+                $error = true;
+            } elseif (!$valid_email) {
                 $message = $this->cms_lang("Invalid email address");
-                $error = TRUE;
-            } else if ($email_exists){
+                $error = true;
+            } elseif ($email_exists) {
                 $message = $this->cms_lang("Email already used");
-                $error = TRUE;
+                $error = true;
             }
             $data = array(
                 "exists" => $user_name_exists || $email_exists,
@@ -392,17 +395,18 @@ class Main extends CMS_Controller
         }
     }
 
-    public function get_layout($theme=''){
-        if($this->input->is_ajax_request()){
-            if($theme == ''){
+    public function get_layout($theme = '')
+    {
+        if ($this->input->is_ajax_request()) {
+            if ($theme == '') {
                 $theme = $this->cms_get_config('site_theme');
             }
             $layout_list = array('');
             $this->load->helper('directory');
             $files = directory_map(APPPATH.'themes/'.$theme.'/views/layouts/', 1);
             sort($files);
-            foreach($files as $file){
-                if(is_dir(APPPATH.'themes/'.$theme.'/views/layouts/'.$file)){
+            foreach ($files as $file) {
+                if (is_dir(APPPATH.'themes/'.$theme.'/views/layouts/'.$file)) {
                     continue;
                 }
                 $file = str_ireplace('.php', '', $file);
@@ -421,19 +425,19 @@ class Main extends CMS_Controller
             $email_exists        = $this->cms_is_user_exists($email) && $email != $this->cms_user_email();
             $valid_email = preg_match('/@.+\./', $email);
             $message   = "";
-            $error = FALSE;
+            $error = false;
             if ($user_name == "") {
                 $message = $this->cms_lang("Username is empty");
-                $error = TRUE;
-            } else if ($user_name_exists) {
+                $error = true;
+            } elseif ($user_name_exists) {
                 $message = $this->cms_lang("Username already exists");
-                $error = TRUE;
-            } else if (!$valid_email){
+                $error = true;
+            } elseif (!$valid_email) {
                 $message = $this->cms_lang("Invalid email address");
-                $error = TRUE;
-            } else if ($email_exists){
+                $error = true;
+            } elseif ($email_exists) {
                 $message = $this->cms_lang("Email already used");
-                $error = TRUE;
+                $error = true;
             }
             $data = array(
                 "exists" => $user_name_exists || $email_exists,
@@ -459,15 +463,18 @@ class Main extends CMS_Controller
         $password         = $this->input->post('password');
         $confirm_password = $this->input->post('confirm_password');
         if (!$change_password) {
-            $password = NULL;
+            $password = null;
         }
 
-        if (!$user_name)
+        if (!$user_name) {
             $user_name = $row->user_name;
-        if (!$email)
+        }
+        if (!$email) {
             $email = $row->email;
-        if (!$real_name)
+        }
+        if (!$real_name) {
             $real_name = $row->real_name;
+        }
 
         //set validation rule
         $this->form_validation->set_rules('user_name', 'User Name', 'required|xss_clean');
@@ -489,7 +496,7 @@ class Main extends CMS_Controller
             $view_config = array(
                 'layout' => 'management'
             );
-            $this->view('main/main_change_profile', $data, 'main_change_profile',$view_config);
+            $this->view('main/main_change_profile', $data, 'main_change_profile', $view_config);
         }
     }
 
@@ -500,27 +507,27 @@ class Main extends CMS_Controller
     }
 
     public function index()
-    {        
+    {
         $this->cms_guard_page('main_index');
         $data = array(
-            "submenu_screen" => $this->cms_submenu_screen(NULL)
+            "submenu_screen" => $this->cms_submenu_screen(null)
         );
         $this->view('main/main_index', $data, 'main_index');
     }
 
     public function management()
     {
-		$this->moduleName = "admin_dashboard";
-		if(!$this->checkRead($this->moduleName)){
-			show_error("Anda tidak bisa mengakses halaman ini...,harap hubungi Administrator",403,"RESTRICTED AREA");
-		}
+        $this->moduleName = "admin_dashboard";
+        if (!$this->checkRead($this->moduleName)) {
+            show_error("Anda tidak bisa mengakses halaman ini...,harap hubungi Administrator", 403, "RESTRICTED AREA");
+        }
         /*
-        maintain routes 
+        maintain routes
         */
         //$this->cms_guard_page('main_management');
         $module_path = $this->get_module_uri();
-        if($module_path == 'main/management'){
-            redirect('admin/dashboard','refresh');
+        if ($module_path == 'main/management') {
+            redirect('admin/dashboard', 'refresh');
             exit();
         }
 
@@ -532,10 +539,10 @@ class Main extends CMS_Controller
         $view_config = array(
             'layout' => 'management'
         );
-        $this->view('main/main_management', $data, 'main_management',$view_config);
+        $this->view('main/main_management', $data, 'main_management', $view_config);
     }
 
-    public function language($language = NULL)
+    public function language($language = null)
     {
         $this->cms_guard_page('main_language');
         if (isset($language)) {
@@ -568,7 +575,7 @@ class Main extends CMS_Controller
         $crud->unset_add();
         $crud->unset_delete();
         $crud->unset_edit();
-        $crud->required_fields('authorization_name');        
+        $crud->required_fields('authorization_name');
         $crud->unique_fields('authorization_name');
         $crud->unset_read();
 
@@ -590,7 +597,7 @@ class Main extends CMS_Controller
         $crud->set_table(cms_table_name('main_user'));
         $crud->set_subject($this->cms_lang('User'));
 
-        $crud->required_fields('user_name','password');        
+        $crud->required_fields('user_name', 'password');
         $crud->unique_fields('user_name');
         $crud->unset_read();
 
@@ -634,7 +641,7 @@ class Main extends CMS_Controller
         $view_config = array(
             'layout' => 'management'
         );
-        $this->view('main/main_user', $output, 'main_user_management',$view_config);
+        $this->view('main/main_user', $output, 'main_user_management', $view_config);
     }
 
     public function read_only_user_active($value, $row)
@@ -670,7 +677,7 @@ class Main extends CMS_Controller
         $crud->set_table(cms_table_name('main_group'));
         $crud->set_subject($this->cms_lang('User Group'));
 
-        $crud->required_fields('group_name');       
+        $crud->required_fields('group_name');
         $crud->unique_fields('group_name');
         $crud->unset_read();
 
@@ -703,11 +710,11 @@ class Main extends CMS_Controller
         $view_config = array(
             'layout' => 'management'
         );
-        $this->view('main/main_group', $output, 'main_group_management',$view_config);
+        $this->view('main/main_group', $output, 'main_group_management', $view_config);
     }// GROUP ===================================================================
-	
-	
-	
+    
+    
+    
     public function module()
     {
         $this->cms_guard_page('main_module_management');
@@ -718,13 +725,13 @@ class Main extends CMS_Controller
         $crud->set_table(cms_table_name('ap_module'));
         $crud->set_subject($this->cms_lang('CMS Module'));
 
-        $crud->required_fields('id');       
+        $crud->required_fields('id');
         $crud->unique_fields('name');
         $crud->unset_read();
 
-        $crud->columns('id', 'name','status','read','insert','update','remove');
-        $crud->edit_fields('id', 'name', 'status', 'read', 'insert','update','remove');
-        $crud->add_fields('id', 'name', 'status', 'read', 'insert','update','remove');
+        $crud->columns('id', 'name', 'status', 'read', 'insert', 'update', 'remove');
+        $crud->edit_fields('id', 'name', 'status', 'read', 'insert', 'update', 'remove');
+        $crud->add_fields('id', 'name', 'status', 'read', 'insert', 'update', 'remove');
         $crud->display_as('id', $this->cms_lang('ID'))
             ->display_as('name', $this->cms_lang('NAME'));
 
@@ -736,12 +743,12 @@ class Main extends CMS_Controller
             $this,
             'before_delete_group'
         )); */
-		
-		$crud->callback_before_insert(array(
+        
+        $crud->callback_before_insert(array(
             $this,
             'after_insert_module'
         ));
-		
+        
         $crud->unset_texteditor('description');
 
 
@@ -753,49 +760,50 @@ class Main extends CMS_Controller
         $view_config = array(
             'layout' => 'management'
         );
-        $this->view('main/main_module', $output, 'main_module_management',$view_config);
+        $this->view('main/main_module', $output, 'main_module_management', $view_config);
     }
 
-	
-	public function after_insert_module($post_array,$primary_key){
-		//previlege read
-		if($post_array["read"]==1){
-			$insert_privilege = array(
-							"privilege_name"=>strtolower($post_array["id"])."_read",
-							"title"=>$post_array["name"]." - READ",
-							"description"=>" - ",
-						 );
-			$this->db->insert(cms_table_name('main_privilege'),$insert_privilege);				
-		}
-		//previlege insert
-		if($post_array["insert"]==1){
-			$insert_privilege = array(
-							"privilege_name"=>strtolower($post_array["id"])."_insert",
-							"title"=>$post_array["name"]." - INSERT",
-							"description"=>" - ",
-						 );
-			$this->db->insert(cms_table_name('main_privilege'),$insert_privilege);	
-		}
-		//previlege update
-		if($post_array["update"]==1){
-			$insert_privilege = array(
-							"privilege_name"=>strtolower($post_array["id"])."_update",
-							"title"=>$post_array["name"]." - UPDATE",
-							"description"=>" - ",
-						 );
-			$this->db->insert(cms_table_name('main_privilege'),$insert_privilege);	
-		}
-		//previlege remove
-		if($post_array["remove"]==1){
-			$insert_privilege = array(
-							"privilege_name"=>strtolower($post_array["id"])."_remove",
-							"title"=>$post_array["name"]." - REMOVE",
-							"description"=>" - ",
-						 );
-			$this->db->insert(cms_table_name('main_privilege'),$insert_privilege);	
-		}
-	}
-	
+    
+    public function after_insert_module($post_array, $primary_key)
+    {
+        //previlege read
+        if ($post_array["read"]==1) {
+            $insert_privilege = array(
+                            "privilege_name"=>strtolower($post_array["id"])."_read",
+                            "title"=>$post_array["name"]." - READ",
+                            "description"=>" - ",
+                         );
+            $this->db->insert(cms_table_name('main_privilege'), $insert_privilege);
+        }
+        //previlege insert
+        if ($post_array["insert"]==1) {
+            $insert_privilege = array(
+                            "privilege_name"=>strtolower($post_array["id"])."_insert",
+                            "title"=>$post_array["name"]." - INSERT",
+                            "description"=>" - ",
+                         );
+            $this->db->insert(cms_table_name('main_privilege'), $insert_privilege);
+        }
+        //previlege update
+        if ($post_array["update"]==1) {
+            $insert_privilege = array(
+                            "privilege_name"=>strtolower($post_array["id"])."_update",
+                            "title"=>$post_array["name"]." - UPDATE",
+                            "description"=>" - ",
+                         );
+            $this->db->insert(cms_table_name('main_privilege'), $insert_privilege);
+        }
+        //previlege remove
+        if ($post_array["remove"]==1) {
+            $insert_privilege = array(
+                            "privilege_name"=>strtolower($post_array["id"])."_remove",
+                            "title"=>$post_array["name"]." - REMOVE",
+                            "description"=>" - ",
+                         );
+            $this->db->insert(cms_table_name('main_privilege'), $insert_privilege);
+        }
+    }
+    
     public function before_delete_group($primary_key)
     {
         $SQL   = "SELECT user_id FROM ".cms_table_name('main_group_user')." WHERE group_id =" . $primary_key . ";";
@@ -810,7 +818,7 @@ class Main extends CMS_Controller
     }
 
     // NAVIGATION ==============================================================
-    public function navigation($parent_id=NULL)
+    public function navigation($parent_id = null)
     {
         $this->cms_guard_page('main_navigation_management');
         $crud = $this->new_crud();
@@ -825,7 +833,7 @@ class Main extends CMS_Controller
         $crud->unique_fields('navigation_name', 'title', 'url');
         $crud->unset_read();
 
-        $crud->columns('title', 'navigation_child',  'active');
+        $crud->columns('title', 'navigation_child', 'active');
         $crud->edit_fields('navigation_name', 'parent_id', 'title', 'bootstrap_glyph', 'page_title', 'page_keyword', 'description', 'active', 'only_content', 'is_static', 'static_content', 'url', 'default_theme', 'default_layout', 'authorization_id', 'groups', 'index');
         $crud->add_fields('navigation_name', 'parent_id', 'title', 'bootstrap_glyph', 'page_title', 'page_keyword', 'description', 'active', 'only_content', 'is_static', 'static_content', 'url', 'default_theme', 'default_layout', 'authorization_id', 'groups', 'index');
         $crud->field_type('active', 'true_false');
@@ -841,7 +849,7 @@ class Main extends CMS_Controller
             ->display_as('is_root', $this->cms_lang('Is Root'))
             ->display_as('navigation_child', 'Sub Menu')
             ->display_as('parent_id', $this->cms_lang('Parent'))
-            ->display_as('title','Menu')
+            ->display_as('title', 'Menu')
             ->display_as('page_title', $this->cms_lang('Page Title'))
             ->display_as('page_keyword', $this->cms_lang('Page Keyword (Comma Separated)'))
             ->display_as('description', $this->cms_lang('Description'))
@@ -860,27 +868,33 @@ class Main extends CMS_Controller
         $crud->unset_texteditor('description');
         $crud->field_type('only_content', 'true_false');
 
-        $crud->field_type('bootstrap_glyph','enum',array('glyphicon-adjust', 'glyphicon-align-center', 'glyphicon-align-justify', 'glyphicon-align-left', 'glyphicon-align-right', 'glyphicon-arrow-down', 'glyphicon-arrow-left', 'glyphicon-arrow-right', 'glyphicon-arrow-up', 'glyphicon-asterisk', 'glyphicon-backward', 'glyphicon-ban-circle', 'glyphicon-barcode', 'glyphicon-bell', 'glyphicon-bold', 'glyphicon-book', 'glyphicon-bookmark', 'glyphicon-briefcase', 'glyphicon-bullhorn', 'glyphicon-calendar', 'glyphicon-camera', 'glyphicon-certificate', 'glyphicon-check', 'glyphicon-chevron-down', 'glyphicon-chevron-left', 'glyphicon-chevron-right', 'glyphicon-chevron-up', 'glyphicon-circle-arrow-down', 'glyphicon-circle-arrow-left', 'glyphicon-circle-arrow-right', 'glyphicon-circle-arrow-up', 'glyphicon-cloud', 'glyphicon-cloud-download', 'glyphicon-cloud-upload', 'glyphicon-cog', 'glyphicon-collapse-down', 'glyphicon-collapse-up', 'glyphicon-comment', 'glyphicon-compressed', 'glyphicon-copyright-mark', 'glyphicon-credit-card', 'glyphicon-cutlery', 'glyphicon-dashboard', 'glyphicon-download', 'glyphicon-download-alt', 'glyphicon-earphone', 'glyphicon-edit', 'glyphicon-eject', 'glyphicon-envelope', 'glyphicon-euro', 'glyphicon-exclamation-sign', 'glyphicon-expand', 'glyphicon-export', 'glyphicon-eye-close', 'glyphicon-eye-open', 'glyphicon-facetime-video', 'glyphicon-fast-backward', 'glyphicon-fast-forward', 'glyphicon-file', 'glyphicon-film', 'glyphicon-filter', 'glyphicon-fire', 'glyphicon-flag', 'glyphicon-flash', 'glyphicon-floppy-disk', 'glyphicon-floppy-open', 'glyphicon-floppy-remove', 'glyphicon-floppy-save', 'glyphicon-floppy-saved', 'glyphicon-folder-close', 'glyphicon-folder-open', 'glyphicon-font', 'glyphicon-forward', 'glyphicon-fullscreen', 'glyphicon-gbp', 'glyphicon-gift', 'glyphicon-glass', 'glyphicon-globe', 'glyphicon-hand-down', 'glyphicon-hand-left', 'glyphicon-hand-right', 'glyphicon-hand-up', 'glyphicon-hd-video', 'glyphicon-hdd', 'glyphicon-header', 'glyphicon-headphones', 'glyphicon-heart', 'glyphicon-heart-empty', 'glyphicon-home', 'glyphicon-import', 'glyphicon-inbox', 'glyphicon-indent-left', 'glyphicon-indent-right', 'glyphicon-info-sign', 'glyphicon-italic', 'glyphicon-leaf', 'glyphicon-link', 'glyphicon-list', 'glyphicon-list-alt', 'glyphicon-lock', 'glyphicon-log-in', 'glyphicon-log-out', 'glyphicon-magnet', 'glyphicon-map-marker', 'glyphicon-minus', 'glyphicon-minus-sign', 'glyphicon-move', 'glyphicon-music', 'glyphicon-new-window', 'glyphicon-off', 'glyphicon-ok', 'glyphicon-ok-circle', 'glyphicon-ok-sign', 'glyphicon-open', 'glyphicon-paperclip', 'glyphicon-pause', 'glyphicon-pencil', 'glyphicon-phone', 'glyphicon-phone-alt', 'glyphicon-picture', 'glyphicon-plane', 'glyphicon-play', 'glyphicon-play-circle', 'glyphicon-plus', 'glyphicon-plus-sign', 'glyphicon-print', 'glyphicon-pushpin', 'glyphicon-qrcode', 'glyphicon-question-sign', 'glyphicon-random', 'glyphicon-record', 'glyphicon-refresh', 'glyphicon-registration-mark', 'glyphicon-remove', 'glyphicon-remove-circle', 'glyphicon-remove-sign', 'glyphicon-repeat', 'glyphicon-resize-full', 'glyphicon-resize-horizontal', 'glyphicon-resize-small', 'glyphicon-resize-vertical', 'glyphicon-retweet', 'glyphicon-road', 'glyphicon-save', 'glyphicon-saved', 'glyphicon-screenshot', 'glyphicon-sd-video', 'glyphicon-search', 'glyphicon-send', 'glyphicon-share', 'glyphicon-share-alt', 'glyphicon-shopping-cart', 'glyphicon-signal', 'glyphicon-sort', 'glyphicon-sort-by-alphabet', 'glyphicon-sort-by-alphabet-alt', 'glyphicon-sort-by-attributes', 'glyphicon-sort-by-attributes-alt', 'glyphicon-sort-by-order', 'glyphicon-sort-by-order-alt', 'glyphicon-sound-5-1', 'glyphicon-sound-6-1', 'glyphicon-sound-7-1', 'glyphicon-sound-dolby', 'glyphicon-sound-stereo', 'glyphicon-star', 'glyphicon-star-empty', 'glyphicon-stats', 'glyphicon-step-backward', 'glyphicon-step-forward', 'glyphicon-stop', 'glyphicon-subtitles', 'glyphicon-tag', 'glyphicon-tags', 'glyphicon-tasks', 'glyphicon-text-height', 'glyphicon-text-width', 'glyphicon-th', 'glyphicon-th-large', 'glyphicon-th-list', 'glyphicon-thumbs-down', 'glyphicon-thumbs-up', 'glyphicon-time', 'glyphicon-tint', 'glyphicon-tower', 'glyphicon-transfer', 'glyphicon-trash', 'glyphicon-tree-conifer', 'glyphicon-tree-deciduous', 'glyphicon-unchecked', 'glyphicon-upload', 'glyphicon-usd', 'glyphicon-user', 'glyphicon-volume-down', 'glyphicon-volume-off', 'glyphicon-volume-up', 'glyphicon-warning-sign', 'glyphicon-wrench', 'glyphicon-zoom-in', 'glyphicon-zoom-out'));
-            $crud->field_type('index','hidden');
+        $crud->field_type('bootstrap_glyph', 'enum', array('glyphicon-adjust', 'glyphicon-align-center', 'glyphicon-align-justify', 'glyphicon-align-left', 'glyphicon-align-right', 'glyphicon-arrow-down', 'glyphicon-arrow-left', 'glyphicon-arrow-right', 'glyphicon-arrow-up', 'glyphicon-asterisk', 'glyphicon-backward', 'glyphicon-ban-circle', 'glyphicon-barcode', 'glyphicon-bell', 'glyphicon-bold', 'glyphicon-book', 'glyphicon-bookmark', 'glyphicon-briefcase', 'glyphicon-bullhorn', 'glyphicon-calendar', 'glyphicon-camera', 'glyphicon-certificate', 'glyphicon-check', 'glyphicon-chevron-down', 'glyphicon-chevron-left', 'glyphicon-chevron-right', 'glyphicon-chevron-up', 'glyphicon-circle-arrow-down', 'glyphicon-circle-arrow-left', 'glyphicon-circle-arrow-right', 'glyphicon-circle-arrow-up', 'glyphicon-cloud', 'glyphicon-cloud-download', 'glyphicon-cloud-upload', 'glyphicon-cog', 'glyphicon-collapse-down', 'glyphicon-collapse-up', 'glyphicon-comment', 'glyphicon-compressed', 'glyphicon-copyright-mark', 'glyphicon-credit-card', 'glyphicon-cutlery', 'glyphicon-dashboard', 'glyphicon-download', 'glyphicon-download-alt', 'glyphicon-earphone', 'glyphicon-edit', 'glyphicon-eject', 'glyphicon-envelope', 'glyphicon-euro', 'glyphicon-exclamation-sign', 'glyphicon-expand', 'glyphicon-export', 'glyphicon-eye-close', 'glyphicon-eye-open', 'glyphicon-facetime-video', 'glyphicon-fast-backward', 'glyphicon-fast-forward', 'glyphicon-file', 'glyphicon-film', 'glyphicon-filter', 'glyphicon-fire', 'glyphicon-flag', 'glyphicon-flash', 'glyphicon-floppy-disk', 'glyphicon-floppy-open', 'glyphicon-floppy-remove', 'glyphicon-floppy-save', 'glyphicon-floppy-saved', 'glyphicon-folder-close', 'glyphicon-folder-open', 'glyphicon-font', 'glyphicon-forward', 'glyphicon-fullscreen', 'glyphicon-gbp', 'glyphicon-gift', 'glyphicon-glass', 'glyphicon-globe', 'glyphicon-hand-down', 'glyphicon-hand-left', 'glyphicon-hand-right', 'glyphicon-hand-up', 'glyphicon-hd-video', 'glyphicon-hdd', 'glyphicon-header', 'glyphicon-headphones', 'glyphicon-heart', 'glyphicon-heart-empty', 'glyphicon-home', 'glyphicon-import', 'glyphicon-inbox', 'glyphicon-indent-left', 'glyphicon-indent-right', 'glyphicon-info-sign', 'glyphicon-italic', 'glyphicon-leaf', 'glyphicon-link', 'glyphicon-list', 'glyphicon-list-alt', 'glyphicon-lock', 'glyphicon-log-in', 'glyphicon-log-out', 'glyphicon-magnet', 'glyphicon-map-marker', 'glyphicon-minus', 'glyphicon-minus-sign', 'glyphicon-move', 'glyphicon-music', 'glyphicon-new-window', 'glyphicon-off', 'glyphicon-ok', 'glyphicon-ok-circle', 'glyphicon-ok-sign', 'glyphicon-open', 'glyphicon-paperclip', 'glyphicon-pause', 'glyphicon-pencil', 'glyphicon-phone', 'glyphicon-phone-alt', 'glyphicon-picture', 'glyphicon-plane', 'glyphicon-play', 'glyphicon-play-circle', 'glyphicon-plus', 'glyphicon-plus-sign', 'glyphicon-print', 'glyphicon-pushpin', 'glyphicon-qrcode', 'glyphicon-question-sign', 'glyphicon-random', 'glyphicon-record', 'glyphicon-refresh', 'glyphicon-registration-mark', 'glyphicon-remove', 'glyphicon-remove-circle', 'glyphicon-remove-sign', 'glyphicon-repeat', 'glyphicon-resize-full', 'glyphicon-resize-horizontal', 'glyphicon-resize-small', 'glyphicon-resize-vertical', 'glyphicon-retweet', 'glyphicon-road', 'glyphicon-save', 'glyphicon-saved', 'glyphicon-screenshot', 'glyphicon-sd-video', 'glyphicon-search', 'glyphicon-send', 'glyphicon-share', 'glyphicon-share-alt', 'glyphicon-shopping-cart', 'glyphicon-signal', 'glyphicon-sort', 'glyphicon-sort-by-alphabet', 'glyphicon-sort-by-alphabet-alt', 'glyphicon-sort-by-attributes', 'glyphicon-sort-by-attributes-alt', 'glyphicon-sort-by-order', 'glyphicon-sort-by-order-alt', 'glyphicon-sound-5-1', 'glyphicon-sound-6-1', 'glyphicon-sound-7-1', 'glyphicon-sound-dolby', 'glyphicon-sound-stereo', 'glyphicon-star', 'glyphicon-star-empty', 'glyphicon-stats', 'glyphicon-step-backward', 'glyphicon-step-forward', 'glyphicon-stop', 'glyphicon-subtitles', 'glyphicon-tag', 'glyphicon-tags', 'glyphicon-tasks', 'glyphicon-text-height', 'glyphicon-text-width', 'glyphicon-th', 'glyphicon-th-large', 'glyphicon-th-list', 'glyphicon-thumbs-down', 'glyphicon-thumbs-up', 'glyphicon-time', 'glyphicon-tint', 'glyphicon-tower', 'glyphicon-transfer', 'glyphicon-trash', 'glyphicon-tree-conifer', 'glyphicon-tree-deciduous', 'glyphicon-unchecked', 'glyphicon-upload', 'glyphicon-usd', 'glyphicon-user', 'glyphicon-volume-down', 'glyphicon-volume-off', 'glyphicon-volume-up', 'glyphicon-warning-sign', 'glyphicon-wrench', 'glyphicon-zoom-in', 'glyphicon-zoom-out'));
+            $crud->field_type('index', 'hidden');
 
         $crud->set_relation('parent_id', cms_table_name('main_navigation'), 'navigation_name');
         $crud->set_relation('authorization_id', cms_table_name('main_authorization'), 'authorization_name');
 
         $crud->set_relation_n_n('groups', cms_table_name('main_group_navigation'), cms_table_name('main_group'), 'navigation_id', 'group_id', 'group_name');
 
-        if(isset($parent_id) && intval($parent_id)>0){
+        if (isset($parent_id) && intval($parent_id)>0) {
             $crud->where(cms_table_name('main_navigation').'.parent_id', $parent_id);
             $state = $crud->getState();
-            if($state == 'add'){
+            if ($state == 'add') {
                 $crud->field_type('parent_id', 'hidden', $parent_id);
             }
-        }else{
-            $crud->where(array(cms_table_name('main_navigation').'.parent_id' => NULL));
+        } else {
+            $crud->where(array(cms_table_name('main_navigation').'.parent_id' => null));
         }
-        $crud->add_action('Move Up', 'wb-triangle-up',
-            site_url($this->cms_module_path().'/action_navigation_move_up').'/');
-        $crud->add_action('Move Down', 'wb-triangle-down',
-            site_url($this->cms_module_path().'/action_navigation_move_down').'/');
+        $crud->add_action(
+            'Move Up',
+            'wb-triangle-up',
+            site_url($this->cms_module_path().'/action_navigation_move_up').'/'
+        );
+        $crud->add_action(
+            'Move Down',
+            'wb-triangle-down',
+            site_url($this->cms_module_path().'/action_navigation_move_down').'/'
+        );
 
         $crud->callback_column('active', array(
             $this,
@@ -902,16 +916,16 @@ class Main extends CMS_Controller
         ));
 
         $crud->set_language($this->cms_language());
-        $crud->set_view_file('list',APPPATH.'modules/'.$this->cms_module_path().'/views/gc/navigation/list.php');
+        $crud->set_view_file('list', APPPATH.'modules/'.$this->cms_module_path().'/views/gc/navigation/list.php');
         $output = $crud->render();
 
         $navigation_path = array();
-        if(isset($parent_id) && intval($parent_id)>0){
+        if (isset($parent_id) && intval($parent_id)>0) {
             $this->db->select('navigation_name')
                 ->from(cms_table_name('main_navigation'))
                 ->where('navigation_id', $parent_id);
             $query = $this->db->get();
-            if($query->num_rows()>0){
+            if ($query->num_rows()>0) {
                 $row = $query->row();
                 $navigation_name = $row->navigation_name;
                 $navigation_path = $this->cms_get_navigation_path($navigation_name);
@@ -921,10 +935,11 @@ class Main extends CMS_Controller
         $view_config = array(
             'layout' => 'management'
         );
-        $this->view('main/main_navigation', $output, 'main_navigation_management',$view_config);
+        $this->view('main/main_navigation', $output, 'main_navigation_management', $view_config);
     }
 
-    public function action_navigation_move_up($primary_key){
+    public function action_navigation_move_up($primary_key)
+    {
         $query = $this->db->select('navigation_name, parent_id')
             ->from(cms_table_name('main_navigation'))
             ->where('navigation_id', $primary_key)
@@ -937,14 +952,15 @@ class Main extends CMS_Controller
         $this->cms_do_move_up_navigation($navigation_name);
 
         // redirect
-        if(isset($parent_id)){
+        if (isset($parent_id)) {
             redirect('main/navigation/'.$parent_id.'#record_'.$primary_key);
-        }else{
+        } else {
             redirect('main/navigation'.'#record_'.$primary_key);
         }
     }
 
-    public function action_navigation_move_down($primary_key){
+    public function action_navigation_move_down($primary_key)
+    {
         $query = $this->db->select('navigation_name, parent_id')
             ->from(cms_table_name('main_navigation'))
             ->where('navigation_id', $primary_key)
@@ -957,23 +973,23 @@ class Main extends CMS_Controller
         $this->cms_do_move_down_navigation($navigation_name);
 
         // redirect
-        if(isset($parent_id)){
+        if (isset($parent_id)) {
             redirect('main/navigation/'.$parent_id.'#record_'.$primary_key);
-        }else{
+        } else {
             redirect('main/navigation'.'#record_'.$primary_key);
         }
     }
 
     public function before_insert_navigation($post_array)
-    {        
+    {
         //get parent's navigation_id
         $query = $this->db->select('navigation_id')
             ->from(cms_table_name('main_navigation'))
-            ->where('navigation_id', is_int($post_array['parent_id'])? $post_array['parent_id']: NULL)
+            ->where('navigation_id', is_int($post_array['parent_id'])? $post_array['parent_id']: null)
             ->get();
         $row   = $query->row();
 
-        $parent_id = isset($row->navigation_id) ? $row->navigation_id : NULL;
+        $parent_id = isset($row->navigation_id) ? $row->navigation_id : null;
 
         //index = max index+1
         $query = $this->db->select_max('index')
@@ -982,9 +998,9 @@ class Main extends CMS_Controller
             ->get();
         $row   = $query->row();
         $index = $row->index;
-        if (!isset($index)){
+        if (!isset($index)) {
             $index = 1;
-        }else{
+        } else {
             $index = $index+1;
         }
 
@@ -1005,8 +1021,9 @@ class Main extends CMS_Controller
     }
 
     public function column_navigation_active($value, $row)
-    {$target = site_url($this->cms_module_path() . '/toggle_navigation_active/' . $row->navigation_id);
-    return  '<input target="'.$target.'" class="navigation_active" name="record_'.$row->navigation_id.'" type="checkbox" class="js-switch-small" data-plugin="switchery" data-size="small" '.($value?'checked=""':'').' data-switchery="'.($value?'true':'false').'" style="display: none;">';
+    {
+        $target = site_url($this->cms_module_path() . '/toggle_navigation_active/' . $row->navigation_id);
+        return  '<input target="'.$target.'" class="navigation_active" name="record_'.$row->navigation_id.'" type="checkbox" class="js-switch-small" data-plugin="switchery" data-size="small" '.($value?'checked=""':'').' data-switchery="'.($value?'true':'false').'" style="display: none;">';
         $html = '<a name="record_'.$row->navigation_id.'">&nbsp;</a>';
         
         if ($value == 0) {
@@ -1025,9 +1042,9 @@ class Main extends CMS_Controller
             ->where('parent_id', $row->navigation_id);
         $query = $this->db->get();
         $child_count = $query->num_rows();
-        if($child_count<=0){
+        if ($child_count<=0) {
             $html .= '&nbsp; -';
-        }else{
+        } else {
             $html .= '<a class="btn" href="'.site_url($this->cms_module_path().'/navigation/'.$row->navigation_id).'">'.
                 $this->cms_lang('Manage Children')
                 .'</a>';
@@ -1073,7 +1090,7 @@ class Main extends CMS_Controller
         $crud->set_table(cms_table_name('main_quicklink'));
         $crud->set_subject($this->cms_lang('Quick Link'));
 
-        $crud->required_fields('navigation_id');       
+        $crud->required_fields('navigation_id');
         $crud->unique_fields('navigation_id');
         $crud->unset_read();
 
@@ -1086,17 +1103,23 @@ class Main extends CMS_Controller
         $crud->order_by('index', 'asc');
 
         $crud->set_relation('navigation_id', cms_table_name('main_navigation'), 'navigation_name');
-        $crud->field_type('index','hidden');
+        $crud->field_type('index', 'hidden');
 
         $crud->callback_before_insert(array(
             $this,
             'before_insert_quicklink'
         ));
 
-        $crud->add_action('Move Up', base_url('modules/'.$this->cms_module_path().'/assets/action_icon/up.png'),
-            site_url($this->cms_module_path().'/action_quicklink_move_up').'/');
-        $crud->add_action('Move Down', base_url('modules/'.$this->cms_module_path().'/assets/action_icon/down.png'),
-            site_url($this->cms_module_path().'/action_quicklink_move_down').'/');
+        $crud->add_action(
+            'Move Up',
+            base_url('modules/'.$this->cms_module_path().'/assets/action_icon/up.png'),
+            site_url($this->cms_module_path().'/action_quicklink_move_up').'/'
+        );
+        $crud->add_action(
+            'Move Down',
+            base_url('modules/'.$this->cms_module_path().'/assets/action_icon/down.png'),
+            site_url($this->cms_module_path().'/action_quicklink_move_down').'/'
+        );
 
         $crud->callback_column($this->unique_field_name('navigation_id'), array(
             $this,
@@ -1117,9 +1140,9 @@ class Main extends CMS_Controller
             ->get();
         $row   = $query->row();
         $index = $row->index;
-        if (!isset($index)){
+        if (!isset($index)) {
             $index = 1;
-        }else{
+        } else {
             $index = $index+1;
         }
 
@@ -1135,7 +1158,8 @@ class Main extends CMS_Controller
         return $html;
     }
 
-    public function action_quicklink_move_up($primary_key){
+    public function action_quicklink_move_up($primary_key)
+    {
         $query = $this->db->select('navigation_id')
             ->from(cms_table_name('main_quicklink'))
             ->where('quicklink_id', $primary_key)
@@ -1150,7 +1174,8 @@ class Main extends CMS_Controller
         redirect('main/quicklink'.'#record_'.$primary_key);
     }
 
-    public function action_quicklink_move_down($primary_key){
+    public function action_quicklink_move_down($primary_key)
+    {
         $query = $this->db->select('navigation_id')
             ->from(cms_table_name('main_quicklink'))
             ->where('quicklink_id', $primary_key)
@@ -1176,13 +1201,13 @@ class Main extends CMS_Controller
         $crud->set_table(cms_table_name('main_privilege'));
         $crud->set_subject($this->cms_lang('Privilege'));
 
-        $crud->required_fields('privilege_name');        
+        $crud->required_fields('privilege_name');
         $crud->unique_fields('privilege_name');
         $crud->unset_read();
 
-        $crud->columns('privilege_name','title','description');
-        $crud->edit_fields('privilege_name','title','description','authorization_id','groups');
-        $crud->add_fields('privilege_name','title','description','authorization_id','groups');
+        $crud->columns('privilege_name', 'title', 'description');
+        $crud->edit_fields('privilege_name', 'title', 'description', 'authorization_id', 'groups');
+        $crud->add_fields('privilege_name', 'title', 'description', 'authorization_id', 'groups');
 
         $crud->set_relation('authorization_id', cms_table_name('main_authorization'), 'authorization_name'); //, 'groups');
 
@@ -1202,7 +1227,7 @@ class Main extends CMS_Controller
         $view_config = array(
             'layout' => 'management'
         );
-        $this->view('main/main_privilege', $output, 'main_privilege_management',$view_config);
+        $this->view('main/main_privilege', $output, 'main_privilege_management', $view_config);
     }
 
     // WIDGET ==================================================================
@@ -1216,7 +1241,7 @@ class Main extends CMS_Controller
         $crud->set_table(cms_table_name('main_widget'));
         $crud->set_subject($this->cms_lang('Widget'));
 
-        $crud->required_fields('widget_name');        
+        $crud->required_fields('widget_name');
         $crud->unique_fields('widget_name');
         $crud->unset_read();
 
@@ -1253,10 +1278,16 @@ class Main extends CMS_Controller
             'before_insert_widget'
         ));
 
-        $crud->add_action('Move Up', base_url('modules/'.$this->cms_module_path().'/assets/action_icon/up.png'),
-            site_url($this->cms_module_path().'/action_widget_move_up').'/');
-        $crud->add_action('Move Down', base_url('modules/'.$this->cms_module_path().'/assets/action_icon/down.png'),
-            site_url($this->cms_module_path().'/action_widget_move_down').'/');
+        $crud->add_action(
+            'Move Up',
+            base_url('modules/'.$this->cms_module_path().'/assets/action_icon/up.png'),
+            site_url($this->cms_module_path().'/action_widget_move_up').'/'
+        );
+        $crud->add_action(
+            'Move Down',
+            base_url('modules/'.$this->cms_module_path().'/assets/action_icon/down.png'),
+            site_url($this->cms_module_path().'/action_widget_move_down').'/'
+        );
 
         $crud->callback_column('active', array(
             $this,
@@ -1269,7 +1300,7 @@ class Main extends CMS_Controller
         $view_config = array(
             'layout' => 'management'
         );
-        $this->view('main/main_widget', $output, 'main_widget_management',$view_config);
+        $this->view('main/main_widget', $output, 'main_widget_management', $view_config);
     }
 
     public function before_insert_widget($post_array)
@@ -1279,9 +1310,9 @@ class Main extends CMS_Controller
             ->get();
         $row   = $query->row();
         $index = $row->index;
-        if (!isset($index)){
+        if (!isset($index)) {
             $index = 1;
-        }else{
+        } else {
             $index = $index+1;
         }
 
@@ -1330,7 +1361,8 @@ class Main extends CMS_Controller
         }
     }
 
-    public function action_widget_move_up($primary_key){
+    public function action_widget_move_up($primary_key)
+    {
         $query = $this->db->select('widget_name')
             ->from(cms_table_name('main_widget'))
             ->where('widget_id', $primary_key)
@@ -1345,7 +1377,8 @@ class Main extends CMS_Controller
         redirect('main/widget'.'#record_'.$primary_key);
     }
 
-    public function action_widget_move_down($primary_key){
+    public function action_widget_move_down($primary_key)
+    {
         $query = $this->db->select('widget_name')
             ->from(cms_table_name('main_widget'))
             ->where('widget_id', $primary_key)
@@ -1389,10 +1422,10 @@ class Main extends CMS_Controller
         $crud->unset_texteditor('value');
 
         $operation = $crud->getState();
-        if ( $operation == 'edit' || $operation == 'update' || $operation == 'update_validation') {
+        if ($operation == 'edit' || $operation == 'update' || $operation == 'update_validation') {
             $crud->field_type('config_name', 'readonly');
             $crud->field_type('description', 'readonly');
-        }else if( $operation == 'add' || $operation == 'insert' || $operation == 'insert_validation'){
+        } elseif ($operation == 'add' || $operation == 'insert' || $operation == 'insert_validation') {
             //$crud->set_rules('config_name', 'Configuration Key', 'required');
             $crud->required_fields('config_name');
         }
@@ -1416,35 +1449,38 @@ class Main extends CMS_Controller
         $view_config = array(
             'layout' => 'management'
         );
-        $this->view('main/main_config', $output, 'main_config_management',$view_config);
+        $this->view('main/main_config', $output, 'main_config_management', $view_config);
     }
 
-    public function after_insert_config($post_array, $primary_key){
+    public function after_insert_config($post_array, $primary_key)
+    {
         // adjust configuration file entry
         cms_config($post_array['config_name'], $post_array['value']);
-        return TRUE;
+        return true;
     }
 
-    public function after_update_config($post_array, $primary_key){
+    public function after_update_config($post_array, $primary_key)
+    {
         // adjust configuration file entry
         $query = $this->db->select('config_name')->from(cms_table_name('main_config'))->where('config_id', $primary_key)->get();
-        if($query->num_rows()>0){
+        if ($query->num_rows()>0) {
             $row = $query->row();
             $config_name = $row->config_name;
             cms_config($config_name, $post_array['value']);
         }
-        return TRUE;
+        return true;
     }
 
-    public function before_delete_config($primary_key){
+    public function before_delete_config($primary_key)
+    {
         $query = $this->db->select('config_name')->from(cms_table_name('main_config'))->where('config_id', $primary_key)->get();
-        if($query->num_rows()>0){
+        if ($query->num_rows()>0) {
             $row = $query->row();
             $config_name = $row->config_name;
             // delete configuration file entry
-            cms_config($config_name, '', TRUE);
+            cms_config($config_name, '', true);
         }
-        return TRUE;
+        return true;
     }
 
     public function widget_logout()
@@ -1462,13 +1498,16 @@ class Main extends CMS_Controller
         $this->login();
     }
 
-    public function widget_left_nav($first = TRUE, $navigations = NULL){
-        if(!isset($navigations)){
+    public function widget_left_nav($first = true, $navigations = null)
+    {
+        if (!isset($navigations)) {
             $navigations = $this->cms_navigations();
         }
 
-        if(count($navigations) == 0) return '';
-        if($first){
+        if (count($navigations) == 0) {
+            return '';
+        }
+        if ($first) {
             $result = '<style type="text/css">
                 .dropdown-submenu{
                     position:relative;
@@ -1530,70 +1569,73 @@ class Main extends CMS_Controller
                 }
             }
             </style>';
-        }else{
+        } else {
             $result = '';
         }
         $result .= '<ul  class="dropdown-menu nav nav-pills nav-stacked" '.($first?'id="_first-left-dropdown"':'').'>';
-        foreach($navigations as $navigation){
-            if(($navigation['allowed'] && $navigation['active']) || $navigation['have_allowed_children']){
+        foreach ($navigations as $navigation) {
+            if (($navigation['allowed'] && $navigation['active']) || $navigation['have_allowed_children']) {
                 // make text
                 $icon = '<span class="glyphicon '.$navigation['bootstrap_glyph'].'"></span>&nbsp;';
-                if($navigation['allowed'] && $navigation['active']){
+                if ($navigation['allowed'] && $navigation['active']) {
                     $text = '<a class="dropdown-toggle" href="'.$navigation['url'].'">'.$icon.$navigation['title'].'</a>';
-                }else{
+                } else {
                     $text = $icon.$navigation['title'];
                 }
 
-                if(count($navigation['child'])>0 && $navigation['have_allowed_children']){
-                    $result .= '<li class="dropdown-submenu">'.$text.$this->widget_left_nav(FALSE, $navigation['child']).'</li>';
-                }else{
+                if (count($navigation['child'])>0 && $navigation['have_allowed_children']) {
+                    $result .= '<li class="dropdown-submenu">'.$text.$this->widget_left_nav(false, $navigation['child']).'</li>';
+                } else {
                     $result .= '<li>'.$text.'</li>';
                 }
             }
         }
         $result .= '</ul>';
         // show up
-        if($first){
+        if ($first) {
             $this->cms_show_html($result);
-        }else{
+        } else {
             return $result;
         }
     }
-    public function widget_custom_navigation($value='')
+    public function widget_custom_navigation($value = '')
     {
         $navigations = $this->cms_navigations();
 
         print_r($navigations);
     }
-    public function widget_top_nav($caption = 'Complete Menu', $first = TRUE, $no_complete_menu=FALSE, $no_quicklink=FALSE, $inverse = FALSE, $navigations = NULL){
+    public function widget_top_nav($caption = 'Complete Menu', $first = true, $no_complete_menu = false, $no_quicklink = false, $inverse = false, $navigations = null)
+    {
         $result = '';
         $caption = $this->cms_lang($caption);
 
-        if(!$no_complete_menu){
-            if(!isset($navigations)){
+        if (!$no_complete_menu) {
+            if (!isset($navigations)) {
                 $navigations = $this->cms_navigations();
             }
-            if(count($navigations) == 0) return '';
+            if (count($navigations) == 0) {
+                return '';
+            }
 
 
             $result .= '<ul class="dropdown-menu">';
-            foreach($navigations as $navigation){
-                if(($navigation['allowed'] && $navigation['active']) || $navigation['have_allowed_children']){
+            foreach ($navigations as $navigation) {
+                if (($navigation['allowed'] && $navigation['active']) || $navigation['have_allowed_children']) {
                     $navigation['bootstrap_glyph'] = $navigation['bootstrap_glyph'] == ''? 'icon-white': $navigation['bootstrap_glyph'];
                     // make text
                     $icon = '<span class="glyphicon '.$navigation['bootstrap_glyph'].'"></span>&nbsp;';
-                    if($navigation['allowed'] && $navigation['active']){
+                    if ($navigation['allowed'] && $navigation['active']) {
                         $text = '<a href="'.$navigation['url'].'">'.$icon.
                             $navigation['title'].'</a>';
-                    }else{
+                    } else {
                         $text = '<a href="#">'.$icon.
                             $navigation['title'].'</a>';
                     }
 
-                    if(count($navigation['child'])>0 && $navigation['have_allowed_children']){
+                    if (count($navigation['child'])>0 && $navigation['have_allowed_children']) {
                         $result .= '<li class="dropdown-submenu">'.
-                            $text.$this->widget_top_nav($caption, FALSE, $no_complete_menu, $no_quicklink, $inverse, $navigation['child']).'</li>';
-                    }else{
+                            $text.$this->widget_top_nav($caption, false, $no_complete_menu, $no_quicklink, $inverse, $navigation['child']).'</li>';
+                    } else {
                         $result .= '<li>'.$text.'</li>';
                     }
                 }
@@ -1602,17 +1644,17 @@ class Main extends CMS_Controller
         }
 
         // show up
-        if($first){
-            if(!$no_complete_menu){
+        if ($first) {
+            if (!$no_complete_menu) {
                 //  hidden-sm hidden-xs
                 $result = '<li class="dropdown">'.
                     '<a class="dropdown-toggle" data-toggle="dropdown" href="#">'.$caption.' <span class="caret"></span></a>'.
                     $result.'</li>';
             }
-            if(!$no_quicklink){
+            if (!$no_quicklink) {
                 $result .= $this->build_quicklink();
             }
-            $result = 
+            $result =
             '<style type="text/css">                
                 @media (min-width: 750px){
                     .dropdown-submenu{
@@ -1754,83 +1796,89 @@ class Main extends CMS_Controller
                 });
             </script>';
             $this->cms_show_html($result);
-        }else{
+        } else {
             return $result;
         }
     }
 
-    public function widget_top_nav_no_quicklink($caption = 'Complete Menu'){
-        $this->widget_top_nav($caption, TRUE, FALSE, TRUE, FALSE, NULL);
+    public function widget_top_nav_no_quicklink($caption = 'Complete Menu')
+    {
+        $this->widget_top_nav($caption, true, false, true, false, null);
     }
 
-    public function widget_quicklink(){
-        $this->widget_top_nav('', TRUE, TRUE, FALSE, FALSE, NULL);
+    public function widget_quicklink()
+    {
+        $this->widget_top_nav('', true, true, false, false, null);
     }
 
-    public function widget_top_nav_inverse($caption = 'Complete Menu'){
-        $this->widget_top_nav($caption, TRUE, FALSE, TRUE, TRUE, NULL);
+    public function widget_top_nav_inverse($caption = 'Complete Menu')
+    {
+        $this->widget_top_nav($caption, true, false, true, true, null);
     }
 
-    public function widget_top_nav_no_quicklink_inverse($caption = 'Complete Menu'){
-        $this->widget_top_nav($caption, TRUE, FALSE, TRUE, TRUE, NULL);
+    public function widget_top_nav_no_quicklink_inverse($caption = 'Complete Menu')
+    {
+        $this->widget_top_nav($caption, true, false, true, true, null);
     }
 
-    public function widget_quicklink_inverse(){
-        $this->widget_top_nav('', TRUE, TRUE, FALSE, TRUE, NULL);
+    public function widget_quicklink_inverse()
+    {
+        $this->widget_top_nav('', true, true, false, true, null);
     }
 
 
-    private function build_quicklink($quicklinks = NULL,$first = TRUE){
-        if(!isset($quicklinks)){
+    private function build_quicklink($quicklinks = null, $first = true)
+    {
+        if (!isset($quicklinks)) {
             $quicklinks = $this->cms_quicklinks();
         }
-        if(count($quicklinks) == 0) return '';
+        if (count($quicklinks) == 0) {
+            return '';
+        }
         $html = '';
 
-        foreach($quicklinks as $quicklink){
-        	// if navigation is not active then skip it
-        	if(!$quicklink['active']){
-        		continue;
-        	}
-			// create icon if needed
-            $icon = '';            
-            if($first){
+        foreach ($quicklinks as $quicklink) {
+            // if navigation is not active then skip it
+            if (!$quicklink['active']) {
+                continue;
+            }
+            // create icon if needed
+            $icon = '';
+            if ($first) {
                 $icon_class = $quicklink['bootstrap_glyph'].' icon-white';
-            }else{
+            } else {
                 $icon_class = $quicklink['bootstrap_glyph'];
             }
-            if($quicklink['bootstrap_glyph'] != '' || !$first){
+            if ($quicklink['bootstrap_glyph'] != '' || !$first) {
                 $icon_class = $icon_class==''? 'icon-white': $icon_class;
                 $icon = '<span class="glyphicon '.$icon_class.'"></span>&nbsp;';
             }
             // create li based on child availability
-            if(count($quicklink['child'])==0){
+            if (count($quicklink['child'])==0) {
                 $html.= '<li>';
                 $html.= anchor($quicklink['url'], '<span>'.$icon.$quicklink['title'].'</span>');
                 $html.= '</li>';
-            }else{
-                if($first){
+            } else {
+                if ($first) {
                     $html.= '<li class="dropdown">';
                     $html.= '<a class="dropdown-toggle" data-toggle="dropdown" href="'.$quicklink['url'].'">'.
                         '<span class="anchor-text">'.$icon.$quicklink['title'].'</span>'.
                         '&nbsp;<span class="caret"></span></a>'; // hidden-sm hidden-xs
-                    $html.= $this->build_quicklink($quicklink['child'],FALSE);
+                    $html.= $this->build_quicklink($quicklink['child'], false);
                     $html.= '</li>';
-                }else{
+                } else {
                     $html.= '<li class="dropdown-submenu">';
                     $html.= '<a href="'.$quicklink['url'].'">'.
                         '<span>'.$icon.$quicklink['title'].'</span></a>';
-                    $html.= $this->build_quicklink($quicklink['child'],FALSE);
+                    $html.= $this->build_quicklink($quicklink['child'], false);
                     $html.= '</li>';
                 }
             }
         }
 
-        if(!$first){
+        if (!$first) {
             $html = '<ul class="dropdown-menu">'.$html.'</ul>';
         }
         return $html;
     }
-
-   
 }

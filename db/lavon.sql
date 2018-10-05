@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-09-26 17:19:18
+Date: 2018-10-05 16:40:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,9 @@ INSERT INTO `ci_sessions` VALUES ('b00214b8ee5bb446cc8348fabe08f7c5', '::1', 'Mo
 INSERT INTO `ci_sessions` VALUES ('5ca2060bd90c7606c24e5137535fb7a1', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537780739', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
 INSERT INTO `ci_sessions` VALUES ('4c6dbc60375f6e14f18fd73dc9387be6', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537782194', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
 INSERT INTO `ci_sessions` VALUES ('832e26cbeb84c55dc4740bdb7ae5ef54', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537956223', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('d7bfa19a6682d63d91bffb2559ddb608', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537956647', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('e913f9ec339af3faee8e8a83b6df8a3e', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537957164', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('9ca33314ef1434542a2c3bebcd4866e4', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538144645', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('7854d4f85b3733ed16af4bf27ee05673', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538732224', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
 
 -- ----------------------------
 -- Table structure for `main_authorization`
@@ -233,7 +235,7 @@ CREATE TABLE `main_module` (
   `version` varchar(50) DEFAULT NULL,
   `user_id` int(5) DEFAULT NULL,
   PRIMARY KEY (`module_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of main_module
@@ -246,6 +248,10 @@ INSERT INTO `main_module` VALUES ('5', 'dashboard', 'dashboard', '1.0', '1');
 INSERT INTO `main_module` VALUES ('6', 'navigation', 'navigation', '1.0', '1');
 INSERT INTO `main_module` VALUES ('7', 'unit', 'unit', '1.0', '1');
 INSERT INTO `main_module` VALUES ('8', 'cluster', 'cluster', '1.0', '1');
+INSERT INTO `main_module` VALUES ('9', 'tenan', 'tenan', '1.0', '1');
+INSERT INTO `main_module` VALUES ('10', 'member', 'member', '1.0', '1');
+INSERT INTO `main_module` VALUES ('11', 'setting', 'setting', '1.0', '1');
+INSERT INTO `main_module` VALUES ('12', 'fasilitas', 'fasilitas', '1.0', '1');
 
 -- ----------------------------
 -- Table structure for `main_module_dependency`
@@ -424,13 +430,12 @@ CREATE TABLE `main_user` (
   `auth_Live` varchar(100) DEFAULT NULL,
   `trash` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of main_user
 -- ----------------------------
-INSERT INTO `main_user` VALUES ('2', 'test1', 'test@test.com', 'd15d92b98ab237e2c8a054fe53d0627e', null, 'test', '1', null, null, null, null, null, null, null, null, null, '0');
-INSERT INTO `main_user` VALUES ('8', 'superadmin', 'cristminix@gmail.com', '25d55ad283aa400af464c76d713c07ad', null, 'Putra Budiman', '1', null, null, null, null, null, null, null, null, null, '0');
+INSERT INTO `main_user` VALUES ('1', 'admin', 'cristminix@gmail.com', '21232f297a57a5a743894a0e4a801fc3', null, 'Putra Budiman', '1', null, null, null, null, null, null, null, null, null, '0');
 
 -- ----------------------------
 -- Table structure for `main_widget`
@@ -492,17 +497,18 @@ CREATE TABLE `m_cluster` (
   `tgl_dibuat` datetime NOT NULL,
   `tg_diubah` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_cluster
 -- ----------------------------
-INSERT INTO `m_cluster` VALUES ('1', 'CL-001', 'Allura\n ', '2018-04-04 15:44:09', '2018-04-04 15:44:14');
+INSERT INTO `m_cluster` VALUES ('1', 'CL-001', 'Allura ', '2018-04-04 15:44:09', '2018-04-04 15:44:14');
 INSERT INTO `m_cluster` VALUES ('2', 'CL-002', 'Gracia', '2018-04-04 15:44:09', '2018-04-04 15:44:09');
 INSERT INTO `m_cluster` VALUES ('3', 'CL-003', 'Corona\n', '2018-04-04 15:45:27', '2018-04-04 15:45:30');
 INSERT INTO `m_cluster` VALUES ('4', 'CL-004', 'Enchanta', '2018-04-04 15:46:03', '2018-04-04 15:46:06');
 INSERT INTO `m_cluster` VALUES ('5', 'CL-005', 'Lavisa', '2018-04-04 15:46:32', '2018-04-04 15:46:35');
 INSERT INTO `m_cluster` VALUES ('6', 'CL-006', 'Grandura', '2018-04-04 15:47:13', '2018-04-04 15:47:15');
+INSERT INTO `m_cluster` VALUES ('7', 'rrrr', 'AAA', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- ----------------------------
 -- Table structure for `m_fasilitas`
@@ -511,17 +517,21 @@ DROP TABLE IF EXISTS `m_fasilitas`;
 CREATE TABLE `m_fasilitas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_tenan` int(11) DEFAULT NULL,
-  `nama` varchar(225) DEFAULT NULL,
-  `keterangan` varchar(500) DEFAULT NULL,
-  `nilai_poin` int(11) DEFAULT NULL,
+  `nama` varchar(225) NOT NULL,
+  `keterangan` varchar(500) NOT NULL,
+  `gambar` varchar(500) NOT NULL,
+  `nilai_poin` int(11) NOT NULL,
+  `tgl_dibuat` datetime DEFAULT NULL,
+  `tgl_diubah` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_tenan` (`id_tenan`),
   CONSTRAINT `m_fasilitas_ibfk_1` FOREIGN KEY (`id_tenan`) REFERENCES `m_tenan` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_fasilitas
 -- ----------------------------
+INSERT INTO `m_fasilitas` VALUES ('1', '1', 'Gymnastic', 'Gymnastik olahraga', '043c7-gdrive-sync.png', '12', null, null);
 
 -- ----------------------------
 -- Table structure for `m_kota`
@@ -2548,13 +2558,16 @@ CREATE TABLE `m_poin_unit` (
 DROP TABLE IF EXISTS `m_tenan`;
 CREATE TABLE `m_tenan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(225) DEFAULT NULL,
+  `nama` varchar(225) NOT NULL,
+  `tgl_dibuat` datetime DEFAULT NULL,
+  `tgl_diubah` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_tenan
 -- ----------------------------
+INSERT INTO `m_tenan` VALUES ('1', 'KFC', null, null);
 
 -- ----------------------------
 -- Table structure for `m_unit`

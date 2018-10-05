@@ -79,8 +79,8 @@
                                 </a>
                                 <ul class="sub-menu">
                                     <li class="nav-item  ">
-                                        <a href="{{ base_url }}member/tr" class="nav-link ">
-                                            <span class="title">Member Detail</span>
+                                        <a href="{{ base_url }}member/entry" class="nav-link ">
+                                            <span class="title">Entri Card/Member</span>
                                         </a>
                                     </li>
                                     <li class="nav-item  ">

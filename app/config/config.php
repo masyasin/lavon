@@ -219,7 +219,7 @@ $config['directory_trigger']    = 'd'; // experimental not currently in use
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 1;
+$config['log_threshold'] = 0;
 
 /*
 |--------------------------------------------------------------------------
@@ -365,7 +365,7 @@ $config['csrf_token_name'] = md5(date('Y-m-d').$config['csrf_salt'] );
 $config['csrf_cookie_name'] = md5($config['csrf_salt'] );
 $config['csrf_expire'] = 7200;
 $config['csrf_regenerate'] = TRUE;
-$config['csrf_exclude_uris'] = array();
+$config['csrf_exclude_uris'] = array('account/login');
 
 /*
 |--------------------------------------------------------------------------

@@ -58,3 +58,15 @@ member:
     module_path: member
     version: '1.0'
     user_id: '1'
+setting:
+    module_id: '11'
+    module_name: setting
+    module_path: setting
+    version: '1.0'
+    user_id: '1'
+fasilitas:
+    module_id: '12'
+    module_name: fasilitas
+    module_path: fasilitas
+    version: '1.0'
+    user_id: '1'

@@ -1,4 +1,4 @@
-var default_per_page = typeof default_per_page !== 'undefined' ? default_per_page : 25;
+var default_per_page = typeof default_per_page !== 'undefined' ? default_per_page : 10;
 var oTable = null;
 var oTableArray = [];
 var oTableMapping = [];

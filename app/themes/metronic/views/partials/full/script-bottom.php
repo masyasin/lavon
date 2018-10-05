@@ -61,6 +61,9 @@ th.no{
 }
 th.actions{
     width: 105px;
-    text-align: right;
+    text-align: center;
+}
+td.actions{
+    text-align: center;
 }
         </style>

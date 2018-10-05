@@ -773,6 +773,8 @@ class CMS_Model extends CI_Model
             $user_real_name = $row->real_name;
             $user_email     = $row->email;
             $login_succeed  = TRUE;
+
+            echo "HERE";
         }else{
             require_once(APPPATH.'config/cms_extended_login.php');
             if(function_exists('extended_login')){
