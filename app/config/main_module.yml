@@ -82,3 +82,9 @@ memberpoin:
     module_path: memberpoin
     version: '1.0'
     user_id: '1'
+grup:
+    module_id: '16'
+    module_name: grup
+    module_path: grup
+    version: '1.0'
+    user_id: '1'

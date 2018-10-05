@@ -28,6 +28,7 @@
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         <script src="{{ theme_assets }}/pages/scripts/profile.min.js" type="text/javascript"></script>
         <script src="{{ theme_assets }}/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>
+        
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="{{ theme_assets }}/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
