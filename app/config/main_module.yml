@@ -88,3 +88,9 @@ grup:
     module_path: grup
     version: '1.0'
     user_id: '1'
+pengguna:
+    module_id: '17'
+    module_name: pengguna
+    module_path: pengguna
+    version: '1.0'
+    user_id: '1'

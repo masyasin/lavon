@@ -2,14 +2,16 @@
 
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException;
-function cms_navigation_get_old_url($old_url_part = array()){
-	$ci =& get_instance(); 
-	$old_url = '';
 
-	# DISABLE DB CHECK OLD URL
-	/*
-	while(count($old_url_part)>0){
-                        
+function cms_navigation_get_old_url($old_url_part = array())
+{
+    $ci =& get_instance();
+    $old_url = '';
+
+    # DISABLE DB CHECK OLD URL
+    /*
+    while(count($old_url_part)>0){
+
         $query = $this->db->select('url')
             ->from(cms_table_name('main_navigation'))
             ->like('url', implode('/', $old_url_part))
@@ -31,9 +33,10 @@ function cms_navigation_get_old_url($old_url_part = array()){
     return $old_url;
 }
 
-function cms_navigation_get_navigations($user_id,$not_login,$login,$super_user,$where_is_root){
-	$ci  =& get_instance(); 
-	$query = "SELECT navigation_id, navigation_name, bootstrap_glyph, is_static, title, description, url, active,
+function cms_navigation_get_navigations($user_id, $not_login, $login, $super_user, $where_is_root)
+{
+    $ci  =& get_instance();
+    $query = "SELECT navigation_id, navigation_name, bootstrap_glyph, is_static, title, description, url, active,
                     (
                         (authorization_id = 1) OR
                         (authorization_id = 2 AND $not_login) OR
@@ -58,18 +61,18 @@ function cms_navigation_get_navigations($user_id,$not_login,$login,$super_user,$
     $cache_key = md5(crc32($query));
     // GET FROM CACHE
     $cache_path = APPPATH . "cache/query/" . $cache_key . '.yml';
-    if(file_exists($cache_path)){
-    	return  Yaml::parse(file_get_contents($cache_path));
-
+    if (file_exists($cache_path)) {
+        return  Yaml::parse(file_get_contents($cache_path));
     }
 
-	$result = $ci->db->query($query)->result_array();
-	file_put_contents($cache_path, Yaml::dump($result));
-	return $result;
+    $result = $ci->db->query($query)->result_array();
+    file_put_contents($cache_path, Yaml::dump($result));
+    return $result;
 }
-function cms_quicklinks_get_quicklinks($user_id,$not_login,$login,$super_user){
-	$ci  =& get_instance(); 
-	$query = "SELECT q.navigation_id, navigation_name, bootstrap_glyph, is_static, title, description, url, active
+function cms_quicklinks_get_quicklinks($user_id, $not_login, $login, $super_user)
+{
+    $ci  =& get_instance();
+    $query = "SELECT q.navigation_id, navigation_name, bootstrap_glyph, is_static, title, description, url, active
                         FROM
                             ".cms_table_name('main_navigation')." AS n,
                             ".cms_table_name('main_quicklink')." AS q
@@ -97,22 +100,22 @@ function cms_quicklinks_get_quicklinks($user_id,$not_login,$login,$super_user){
                                 )
                             ) ORDER BY q.".$this->db->protect_identifiers('index');
 
-	$cache_key = md5(crc32($query));
+    $cache_key = md5(crc32($query));
     // GET FROM CACHE
     $cache_path = APPPATH . "cache/query/" . $cache_key . '.yml';
-    if(file_exists($cache_path)){
-    	return  Yaml::parse(file_get_contents($cache_path));
-
+    if (file_exists($cache_path)) {
+        return  Yaml::parse(file_get_contents($cache_path));
     }
 
-	$result = $ci->db->query($query)->result_array();
-	file_put_contents($cache_path, Yaml::dump($result));
-	return $result;
+    $result = $ci->db->query($query)->result_array();
+    file_put_contents($cache_path, Yaml::dump($result));
+    return $result;
 }
 
-function cms_widgets_get_widgets($login,$not_login,$user_id,$super_user,$slug_where,$widget_name_where){
-	$ci  =& get_instance(); 
-	$query = "SELECT
+function cms_widgets_get_widgets($login, $not_login, $user_id, $super_user, $slug_where, $widget_name_where)
+{
+    $ci  =& get_instance();
+    $query = "SELECT
                     widget_id, widget_name, is_static, title,
                     description, url, slug, static_content
                 FROM ".cms_table_name('main_widget')." AS w WHERE
@@ -135,65 +138,62 @@ function cms_widgets_get_widgets($login,$not_login,$user_id,$super_user,$slug_wh
                         )
                     ) AND $slug_where AND $widget_name_where ORDER BY ".$ci->db->protect_identifiers('index');
 
-	$cache_key = md5(crc32($query));
+    $cache_key = md5(crc32($query));
     // GET FROM CACHE
     $cache_path = APPPATH . "cache/query/" . $cache_key . '.yml';
-    if(file_exists($cache_path)){
-    	return  Yaml::parse(file_get_contents($cache_path));
-
+    if (file_exists($cache_path)) {
+        return  Yaml::parse(file_get_contents($cache_path));
     }
 
-	$result = $ci->db->query($query)->result_array();
-	file_put_contents($cache_path, Yaml::dump($result));
-	return $result;
- 
+    $result = $ci->db->query($query)->result_array();
+    file_put_contents($cache_path, Yaml::dump($result));
+    return $result;
 }
 
-function cms_get_module_name($module_path){
-	$ci  =& get_instance(); 
+function cms_get_module_name($module_path)
+{
+    $ci  =& get_instance();
 
-	
+    
 
-	$query = "SELECT `module_name` FROM `main_module` WHERE `module_path` = '$module_path'";
+    $query = "SELECT `module_name` FROM `main_module` WHERE `module_path` = '$module_path'";
  
 
-	$cache_key = md5(crc32($query));
+    $cache_key = md5(crc32($query));
     // GET FROM CACHE
     $cache_path = APPPATH . "cache/query/" . $cache_key . '.yml';
-    if(file_exists($cache_path)){
-    	return  Yaml::parse(file_get_contents($cache_path));
-
+    if (file_exists($cache_path)) {
+        return  Yaml::parse(file_get_contents($cache_path));
     }
     $rs = $ci->db->select('module_name')
             ->from(cms_table_name('main_module'))
             ->where('module_path', $module_path)
             ->get();
-	$result = $rs->row_array();
-	file_put_contents($cache_path, Yaml::dump($result));
-	return (object)$result;
+    $result = $rs->row_array();
+    file_put_contents($cache_path, Yaml::dump($result));
+    return $result;
 }
 
-function cms_get_module_path($module_path){
-	$ci  =& get_instance(); 
+function cms_get_module_path($module_path)
+{
+    $ci  =& get_instance();
 
-	
+    
 
-	$query = "SELECT `module_name`, `module_path` FROM `main_module` WHERE `module_path` = '$module_path'";
+    $query = "SELECT `module_name`, `module_path` FROM `main_module` WHERE `module_path` = '$module_path'";
  
 
-	$cache_key = md5(crc32($query));
+    $cache_key = md5(crc32($query));
     // GET FROM CACHE
     $cache_path = APPPATH . "cache/query/" . $cache_key . '.yml';
-    if(file_exists($cache_path)){
-    	return  Yaml::parse(file_get_contents($cache_path));
-
+    if (file_exists($cache_path)) {
+        return  Yaml::parse(file_get_contents($cache_path));
     }
     $rs = $ci->db->select('module_name,module_path')
             ->from(cms_table_name('main_module'))
             ->where('module_path', $module_path)
             ->get();
-	$result = $rs->row_array();
-	file_put_contents($cache_path, Yaml::dump($result));
-	return (object)$result;
+    $result = $rs->row_array();
+    file_put_contents($cache_path, Yaml::dump($result));
+    return (object)$result;
 }
-

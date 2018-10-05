@@ -160,6 +160,10 @@ class CMS_Model extends CI_Model
         return $this->cms_ci_session('cms_user_id', $user_id);
     }
 
+    public function cms_user_avatar($cms_user_avatar = null)
+    {
+        return $this->cms_ci_session('cms_user_avatar', $cms_user_avatar);
+    }
     public function cms_group_layanan()
     {
         $query = $this->db->select('group_name,layanan')
@@ -772,7 +776,7 @@ class CMS_Model extends CI_Model
      */
     public function cms_do_login($identity, $password)
     {
-        $query = $this->db->query("SELECT user_id, user_name, real_name, email FROM ".cms_table_name('main_user')." WHERE
+        $query = $this->db->query("SELECT user_id, user_name,avatar, real_name, email FROM ".cms_table_name('main_user')." WHERE
                     (user_name = '" . addslashes($identity) . "' OR email = '" . addslashes($identity) . "') AND
                     password = '" . md5($password) . "' AND
                     active = 1");
@@ -784,12 +788,11 @@ class CMS_Model extends CI_Model
         if ($query->num_rows()>0) {
             $row            = $query->row();
             $user_name      = $row->user_name;
+            $user_avatar      = $row->avatar;
             $user_id        = $row->user_id;
             $user_real_name = $row->real_name;
             $user_email     = $row->email;
             $login_succeed  = true;
-
-            echo "HERE";
         } else {
             require_once(APPPATH.'config/cms_extended_login.php');
             if (function_exists('extended_login')) {
@@ -827,6 +830,7 @@ class CMS_Model extends CI_Model
 
         if ($login_succeed) {
             $this->cms_user_name($user_name);
+            $this->cms_user_avatar(site_url('public/assets/uploads/files/avatar/'.$user_avatar));
             $this->cms_user_id($user_id);
             $this->cms_user_real_name($user_real_name);
             $this->cms_user_email($user_email);
@@ -1815,7 +1819,11 @@ class CMS_Model extends CI_Model
             // user_name
             $pattern[]     = "/\{\{ user_id \}\}/si";
             $replacement[] = $this->cms_user_id();
-    
+            
+            // user_name
+            $pattern[]     = "/\{\{ user_avatar \}\}/si";
+            $replacement[] = $this->cms_user_avatar();
+
             // user_name
             $pattern[]     = "/\{\{ user_name \}\}/si";
             $replacement[] = $this->cms_user_name();

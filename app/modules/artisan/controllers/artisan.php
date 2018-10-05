@@ -271,7 +271,7 @@ class Artisan extends MX_Controller
         // $dom = pQuery::parseStr($src_html);
         // $script_tags = $dom->query('link');
 
-        $unexistens = "global/css/components-rounded.min.css,global/img/loading-spinner-grey.gif";
+        $unexistens = "global/plugins/bootstrap-switch/css/bootstrap-switch.min.css,global/css/plugins.min.css,layouts/layout/css/custom.min.cs,global/css/components.min.css";
         
         $files = explode(",", $unexistens);
         foreach ($files as $file) {
