@@ -70,3 +70,15 @@ fasilitas:
     module_path: fasilitas
     version: '1.0'
     user_id: '1'
+marcendaise:
+    module_id: '14'
+    module_name: marcendaise
+    module_path: marcendaise
+    version: '1.0'
+    user_id: '1'
+memberpoin:
+    module_id: '15'
+    module_name: memberpoin
+    module_path: memberpoin
+    version: '1.0'
+    user_id: '1'

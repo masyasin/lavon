@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-10-05 16:40:49
+Date: 2018-10-05 17:14:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -45,7 +45,7 @@ INSERT INTO `ci_sessions` VALUES ('4c6dbc60375f6e14f18fd73dc9387be6', '::1', 'Mo
 INSERT INTO `ci_sessions` VALUES ('832e26cbeb84c55dc4740bdb7ae5ef54', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537956223', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
 INSERT INTO `ci_sessions` VALUES ('e913f9ec339af3faee8e8a83b6df8a3e', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537957164', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
 INSERT INTO `ci_sessions` VALUES ('9ca33314ef1434542a2c3bebcd4866e4', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538144645', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('7854d4f85b3733ed16af4bf27ee05673', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538732224', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('0c3fb3149a93e7432e217cd14522aea1', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538734144', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
 
 -- ----------------------------
 -- Table structure for `main_authorization`
@@ -235,7 +235,7 @@ CREATE TABLE `main_module` (
   `version` varchar(50) DEFAULT NULL,
   `user_id` int(5) DEFAULT NULL,
   PRIMARY KEY (`module_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of main_module
@@ -252,6 +252,8 @@ INSERT INTO `main_module` VALUES ('9', 'tenan', 'tenan', '1.0', '1');
 INSERT INTO `main_module` VALUES ('10', 'member', 'member', '1.0', '1');
 INSERT INTO `main_module` VALUES ('11', 'setting', 'setting', '1.0', '1');
 INSERT INTO `main_module` VALUES ('12', 'fasilitas', 'fasilitas', '1.0', '1');
+INSERT INTO `main_module` VALUES ('14', 'marcendaise', 'marcendaise', '1.0', '1');
+INSERT INTO `main_module` VALUES ('15', 'memberpoin', 'memberpoin', '1.0', '1');
 
 -- ----------------------------
 -- Table structure for `main_module_dependency`
@@ -996,20 +998,24 @@ INSERT INTO `m_kota` VALUES ('447', 'Kab. Maybrat');
 INSERT INTO `m_kota` VALUES ('448', 'Kota Sorong');
 
 -- ----------------------------
--- Table structure for `m_marcendais`
+-- Table structure for `m_marcendaise`
 -- ----------------------------
-DROP TABLE IF EXISTS `m_marcendais`;
-CREATE TABLE `m_marcendais` (
+DROP TABLE IF EXISTS `m_marcendaise`;
+CREATE TABLE `m_marcendaise` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(225) DEFAULT NULL,
+  `nama` varchar(225) NOT NULL,
+  `gambar` varchar(500) NOT NULL,
   `keterangan` varchar(500) DEFAULT NULL,
-  `redeem_poin` int(11) DEFAULT NULL,
+  `redeem_poin` int(11) NOT NULL,
+  `tgl_dibuat` datetime NOT NULL,
+  `tgl_diubah` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of m_marcendais
+-- Records of m_marcendaise
 -- ----------------------------
+INSERT INTO `m_marcendaise` VALUES ('1', 'Uang Dollar', '6a576-kz_tenge_1.png', 'Uang Mainan', '4', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- ----------------------------
 -- Table structure for `m_member`

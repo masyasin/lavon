@@ -4,7 +4,7 @@
                 <div class="portlet-title">
                     <div class="caption font-dark">
                                             <i class="icon-settings font-dark"></i>
-                                            <span class="caption-subject bold uppercase"> Fasilitas</span>
+                                            <span class="caption-subject bold uppercase"> Marcendaise</span>
                                         </div>
                 </div>
                 <div class="portlet-body">

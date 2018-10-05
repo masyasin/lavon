@@ -84,18 +84,18 @@
                                         </a>
                                     </li>
                                     <li class="nav-item  ">
-                                        <a href="{{ base_url }}transaksi/poin" class="nav-link ">
+                                        <a href="{{ base_url }}transaksi/fasilitas" class="nav-link ">
                                             <span class="title">Fasilitas Member/Poin</span>
                                         </a>
                                     </li>
                                     <li class="nav-item  ">
-                                        <a href="{{ base_url }}transaksi/redeem" class="nav-link ">
+                                        <a href="{{ base_url }}transaksi/redeempoin" class="nav-link ">
                                             <span class="title">Redeem Poin</span>
                                         </a>
                                     </li>
                                     <li class="nav-item  ">
                                         <a href="{{ base_url }}transaksi/histori" class="nav-link ">
-                                            <span class="title">Histrori</span>
+                                            <span class="title">Histori</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -129,11 +129,11 @@
                                     </li>
                                     <li class="nav-item  ">
                                         <a href="{{ base_url }}marcendaise" class="nav-link ">
-                                            <span class="title">Marcendais</span>
+                                            <span class="title">Marcendaise</span>
                                         </a>
                                     </li>
                                     <li class="nav-item  ">
-                                        <a href="{{ base_url }}poin" class="nav-link ">
+                                        <a href="{{ base_url }}memberpoin" class="nav-link ">
                                             <span class="title">Member Poin</span>
                                         </a>
                                     </li>
@@ -147,8 +147,8 @@
                                 </a>
                                 <ul class="sub-menu">
                                     <li class="nav-item  ">
-                                        <a href="{{ base_url }}laporan" class="nav-link ">
-                                            <span class="title">Laporan Bla</span>
+                                        <a href="{{ base_url }}laporan/unit" class="nav-link ">
+                                            <span class="title">Laporan Unit</span>
                                         </a>
                                     </li>
                                     
