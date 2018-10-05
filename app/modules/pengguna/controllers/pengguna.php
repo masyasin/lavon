@@ -43,7 +43,7 @@ class Pengguna extends CMS_Controller
         $records = array();
         $records["data"] = array();
         
-        $rs = $this->db->select('group_id,group_name,description,status')->get('main_user')->result_array();
+        $rs = $this->db->select('user_id,avatar,user_name,real_name,active status')->get('main_user')->result_array();
         $i=$iDisplayStart;
         foreach ($rs as $r) {
             $row = array(

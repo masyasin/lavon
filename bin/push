@@ -21,4 +21,4 @@ git push
 
 # echo "UPDATING source on rumahapp.com/lavon"
 
-# ssh bbd33@rumahapp.com 'bash -s' < bin/scripts/remote_script.sh
+ ssh bbd33@rumahapp.com 'bash -s' < bin/scripts/remote_script.sh

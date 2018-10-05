@@ -51,6 +51,7 @@
 										</label>
 									</th>
 									<th width="5%"> Record&nbsp;# </th>
+									<th width="15%"> Avatar  </th>
 									<th width="15%"> Nama  </th>
 									<th width="200"> Keterangan </th>
 									<th width="10%"> Status </th>

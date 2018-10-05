@@ -62,8 +62,8 @@
                             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img alt="" class="img-circle" src="{{ theme_assets }}/layouts/layout/img/avatar2.jpg" />
-                                    <span class="username username-hide-on-mobile"> Hu Ran Ma </span>
+                                    <img alt="" class="img-circle" src="{{ user_avatar }}" />
+                                    <span class="username username-hide-on-mobile"> {{ user_real_name }} </span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
