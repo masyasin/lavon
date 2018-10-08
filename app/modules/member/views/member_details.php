@@ -12,7 +12,7 @@
 </div>
 <template id="member-template">
 
-    <form v-bind:name="'member'+$index" v-for="member in unit.members" class="prevent-submit">
+    <form v-bind:name="'member_'+$index" v-for="member in unit.members" class="prevent-submit">
         <div v-if="$index>0" style="padding-top: 2em"></div>
         <div class="row">
             <div class="col-md-12">
@@ -70,7 +70,7 @@
                     <label class="control-label col-md-3 bold text-left">Birth Date</label>
 
                     <div class="col-md-7">
-                        <input type="text" class="form-control" name="tgl_lahir" v-model="member.tgl_lahir" :disabled="!enable_editing" >
+                        <input type="text" class="form-control" name="tgl_lahir" v-model="member.tgl_lahir" :disabled="!enable_editing"  data-provide="datepicker">
                     </div>
                 </div>
             </div>
@@ -209,7 +209,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2 bold text-left">Member Since</label>
                                     <div class="col-md-10">
-                                        <input disabled type="text" class="form-control" name="tgl_berlaku" v-model="unit.tgl_berlaku"> 
+                                        <input :disabled="!enable_editing" type="text" class="form-control" name="tgl_berlaku" v-model="unit.tgl_berlaku" data-provide="datepicker"> 
                                     </div>
                                 </div>
                             </div>
@@ -220,7 +220,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2 bold text-left">Member Expired</label>
                                     <div class="col-md-10">
-                                        <input disabled type="text" class="form-control" name="tgl_berakhir" v-model="unit.tgl_berakhir"> 
+                                        <input :disabled="!enable_editing" type="text" class="form-control" name="tgl_berakhir" v-model="unit.tgl_berakhir" data-provide="datepicker"> 
                                     </div>
                                 </div>
                             </div>
@@ -233,7 +233,7 @@
                             <button :disabled="!enable_editing" type="button" class="btn btn-warning bold" @click="cancelEditing()">Cancel</button>
 
 
-                            <button :disabled="!enable_editing" type="button" class="btn btn-success fr margin-left-1em bold" @click="saveEditing()">Submit</button>
+                            <button :disabled="!enable_editing" type="button" class="btn btn-success fr margin-left-1em bold" @click="saveEditing(unit.id)">Submit</button>
                             
                             <button  :disabled="enable_editing || !has_valid_unit" type="button" class="btn btn-info fr bold" @click="toggleEnableEditing()">Edit</button>
 
@@ -247,8 +247,9 @@
         <script type="text/javascript">
             $=jQuery;
             $vm={};
+            
             $(document).ready(function(){
-                
+               $.fn.datepicker.defaults.format = "yyyy-mm-dd"; 
                 $('form.prevent-submit').submit(function(event){event.preventDefault();return false;});
                 Vue.component('members', {
                     props: ['parent','unit','daftar_kota','jenis_identitas','status_member','enable_editing','has_valid_unit','max_member_atempt'],
@@ -308,8 +309,21 @@
                         this.$set('vm',this);
                     },
                     methods: {
+                        resetEditing:function(){
+                            this.$set('max_member_atempt',0);
+                            this.$set('enable_editing',false);
+                            this.$set('has_valid_unit',false);
+
+                        },
                         setUnit:function(unit){
-                            console.log(unit);
+                            var is_editing_enabled = this.$get('enable_editing');
+                            if(is_editing_enabled){
+                                if(!confirm('Are you sure want to cancel editing that are not already saved ?')){
+
+                                    return;
+                                }
+                            }
+                            this.resetEditing();
                             this.$http({url: site_url()+'unit/fetchRowJson/'+unit.id+'?uuid='+uuidv4(), method: 'GET'}).then(function (response) {
                                 var unit = response.data;
                                 this.$set('max_member_atempt',unit.member_count);
@@ -396,6 +410,21 @@
 
                                 this.$set('max_member_atempt',max_member_atempt-1);
                             }
+                        },
+                        saveEditing:function(id){
+                            var data = {
+                                deleted_queue_ids : this.$get('deleted_queue_ids'),
+                                unit: this.$get('unit')
+                            };
+
+                            this.$http.post(site_url()+'member/save/'+id+'?uuid='+uuidv4(), data).then(function(response) {
+                                var unit = response.data;
+                                this.$set('enable_editing',false);
+
+                                this.setUnit(unit);
+                                console.log(response);
+                            });
+
                         }
                     }        
                 });
