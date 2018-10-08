@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-10-06 17:26:20
+Date: 2018-10-09 02:15:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -52,7 +52,12 @@ INSERT INTO `ci_sessions` VALUES ('4a810f905e344ba9a826738caac151b2', '::1', 'Mo
 INSERT INTO `ci_sessions` VALUES ('47dc5082c62b5ce87c65350eda4bdff2', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538774396', 'a:6:{s:8:\"cms_lang\";s:10:\"indonesian\";s:15:\"cms_user_avatar\";s:73:\"http://localhost/lavon/public/assets/uploads/files/avatar/kamen_rider.jpg\";s:13:\"cms_user_name\";s:5:\"admin\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:11:\"Kamen Rider\";s:14:\"cms_user_email\";s:20:\"cristminix@gmail.com\";}');
 INSERT INTO `ci_sessions` VALUES ('691073f985e06133bc3ad9dbac8feead', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538801093', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
 INSERT INTO `ci_sessions` VALUES ('ffbce6df7357d50da105e1b1a6f3c1c7', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538802081', 'a:6:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:73:\"http://localhost/lavon/public/assets/uploads/files/avatar/kamen_rider.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:11:\"Kamen Rider\";s:14:\"cms_user_email\";s:20:\"cristminix@gmail.com\";}');
-INSERT INTO `ci_sessions` VALUES ('e50253b83aa72c352f54dadd4080e954', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538820944', 'a:6:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:73:\"http://localhost/lavon/public/assets/uploads/files/avatar/kamen_rider.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:11:\"Kamen Rider\";s:14:\"cms_user_email\";s:20:\"cristminix@gmail.com\";}');
+INSERT INTO `ci_sessions` VALUES ('c4ffd8c91368c30a4fbfdc01efc9348d', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539012188', 'a:6:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:73:\"http://localhost/lavon/public/assets/uploads/files/avatar/kamen_rider.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:11:\"Kamen Rider\";s:14:\"cms_user_email\";s:20:\"cristminix@gmail.com\";}');
+INSERT INTO `ci_sessions` VALUES ('3dc02d65c6f5c01a4076d62241f4076c', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539020564', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('969b3d914fccc46df5cb5930e34abdeb', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539021751', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('c4172c23c1b4331eb2e42a7bac3111ac', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539025789', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('9e4a17fae687e6097ee6d7a335a001cc', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539025848', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('56bf0d1a1b4c8040de336adbf41a8b6e', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539026041', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
 
 -- ----------------------------
 -- Table structure for `main_authorization`
@@ -2602,7 +2607,7 @@ CREATE TABLE `m_unit` (
   PRIMARY KEY (`id`),
   KEY `id_cluster` (`id_cluster`),
   CONSTRAINT `m_unit_ibfk_1` FOREIGN KEY (`id_cluster`) REFERENCES `m_cluster` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1492 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1493 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_unit
@@ -3606,7 +3611,7 @@ INSERT INTO `m_unit` VALUES ('996', '', '4', '4-8-50', '5', '2018-01-06', '0000-
 INSERT INTO `m_unit` VALUES ('997', '', '4', '4-3-27', '5', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_unit` VALUES ('998', '', '4', '4-5-60', '5', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_unit` VALUES ('999', '', '4', '4-7-27', '5', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
-INSERT INTO `m_unit` VALUES ('1000', '', '4', '4-1-66', '5', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
+INSERT INTO `m_unit` VALUES ('1000', '', '4', '4-1-66', '5', '2017-12-26', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_unit` VALUES ('1001', '', '4', '4-7-56', '5', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_unit` VALUES ('1002', '', '4', '4-2-31', '5', '2017-12-14', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_unit` VALUES ('1003', '', '4', '4-6-60', '5', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
@@ -4098,6 +4103,7 @@ INSERT INTO `m_unit` VALUES ('1488', '', '6', '6-20-19', '5', '2018-02-08', '000
 INSERT INTO `m_unit` VALUES ('1489', '', '6', '6-20-22', '5', '2017-12-28', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_unit` VALUES ('1490', '', '6', '6-20-26', '5', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_unit` VALUES ('1491', '', '6', '6-20-28', '5', '2017-12-27', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
+INSERT INTO `m_unit` VALUES ('1492', null, '4', '4-1-67', '4', '2017-12-26', '2018-12-26', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '1');
 
 -- ----------------------------
 -- Table structure for `tr_poin`
