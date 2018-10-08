@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-10-06 03:34:01
+Date: 2018-10-06 17:26:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -49,7 +49,10 @@ INSERT INTO `ci_sessions` VALUES ('bae0c41145ed476b073895b9ae2b4890', '::1', 'Mo
 INSERT INTO `ci_sessions` VALUES ('c6268361a022c8a9e320c2f986e25263', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538758170', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
 INSERT INTO `ci_sessions` VALUES ('d1f0a7fa8e2bf488d8e4e061967bcff2', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538758394', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
 INSERT INTO `ci_sessions` VALUES ('4a810f905e344ba9a826738caac151b2', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538766606', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('eb7678fd939009b020d5d7a55a33fbad', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538770982', 'a:6:{s:8:\"cms_lang\";s:10:\"indonesian\";s:15:\"cms_user_avatar\";s:73:\"http://localhost/lavon/public/assets/uploads/files/avatar/kamen_rider.jpg\";s:13:\"cms_user_name\";s:5:\"admin\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:11:\"Kamen Rider\";s:14:\"cms_user_email\";s:20:\"cristminix@gmail.com\";}');
+INSERT INTO `ci_sessions` VALUES ('47dc5082c62b5ce87c65350eda4bdff2', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538774396', 'a:6:{s:8:\"cms_lang\";s:10:\"indonesian\";s:15:\"cms_user_avatar\";s:73:\"http://localhost/lavon/public/assets/uploads/files/avatar/kamen_rider.jpg\";s:13:\"cms_user_name\";s:5:\"admin\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:11:\"Kamen Rider\";s:14:\"cms_user_email\";s:20:\"cristminix@gmail.com\";}');
+INSERT INTO `ci_sessions` VALUES ('691073f985e06133bc3ad9dbac8feead', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538801093', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('ffbce6df7357d50da105e1b1a6f3c1c7', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538802081', 'a:6:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:73:\"http://localhost/lavon/public/assets/uploads/files/avatar/kamen_rider.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:11:\"Kamen Rider\";s:14:\"cms_user_email\";s:20:\"cristminix@gmail.com\";}');
+INSERT INTO `ci_sessions` VALUES ('e50253b83aa72c352f54dadd4080e954', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538820944', 'a:6:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:73:\"http://localhost/lavon/public/assets/uploads/files/avatar/kamen_rider.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:11:\"Kamen Rider\";s:14:\"cms_user_email\";s:20:\"cristminix@gmail.com\";}');
 
 -- ----------------------------
 -- Table structure for `main_authorization`
@@ -506,7 +509,7 @@ CREATE TABLE `m_cluster` (
   `tgl_dibuat` datetime NOT NULL,
   `tg_diubah` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_cluster

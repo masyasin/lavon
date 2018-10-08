@@ -62,4 +62,16 @@ class Unit extends CMS_Controller
         
         return $post_array;
     }
+
+    public function fetchRowJson($id)
+    {
+        $unit = $this->db->select('u.*,c.nama cluster_name')->join('m_cluster c', 'c.id=u.id_cluster')->where('u.id', $id)->get('m_unit u')->row_array();
+        $unit['members'] = array();
+        if (!empty($unit)) {
+            $unit['members'] = $this->db->where('id_unit', $id)->get('m_member')->result_array();
+        }
+        $unit['has_member'] = count($unit['members']) > 0;
+
+        echo json_encode($unit);
+    }
 }

@@ -21,6 +21,9 @@
         <script src="{{ theme_assets }}/global/scripts/datatable.js" type="text/javascript"></script>
         <script src="{{ theme_assets }}/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
         <script src="{{ theme_assets }}/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+
+        <script src="{{ theme_assets }}/global/plugins/typeahead/handlebars.min.js" type="text/javascript"></script>
+        <script src="{{ theme_assets }}/global/plugins/typeahead/typeahead.bundle.min.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="{{ theme_assets }}/global/scripts/app.min.js" type="text/javascript"></script>
