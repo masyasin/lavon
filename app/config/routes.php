@@ -65,6 +65,10 @@
 | provided in the URL cannot be matched to a valid route.
 |
 */
+$route['transaksi/details-card-numbers-fetch-unit-row-json']               = 'transaksi/details_card_numbers_fetch_unit_row_json';
+$route['transaksi/details-card-numbers-fetch-unit-row-json/(:any)']         = 'transaksi/details_card_numbers_fetch_unit_row_json/$1';
+$route['transaksi/details-card-numbers-save']               = 'transaksi/details_card_numbers_save';
+$route['transaksi/details-card-numbers-save/(:any)']         = 'transaksi/details_card_numbers_save/$1';
+$route['transaksi/details-card-numbers']               = 'transaksi/details_card_numbers';
 
-require_once dirname(__FILE__) . '/new_routes.php';
-$route['default_controller'] = 'apps';
+$route['default_controller'] = 'dashboard';

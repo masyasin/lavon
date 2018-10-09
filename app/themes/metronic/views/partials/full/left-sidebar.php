@@ -41,7 +41,7 @@
             </li>
 <?php
 $menus = [
-    'dashboard'=>['title'=>'Dashboard','icon'=>'icon-home','items'=>[ 'dashboard/statistics'=> 'Statistik' ] ],
+    'dashboard'=>['title'=>'Dashboard','icon'=>'icon-home','items'=>[ 'dashboard/statistik'=> 'Statistik' ] ],
     'transaksi'=>['title'=>'Transaksi','icon'=>'icon-globe','items'=>[ 'transaksi/details-card-numbers'=> 'Member Details Cards',
                                                                        'transaksi/fasilitas' => 'Fasilitas Member Poin',
                                                                        'transaksi/redeempoin' => 'Redeem Poin',

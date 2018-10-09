@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-10-09 02:15:50
+Date: 2018-10-09 16:17:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -57,7 +57,10 @@ INSERT INTO `ci_sessions` VALUES ('3dc02d65c6f5c01a4076d62241f4076c', '::1', 'Mo
 INSERT INTO `ci_sessions` VALUES ('969b3d914fccc46df5cb5930e34abdeb', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539021751', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
 INSERT INTO `ci_sessions` VALUES ('c4172c23c1b4331eb2e42a7bac3111ac', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539025789', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
 INSERT INTO `ci_sessions` VALUES ('9e4a17fae687e6097ee6d7a335a001cc', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539025848', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('56bf0d1a1b4c8040de336adbf41a8b6e', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539026041', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('16798532f96d5701572133ac20e2f48b', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539027886', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('3481957bbc976aa8a8daa268a3a3e8e7', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539028220', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('13f8ef0f784a897a57dfc9aa7f3f0bda', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539063394', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('5e27f56a9c684842e934f45135889982', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539076415', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
 
 -- ----------------------------
 -- Table structure for `main_authorization`
@@ -247,27 +250,18 @@ CREATE TABLE `main_module` (
   `version` varchar(50) DEFAULT NULL,
   `user_id` int(5) DEFAULT NULL,
   PRIMARY KEY (`module_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of main_module
 -- ----------------------------
 INSERT INTO `main_module` VALUES ('1', 'artisan', 'artisan', '1.0', '1');
-INSERT INTO `main_module` VALUES ('2', 'main', 'main', '1.0', '1');
-INSERT INTO `main_module` VALUES ('3', 'apps', 'apps', '1.0', '1');
 INSERT INTO `main_module` VALUES ('4', 'account', 'account', '1.0', '4');
 INSERT INTO `main_module` VALUES ('5', 'dashboard', 'dashboard', '1.0', '1');
 INSERT INTO `main_module` VALUES ('6', 'navigation', 'navigation', '1.0', '1');
-INSERT INTO `main_module` VALUES ('7', 'unit', 'unit', '1.0', '1');
-INSERT INTO `main_module` VALUES ('8', 'cluster', 'cluster', '1.0', '1');
-INSERT INTO `main_module` VALUES ('9', 'tenan', 'tenan', '1.0', '1');
-INSERT INTO `main_module` VALUES ('10', 'member', 'member', '1.0', '1');
-INSERT INTO `main_module` VALUES ('11', 'setting', 'setting', '1.0', '1');
-INSERT INTO `main_module` VALUES ('12', 'fasilitas', 'fasilitas', '1.0', '1');
-INSERT INTO `main_module` VALUES ('14', 'marcendaise', 'marcendaise', '1.0', '1');
-INSERT INTO `main_module` VALUES ('15', 'memberpoin', 'memberpoin', '1.0', '1');
-INSERT INTO `main_module` VALUES ('16', 'grup', 'grup', '1.0', '1');
-INSERT INTO `main_module` VALUES ('17', 'pengguna', 'pengguna', '1.0', '1');
+INSERT INTO `main_module` VALUES ('18', 'transaksi', 'transaksi', '1.0', '1');
+INSERT INTO `main_module` VALUES ('19', 'pengaturan', 'pengaturan', '1.0', '1');
+INSERT INTO `main_module` VALUES ('20', 'manajemen', 'manajemen', '1.0', '1');
 
 -- ----------------------------
 -- Table structure for `main_module_dependency`
@@ -1054,12 +1048,12 @@ CREATE TABLE `m_member` (
   `tgl_diubah` datetime NOT NULL,
   `is_active` enum('0','1') NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1500 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1503 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_member
 -- ----------------------------
-INSERT INTO `m_member` VALUES ('2', '2', 'IVAN HADI PUTRA', 'KTP', '3671010104950002', '0000-00-00', '', '', 'KOMP. MAHKOTA MAS BLOK P.5 NO.2 RT/RW 02/09', 'CIKOKOL', null, 'Home Owner', '2017-12-08', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
+INSERT INTO `m_member` VALUES ('2', '2', 'IVAN HADI PUTRA', 'KTP', '3671010104950002', '1980-12-30', '', '', 'KOMP. MAHKOTA MAS BLOK P.5 NO.2 RT/RW 02/09', 'CIKOKOL', null, 'Home Owner', '2017-12-08', '2018-01-31', '2018-04-21 10:23:00', '2018-10-09 04:02:04', '1');
 INSERT INTO `m_member` VALUES ('3', '3', 'SHEN YU', 'KTP', 'G27166717', '0000-00-00', '', '', 'APT 501, #45, 333 WU YANG EAST ROAD, ', 'JIADING DISTRICT, SHANGHAI', null, 'Home Owner', '2017-12-27', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_member` VALUES ('4', '4', 'HENDRIK EKO ANDI PUTRA DAN HEIDY KARTINI', 'KTP', '3173021004820012', '0000-00-00', '', '', 'APT. MEDITERANIA G.2 TWR.F-10-F/M RT 003 RW 005', 'KEL. TANJUNG DUREN SELATAN ', null, 'Home Owner', '2017-12-02', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_member` VALUES ('5', '5', 'ASTRI AYUNANI', 'KTP', '6471055911880006', '0000-00-00', '', '', 'BALIK PAPAN REGENCY BLOK FA S NO 23 ', 'BALIKPAPAN', null, 'Home Owner', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
@@ -1456,7 +1450,7 @@ INSERT INTO `m_member` VALUES ('395', '395', 'ALBERT TANUMIHARDJA', 'KTP', '3674
 INSERT INTO `m_member` VALUES ('396', '396', 'ANDY INDRAJAYA', 'KTP', '3674040102750009', '0000-00-00', '', '', 'VILLA DAGO TOL G.5 NO. 9 RT 002 RW 020', 'KEL. SERUA KEC. CIPUTAT', null, 'Home Owner', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_member` VALUES ('397', '397', 'FENNY ANGGRAINI', 'KTP', '2172015903920001', '0000-00-00', '', '', 'JL JAHAN II PERUM SARI INDAH BLOK D', 'NO 4  RT/RW 004/003 KAMPUNG BARU ', null, 'Home Owner', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_member` VALUES ('398', '398', 'ANGGIE DWI SAVITRI', 'KTP', '3172054404900004', '0000-00-00', '', '', 'JL. ANCOL SELATAN NO.52A', 'RT. 019/001 SUNTER AGUNG', null, 'Home Owner', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
-INSERT INTO `m_member` VALUES ('399', '399', 'RACHMAT IDRIS', 'KTP', '3171070505760003', '0000-00-00', '', '', 'APT BATAVIA T.I/2805 JL KH MAS MANSYUR KV126 RT/RW 011/003', 'KEL. KARET TENGSIN KEC. TANAH ABANG', null, 'Home Owner', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
+INSERT INTO `m_member` VALUES ('399', '399', 'RACHMAT IDRIS', 'KTP', '3171070505760003', '0000-00-00', '', '', 'APT BATAVIA T.I/2805 JL KH MAS MANSYUR KV126 RT/RW 011/003', 'KEL. KARET TENGSIN KEC. TANAH ABANG', null, 'Home Owner', '2017-12-20', '2020-12-28', '2018-04-21 10:23:00', '2018-10-09 14:47:03', '1');
 INSERT INTO `m_member` VALUES ('400', '400', 'ANDY SUCIPTO', 'KTP', '1571040412840021', '0000-00-00', '', '', 'APT PERMATA SURYA I TWR H 519 RT/RW 011/017', 'KEL. PEGADUNGAN KEC. KALIDERES ', null, 'Home Owner', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_member` VALUES ('401', '401', 'FERDITIUS BERNARDUS', 'KTP', '367113012920002', '0000-00-00', '', '', 'BANJAR WIJAYA BLOK B 55 NO. 9 RT. 005/007', 'KEL. CIPETE KEC. PINANG, TANGERANG', null, 'Home Owner', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_member` VALUES ('402', '402', 'STEVILIA THAMWILYO', 'KTP', '3674015006790003', '0000-00-00', '', '', 'BSD BLOK RB 2/4 SEKTOR 1-1 RT 001/013', 'KEL. RAWA BUNTU KEC.SERPONG', null, 'Home Owner', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
@@ -2549,8 +2543,11 @@ INSERT INTO `m_member` VALUES ('1488', '1488', 'YUSANTI DEWI', 'KTP', '317301570
 INSERT INTO `m_member` VALUES ('1489', '1489', 'FELDA DIANA T', 'KTP', '-', '0000-00-00', '', '', 'RUKO DE MANSION', 'JL JALUR SUTERA BLOK A NO 8 KUNCIRAN PINANG', null, 'Home Owner', '2017-12-28', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_member` VALUES ('1490', '1490', 'ANGGA SUGIHARTO PRATAMA', 'KTP', '3671081607900002', '0000-00-00', '', '', 'PERSADA RAYA ', 'GEMBOR', null, 'Home Owner', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_member` VALUES ('1491', '1491', 'JIMMY', 'KTP', '-', '0000-00-00', '', '', 'RUKO DE MANSION', 'JL JALUR SUTERA BLOK A NO 8 KUNCIRAN PINANG', null, 'Home Owner', '2017-12-27', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
-INSERT INTO `m_member` VALUES ('1498', '1', 'EDI', 'KTP', '3172012505760000', '1969-12-31', '8977175234', 'edi@gmail.com', 'JELAMBAR RT/RW 06/06 PEJAGALAN', 'PENJARINGAN', '3', 'Home Owner', '0000-00-00', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
-INSERT INTO `m_member` VALUES ('1499', '1', 'INDRA', 'KTP', '3172012505760000', '1969-12-31', '8977175234', 'indra@gmail.com', 'JELAMBAR RT/RW 06/06 PEJAGALAN', 'PENJARINGAN', '3', 'Lessee', '0000-00-00', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
+INSERT INTO `m_member` VALUES ('1498', '1', 'EDI', 'KTP', '3172012505760000', '1969-12-31', '8977175234', 'edi@gmail.com', 'JELAMBAR RT/RW 06/06 PEJAGALAN', 'PENJARINGAN', '3', 'Home Owner', '2017-12-20', '2022-12-31', '2018-04-21 10:23:00', '2018-10-09 15:32:58', '1');
+INSERT INTO `m_member` VALUES ('1499', '1', 'INDRA', 'KTP', '3172012505760000', '1969-12-31', '8977175234', 'indra@gmail.com', 'JELAMBAR RT/RW 06/06 PEJAGALAN', 'PENJARINGAN', '3', 'Lessee', '2017-12-20', '2022-12-31', '2018-04-21 10:23:00', '2018-10-09 15:32:58', '1');
+INSERT INTO `m_member` VALUES ('1500', '1492', 'Putra', 'KTP', '4566666', '1986-09-18', '', '', '', 'Grinting', '69', 'Home Owner', '2017-12-26', '2018-12-26', '2018-10-09 03:33:45', '2018-10-09 03:43:31', '1');
+INSERT INTO `m_member` VALUES ('1501', '399', 'YUSUF', 'KTP', '66666666', '2018-10-26', '444444444444', 'yaskdssss@gmail.com', '', 'SSS', '19', 'Lessee', '2017-12-20', '2020-12-28', '2018-10-09 14:47:03', '2018-10-09 14:47:03', '1');
+INSERT INTO `m_member` VALUES ('1502', '1', '', 'KTP', '', '0000-00-00', '', '', '', '', '15', 'Home Owner', '2017-12-20', '2022-12-31', '2018-10-09 15:32:58', '2018-10-09 15:32:58', '1');
 
 -- ----------------------------
 -- Table structure for `m_poin_unit`
@@ -2612,8 +2609,8 @@ CREATE TABLE `m_unit` (
 -- ----------------------------
 -- Records of m_unit
 -- ----------------------------
-INSERT INTO `m_unit` VALUES ('1', '3190992624', '1', '1-15-23', '5', '2017-12-20', '2022-12-31', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
-INSERT INTO `m_unit` VALUES ('2', '', '1', '1-15-35', '5', '2017-12-08', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
+INSERT INTO `m_unit` VALUES ('1', '3190992624', '1', '1-15-23', '5', '2017-12-20', '2022-12-31', '2018-04-21 10:23:00', '2018-10-09 15:32:58', '1');
+INSERT INTO `m_unit` VALUES ('2', '12345678', '1', '1-15-35', '5', '2017-12-08', '2018-01-31', '2018-04-21 10:23:00', '2018-10-09 04:02:04', '1');
 INSERT INTO `m_unit` VALUES ('3', '', '1', '1-9-15', '5', '2017-12-27', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_unit` VALUES ('4', '', '1', '1-11-28', '5', '2017-12-02', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_unit` VALUES ('5', '', '1', '1-2-2', '5', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
@@ -3010,7 +3007,7 @@ INSERT INTO `m_unit` VALUES ('395', '', '1', '1-8-18', '5', '2017-12-20', '0000-
 INSERT INTO `m_unit` VALUES ('396', '', '1', '1-12-33', '5', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_unit` VALUES ('397', '', '1', '1-11-8', '5', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_unit` VALUES ('398', '', '1', '1-17-12', '5', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
-INSERT INTO `m_unit` VALUES ('399', '', '2', '2-17-52', '5', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
+INSERT INTO `m_unit` VALUES ('399', '', '2', '2-17-52', '5', '2017-12-20', '2020-12-28', '2018-04-21 10:23:00', '2018-10-09 14:47:03', '1');
 INSERT INTO `m_unit` VALUES ('400', '', '2', '2-5-7', '5', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_unit` VALUES ('401', '', '2', '2-7-5', '5', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_unit` VALUES ('402', '', '2', '2-7-10', '5', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
@@ -4103,7 +4100,7 @@ INSERT INTO `m_unit` VALUES ('1488', '', '6', '6-20-19', '5', '2018-02-08', '000
 INSERT INTO `m_unit` VALUES ('1489', '', '6', '6-20-22', '5', '2017-12-28', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_unit` VALUES ('1490', '', '6', '6-20-26', '5', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_unit` VALUES ('1491', '', '6', '6-20-28', '5', '2017-12-27', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
-INSERT INTO `m_unit` VALUES ('1492', null, '4', '4-1-67', '4', '2017-12-26', '2018-12-26', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '1');
+INSERT INTO `m_unit` VALUES ('1492', null, '4', '4-1-67', '4', '2017-12-26', '2018-12-26', '0000-00-00 00:00:00', '2018-10-09 03:43:31', '1');
 
 -- ----------------------------
 -- Table structure for `tr_poin`

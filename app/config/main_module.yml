@@ -37,19 +37,19 @@ navigation:
 unit:
     module_id: '7'
     module_name: unit
-    module_path: manajemen/unit
+    module_path: unit
     version: '1.0'
     user_id: '1'
 cluster:
     module_id: '8'
     module_name: cluster
-    module_path: manajemen/cluster
+    module_path: cluster
     version: '1.0'
     user_id: '1'
 tenan:
     module_id: '9'
     module_name: tenan
-    module_path: manajemen/tenan
+    module_path: tenan
     version: '1.0'
     user_id: '1'
 member:
@@ -98,5 +98,17 @@ transaksi:
     module_id: '18'
     module_name: transaksi
     module_path: transaksi
+    version: '1.0'
+    user_id: '1'
+pengaturan:
+    module_id: '19'
+    module_name: pengaturan
+    module_path: pengaturan
+    version: '1.0'
+    user_id: '1'
+manajemen:
+    module_id: '20'
+    module_name: manajemen
+    module_path: manajemen
     version: '1.0'
     user_id: '1'

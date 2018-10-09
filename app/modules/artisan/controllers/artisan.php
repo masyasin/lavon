@@ -337,14 +337,19 @@ class Artisan extends MX_Controller
 
     public function insert_routes()
     {
-        
-        $data = [ 'manajemen/cluster'=> 'cluster/grid',
+        /*
+'manajemen/cluster'=> 'cluster/grid',
                 'manajemen/unit'=>'unit/index',
                 'manajemen/tenan'=>'tenan/grid',
                 'manajemen/fasilitas'=>'fasilitas/grid',
                 'manajemen/marcendaise'=>'marcendaise/grid',
                 'manajemen/memberpoin'=>'memberpoin/grid',
-                'transaksi/details-card-numbers'=>'member/entry'
+        */
+        $data = [
+                'transaksi/details-card-numbers'=>'transaksi/details_card_numbers',
+                'transaksi/details-card-numbers-save'=>'transaksi/details_card_numbers_save',
+                'transaksi/details-card-numbers-fetch-unit-row-json'=>'transaksi/details_card_numbers_fetch_unit_row_json',
+
         ];
 
         $buffer = '<'.'?'."php";
