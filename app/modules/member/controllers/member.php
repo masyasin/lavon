@@ -20,8 +20,10 @@ class Member extends CMS_Controller
         );
 
         $config=array(
-            'title'=>'Entry Card/Member Detail'
+            'title'=>' Member Details &amp; Card Number'
         );
+        $this->template->set_breadcrumb('Transaksi', false)
+                       ->set_breadcrumb('Member Details Card', '');
         $this->view('member_details', $data, 'navi', $config);
     }
 

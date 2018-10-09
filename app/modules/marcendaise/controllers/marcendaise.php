@@ -12,7 +12,7 @@ class Marcendaise extends CMS_Controller
     }
     public function index()
     {
-        redirect('marcendaise/grid');
+        redirect('manajemen/marcendaise/grid');
     }
     public function grid()
     {

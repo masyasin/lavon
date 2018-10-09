@@ -9,14 +9,14 @@
 
     <head>
         <meta charset="utf-8" />
-        <title><?php echo $template['title'];?></title>
+        <title>Lavon:<?php echo $template['title'];?></title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <?php echo $template['metadata'];?>
-        <link rel="icon" href="{{ site_favicon }}">
+        
          <!-- Le styles -->
         <?php
-            $asset = new CMS_Asset();       
+            $asset = new CMS_Asset();
             // $asset->add_cms_css('bootstrap/css/bootstrap.min.css');
             // $asset->add_themes_css('bootstrap.min.css', '{{ used_theme }}', 'default');
             // $asset->add_themes_css('style.css', '{{ used_theme }}', 'default');
@@ -32,7 +32,7 @@
     
     <!-- END HEAD -->
 
-    <body class="page-header-fixed page-sidebar-open-hide-logo page-container-bg-solid page-content-white page-sidebar-open">
+    <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
         <div class="page-wrapper">
             <!-- BEGIN HEADER -->
             <!-- full/page-header.php -->
@@ -60,11 +60,13 @@
                         <div class="page-bar">
                             <!-- breadcrumb -->
                             <?= $this->template->load_view('partials/full/breadcrumb.php'); ?>
+
                             <div class="page-toolbar">
                             <?= $this->template->load_view('partials/full/page-toolbar.php'); ?>
                                 
                             </div>
                         </div>
+                        
                         <!-- END PAGE BAR -->
                         
                         <?= $template['body']; ?>
@@ -86,7 +88,7 @@
             <!-- END FOOTER -->
         </div>
         <!-- BEGIN QUICK NAV -->
-            <? //$this->template->load_view('partials/full/quick-nav.php'); ?>
+            <?php //$this->template->load_view('partials/full/quick-nav.php'); ?>
         
         <!-- END QUICK NAV -->
         <!-- script-buttom -->
@@ -95,3 +97,9 @@
     </body>
 
 </html>
+<style type="text/css">
+.page-header.navbar .page-logo .logo-default {
+    margin-left: 24px;
+    width: 108px;
+}
+</style>

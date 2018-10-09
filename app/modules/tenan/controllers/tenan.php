@@ -12,7 +12,7 @@ class Tenan extends CMS_Controller
     }
     public function index()
     {
-        redirect('tenan/grid');
+        redirect('manajemen/tenan/grid');
     }
     public function grid()
     {

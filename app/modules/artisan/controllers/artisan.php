@@ -334,4 +334,32 @@ class Artisan extends MX_Controller
         $this->db->where('user_name', 'admin')->update('main_user', ['password'=>md5('admin')]);
         echo "your admin password is now admin";
     }
+
+    public function insert_routes()
+    {
+        
+        $data = [ 'manajemen/cluster'=> 'cluster/grid',
+                'manajemen/unit'=>'unit/index',
+                'manajemen/tenan'=>'tenan/grid',
+                'manajemen/fasilitas'=>'fasilitas/grid',
+                'manajemen/marcendaise'=>'marcendaise/grid',
+                'manajemen/memberpoin'=>'memberpoin/grid',
+                'transaksi/details-card-numbers'=>'member/entry'
+        ];
+
+        $buffer = '<'.'?'."php";
+
+        foreach ($data as $src => $dst) {
+            $content="
+\$route['$src']               = '$dst';
+\$route['$src(:any)']         = '$dst/\$1';
+\$route['$src(:any)/(:any)']  = '$dst/\$1/\$2';
+\$route['$src(:any)/(:any)/(:any)']  = '$dst/\$1/\$2/\$3';
+\$route['$src(:any)/(:any)/(:any)/(:any)']  = '$dst/\$1/\$2/\$3/\$4';
+";
+            $buffer.= $content;
+        }
+
+        file_put_contents(APPPATH.'config/new_routes.php', $buffer);
+    }
 }

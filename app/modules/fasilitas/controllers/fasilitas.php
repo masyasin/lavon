@@ -12,7 +12,7 @@ class Fasilitas extends CMS_Controller
     }
     public function index()
     {
-        redirect('fasilitas/grid');
+        redirect('manajemen/fasilitas/grid');
     }
     public function grid()
     {

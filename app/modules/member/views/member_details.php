@@ -1,4 +1,6 @@
-<div style="padding: 1em"></div>
+<h1 class="page-title"> Member Details &amp; Card Numbers
+    <small>inputs unit card number, add, edit and delete member details</small>
+</h1>
 <div class="portlet box green">
     <div class="portlet-title">
         <div class="caption">
