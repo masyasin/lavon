@@ -18,7 +18,7 @@ class Dashboard extends CMS_Controller
         $data = [];
 
         $view_config = array(
-            'title' => ' Manajemen Marcendaise'
+            'title' => ' Dashboard'
         );
         $this->template->set_breadcrumb('Dashboard', false)
                        ->set_breadcrumb('Statistik', '');
