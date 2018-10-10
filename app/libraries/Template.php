@@ -180,6 +180,7 @@ class Template
      */
     public function build($view, $data = array(), $return = false)
     {
+
         // Set whatever values are given. These will be available to all view files
         is_array($data) or $data = (array) $data;
 
@@ -658,6 +659,7 @@ class Template
     // A module view file can be overriden in a theme
     private function _find_view($view, array $data, $parse_view = true)
     {
+
         // Only bother looking in themes if there is a theme
         if (! empty($this->_theme)) {
             foreach ($this->_theme_locations as $location) {
@@ -675,11 +677,13 @@ class Template
         }
 
         // Not found it yet? Just load, its either in the module or root view
+
         return self::_load_view($view, $this->_data + $data, $parse_view);
     }
 
     private function _load_view($view, array $data, $parse_view = true, $override_view_path = null)
     {
+
         // Sevear hackery to load views from custom places AND maintain compatibility with Modular Extensions
         if ($override_view_path !== null) {
             if ($this->_parser_enabled === true and $parse_view === true) {
@@ -702,13 +706,13 @@ class Template
         // Can just run as usual
         else {
             // Grab the content of the view (parsed or loaded)
-            $content = ($this->_parser_enabled === true and $parse_view === true)
-
+            if ($this->_parser_enabled === true and $parse_view === true) {
                 // Parse that bad boy
-                ? $this->_ci->parser->parse($view, $data, true)
-
+                $content =  $this->_ci->parser->parse($view, $data, true);
+            } else {
                 // None of that fancy stuff for me!
-                : $this->_ci->load->view($view, $data, true);
+                $content= $this->_ci->load->view($view, $data, true);
+            }
         }
 
         return $content;

@@ -159,3 +159,19 @@ Vue.filter('timeago',function(date){
          });
      }
  }
+ $(document).ready(function(){
+    $('#alert_cnt').ajaxError(function(){
+        console.log(arguments);
+        App.alert({
+            container: "#alert_cnt",
+            place: 'prepend',
+            type: 'danger',
+            message: 'Couldn\'t complete operation',
+            close: true,
+            reset: true,
+            focus: true,
+            closeInSeconds: 0,
+            icon: 'warning'
+        });
+    });
+ });

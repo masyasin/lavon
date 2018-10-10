@@ -252,7 +252,47 @@ class Artisan extends MX_Controller
 //      }
 //
     }
-    
+    public function dump_menu_config($value = '')
+    {
+        $menus = [
+        'dashboard'=>['title'=>'Dashboard','icon'=>'icon-home','items'=>[ 'dashboard/statistik'=> 'Statistik' ] ],
+        'transaksi'=>['title'=>'Transaksi','icon'=>'icon-globe','items'=>[ 'transaksi/details-card-numbers'=> 'Member Details Cards',
+                                                                       'transaksi/fasilitas' => 'Fasilitas Member Poin',
+                                                                       'transaksi/redeempoin' => 'Redeem Poin',
+                                                                       'transaksi/history' => 'History'
+                                                                     ]
+                 ],
+        'manajemen'=>['title'=>'Manajemen','icon'=>'icon-puzzle','items'=>[ 'manajemen/cluster'=> 'Cluster',
+                                                                        'manajemen/unit'=>'Unit',
+                                                                        'manajemen/tenan'=>'Tenan',
+                                                                        'manajemen/fasilitas'=>'Fasilitas',
+                                                                        'manajemen/marcendaise'=>'Marcendaise',
+                                                                        'manajemen/memberpoin'=>'Member Poin'
+                                                                      ]
+                 ],
+        'laporan'=>['title'=>'Laporan','icon'=>'icon-bar-chart','items'=>[ 'laporan/unit-member-details'=> 'Unit &amp; Member Details',
+                                                                        'laporan/tenan-fasilitas'=>'Tenan &amp; Fasilitas',
+                                                                        'laporan/unit-member-poin'=>'Unit &amp; Member Poin',
+                                                                        'laporan/marcendaise'=>'Marcendaise',
+                                                                        'laporan/redeempoin'=>'Redeem Poin',
+                                                                        'laporan/memberpoin'=>'Member Poin'
+                                                                      ]
+                 ],
+        'pengaturan'=>['title'=>'Pengaturan','icon'=>'icon-wrench','items'=>[ 'pengaturan/grup'=> 'Grup',
+                                                                        'pengaturan/pengguna'=>'Pengguna',
+                                                                        'pengaturan/setting'=>'Setting',
+                                                                        'pengaturan/modul'=>'Modul'
+                                                                      ]
+                 ],
+        ];
+
+        $dump = Yaml::dump($menus, 4, 4);
+
+        $config_path = APPPATH. 'config/main_menu.yml';
+
+        file_put_contents($config_path, $dump);
+        echo "WRITE $config_path\n";
+    }
     /* Lavon script start here */
     public function cp_assets()
     {

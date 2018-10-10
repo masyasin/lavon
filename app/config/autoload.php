@@ -1,4 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (! defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 /**
  * CodeIgniter
  *
@@ -16,12 +18,12 @@
  * through the world wide web, please send an email to
  * licensing@ellislab.com so we can send you a copy immediately.
  *
- * @package		CodeIgniter
- * @author		EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2013, EllisLab, Inc. (http://ellislab.com/)
- * @license		http://opensource.org/licenses/AFL-3.0 Academic Free License (AFL 3.0)
- * @link		http://codeigniter.com
- * @since		Version 1.0
+ * @package     CodeIgniter
+ * @author      EllisLab Dev Team
+ * @copyright   Copyright (c) 2008 - 2013, EllisLab, Inc. (http://ellislab.com/)
+ * @license     http://opensource.org/licenses/AFL-3.0 Academic Free License (AFL 3.0)
+ * @link        http://codeigniter.com
+ * @since       Version 1.0
  * @filesource
  */
 
@@ -76,7 +78,7 @@ $autoload['packages'] = array();
 |
 | Prototype:
 |
-|	$autoload['libraries'] = array(, 'email', 'xmlrpc');
+|   $autoload['libraries'] = array(, 'email', 'xmlrpc');
 */
 
 $autoload['libraries'] = array('database');
@@ -92,7 +94,7 @@ $autoload['libraries'] = array('database');
 |
 | Prototype:
 |
-|	$autoload['drivers'] = array('session', 'cache');
+|   $autoload['drivers'] = array('session', 'cache');
 */
 
 $autoload['drivers'] = array();
@@ -104,7 +106,7 @@ $autoload['drivers'] = array();
 | -------------------------------------------------------------------
 | Prototype:
 |
-|	$autoload['helper'] = array('url', 'file');
+|   $autoload['helper'] = array('url', 'file');
 */
 
 $autoload['helper'] = array('app','url','cms_db','admin_helper');
@@ -116,14 +118,14 @@ $autoload['helper'] = array('app','url','cms_db','admin_helper');
 | -------------------------------------------------------------------
 | Prototype:
 |
-|	$autoload['config'] = array('config1', 'config2');
+|   $autoload['config'] = array('config1', 'config2');
 |
 | NOTE: This item is intended for use ONLY if you have created custom
 | config files.  Otherwise, leave it blank.
 |
 */
 
-$autoload['config'] = array('custom_keywords', 'cms_config','main_module' );
+$autoload['config'] = array('custom_keywords', 'cms_config','main_module' ,'main_menu');
 
 
 /*
@@ -132,7 +134,7 @@ $autoload['config'] = array('custom_keywords', 'cms_config','main_module' );
 | -------------------------------------------------------------------
 | Prototype:
 |
-|	$autoload['language'] = array('lang1', 'lang2');
+|   $autoload['language'] = array('lang1', 'lang2');
 |
 | NOTE: Do not include the "_lang" part of your file.  For example
 | "codeigniter_lang.php" would be referenced as array('codeigniter');
@@ -148,12 +150,12 @@ $autoload['language'] = array();
 | -------------------------------------------------------------------
 | Prototype:
 |
-|	$autoload['model'] = array('first_model', 'second_model');
+|   $autoload['model'] = array('first_model', 'second_model');
 |
 | You can also supply an alternative model name to be assigned
 | in the controller:
 |
-|	$autoload['model'] = array('first_model' => 'first');
+|   $autoload['model'] = array('first_model' => 'first');
 */
 
 $autoload['model'] = array();

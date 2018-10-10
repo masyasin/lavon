@@ -59,15 +59,22 @@ class Manajemen extends CMS_Controller
         $crud->set_theme('datatables');
         $crud->display_as('id_tenan', 'Tenan');
         $crud->set_relation('id_tenan', 'm_tenan', 'nama');
-        $crud->columns('gambar', 'nama', 'keterangan', 'id_tenan', 'nilai_poin');
+        $crud->columns('gambar', 'nama', 'keterangan', 'id_tenan', 'ppa1', 'ppa2', 'ppa3', 'ppa4', 'ppa5');
         $crud->set_table('m_fasilitas');
         $crud->unset_read();
         $crud->field_type('keterangan', 'text');
         $crud->set_field_upload('gambar', 'public/assets/uploads/files/fasilitas');
         $crud->set_rules('nilai_poin', 'Nilai', 'integer');
         $crud->unset_texteditor('keterangan');
-        $crud->required_fields('gambar', 'nama', 'keterangan', 'id_tenan', 'nilai_poin');
-        $crud->fields('gambar', 'nama', 'keterangan', 'id_tenan', 'nilai_poin');
+        $crud->required_fields('gambar', 'nama', 'keterangan', 'id_tenan', 'ppa1', 'ppa2', 'ppa3', 'ppa4', 'ppa5');
+        $crud->fields('gambar', 'nama', 'keterangan', 'id_tenan', 'ppa1', 'ppa2', 'ppa3', 'ppa4', 'ppa5');
+        
+        $crud->set_rules('ppa1', 'ppa1', 'integer');
+        $crud->set_rules('ppa2', 'ppa2', 'integer');
+        $crud->set_rules('ppa3', 'ppa3', 'integer');
+        $crud->set_rules('ppa4', 'ppa4', 'integer');
+        $crud->set_rules('ppa5', 'ppa5', 'integer');
+
         $crud->unique_fields('nama');
 
         $crud->callback_before_insert(array($this, 'before_insert_fasilitas'));

@@ -63,7 +63,7 @@ class CMS_Model extends CI_Model
     public function cms_complete_table_name($table_name)
     {
         $module_path = $this->cms_module_path();
-        if ($module_path == 'main' or $module_path == '') {
+        if ($module_path == 'cms' or $module_path == '') {
             return cms_table_name($table_name);
         } else {
             return cms_module_table_name($module_path, $table_name);
@@ -79,7 +79,7 @@ class CMS_Model extends CI_Model
     public function cms_complete_navigation_name($navigation_name)
     {
         $module_path = $this->cms_module_path();
-        if ($module_path == 'main' or $module_path == '') {
+        if ($module_path == 'cms' or $module_path == '') {
             return $navigation_name;
         } else {
             return cms_module_navigation_name($module_path, $navigation_name);
@@ -514,7 +514,7 @@ class CMS_Model extends CI_Model
 
             $image_file_names = array();
             $image_file_names[] = $navigation_name.'.png';
-            if ($module_path !== '' && $module_path !== 'main') {
+            if ($module_path !== '' && $module_path !== 'cms') {
                 $module_prefix = cms_module_prefix($this->cms_module_path());
                 $navigation_parts = explode('_', $navigation_name);
                 if (count($navigation_parts)>0 && $navigation_parts[0] == $module_prefix) {
@@ -754,7 +754,11 @@ class CMS_Model extends CI_Model
      */
     public function cms_have_privilege($privilege_name)
     {
+
         if ($this->cms_user_id()==1) {
+            print_r($privilege_required);
+                echo "HERE";
+                die();
             return true;
         } else {
             $privileges = $this->cms_privileges();
@@ -1280,6 +1284,9 @@ class CMS_Model extends CI_Model
         $this->load->helper('directory');
         $directories = directory_map(APPPATH.'modules', 1);
         sort($directories);
+
+
+
         $module      = array();
         foreach ($directories as $directory) {
             $directory = str_replace(array('/','\\'), '', $directory);
@@ -1695,14 +1702,14 @@ class CMS_Model extends CI_Model
     {
         $this->load->helper('file');
         $result = array();
-        $language_list = get_filenames(APPPATH.'../assets/nocms/languages');
+        $language_list = get_filenames(APPPATH.'../assets/cms/languages');
         foreach ($language_list as $language) {
             if (preg_match('/\.php$/i', $language)) {
                 $result[] = str_ireplace('.php', '', $language);
             }
         }
         $module_list = $this->cms_get_module_list();
-        $module_list[] = array('module_path'=>'main');
+        $module_list[] = array('module_path'=>'cms');
         foreach ($module_list as $module) {
             $directory = $module['module_path'];
             $module_language_list = get_filenames(APPPATH.'../modules/'.$directory.'/assets/languages');

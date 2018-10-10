@@ -4,18 +4,6 @@ artisan:
     module_path: artisan
     version: '1.0'
     user_id: '1'
-main:
-    module_id: '2'
-    module_name: main
-    module_path: main
-    version: '1.0'
-    user_id: '1'
-apps:
-    module_id: '3'
-    module_name: apps
-    module_path: apps
-    version: '1.0'
-    user_id: '1'
 account:
     module_id: '4'
     module_name: account
@@ -34,66 +22,6 @@ navigation:
     module_path: navigation
     version: '1.0'
     user_id: '1'
-unit:
-    module_id: '7'
-    module_name: unit
-    module_path: unit
-    version: '1.0'
-    user_id: '1'
-cluster:
-    module_id: '8'
-    module_name: cluster
-    module_path: cluster
-    version: '1.0'
-    user_id: '1'
-tenan:
-    module_id: '9'
-    module_name: tenan
-    module_path: tenan
-    version: '1.0'
-    user_id: '1'
-member:
-    module_id: '10'
-    module_name: member
-    module_path: member
-    version: '1.0'
-    user_id: '1'
-setting:
-    module_id: '11'
-    module_name: setting
-    module_path: setting
-    version: '1.0'
-    user_id: '1'
-fasilitas:
-    module_id: '12'
-    module_name: fasilitas
-    module_path: fasilitas
-    version: '1.0'
-    user_id: '1'
-marcendaise:
-    module_id: '14'
-    module_name: marcendaise
-    module_path: marcendaise
-    version: '1.0'
-    user_id: '1'
-memberpoin:
-    module_id: '15'
-    module_name: memberpoin
-    module_path: memberpoin
-    version: '1.0'
-    user_id: '1'
-grup:
-    module_id: '16'
-    module_name: grup
-    module_path: grup
-    version: '1.0'
-    user_id: '1'
-pengguna:
-    module_id: '17'
-    module_name: pengguna
-    module_path: pengguna
-    version: '1.0'
-    user_id: '1'
 transaksi:
     module_id: '18'
     module_name: transaksi
@@ -110,5 +38,11 @@ manajemen:
     module_id: '20'
     module_name: manajemen
     module_path: manajemen
+    version: '1.0'
+    user_id: '1'
+cms:
+    module_id: '21'
+    module_name: cms
+    module_path: cms
     version: '1.0'
     user_id: '1'
