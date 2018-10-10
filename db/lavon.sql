@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-10-09 16:17:52
+Date: 2018-10-11 04:04:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,36 +31,15 @@ CREATE TABLE `ci_sessions` (
 -- ----------------------------
 -- Records of ci_sessions
 -- ----------------------------
-INSERT INTO `ci_sessions` VALUES ('bade96e5532a6bba8f10584446d00521', '::1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36', '1525687458', 'a:6:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"popup_session\";b:1;s:13:\"cms_user_name\";s:10:\"superadmin\";s:11:\"cms_user_id\";s:1:\"8\";s:18:\"cms_user_real_name\";s:13:\"Putra Budiman\";s:14:\"cms_user_email\";s:20:\"cristminix@gmail.com\";}');
-INSERT INTO `ci_sessions` VALUES ('63eae5f1e654c64913795f6692884518', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537690478', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('72a3b7a1da200c86399dc58aaf35f76c', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537702766', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('f7863bd5f154c1cf50c5ab0ade758453', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537707661', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('1f578017b8bb4f6b12271d62bb2c9ac0', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537707760', '');
-INSERT INTO `ci_sessions` VALUES ('fe59ac2b8563de03bdc510ddc34aef6a', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537709356', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('99d2177a092b6da6c9b8a7dc31904601', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537709588', '');
-INSERT INTO `ci_sessions` VALUES ('8bc550f4de6067f16961ded21998b9d8', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537709958', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('b00214b8ee5bb446cc8348fabe08f7c5', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537780031', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('5ca2060bd90c7606c24e5137535fb7a1', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537780739', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('4c6dbc60375f6e14f18fd73dc9387be6', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537782194', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('832e26cbeb84c55dc4740bdb7ae5ef54', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537956223', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('e913f9ec339af3faee8e8a83b6df8a3e', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1537957164', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('9ca33314ef1434542a2c3bebcd4866e4', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538144645', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('bae0c41145ed476b073895b9ae2b4890', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538756647', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('c6268361a022c8a9e320c2f986e25263', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538758170', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('d1f0a7fa8e2bf488d8e4e061967bcff2', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538758394', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('4a810f905e344ba9a826738caac151b2', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538766606', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('47dc5082c62b5ce87c65350eda4bdff2', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538774396', 'a:6:{s:8:\"cms_lang\";s:10:\"indonesian\";s:15:\"cms_user_avatar\";s:73:\"http://localhost/lavon/public/assets/uploads/files/avatar/kamen_rider.jpg\";s:13:\"cms_user_name\";s:5:\"admin\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:11:\"Kamen Rider\";s:14:\"cms_user_email\";s:20:\"cristminix@gmail.com\";}');
-INSERT INTO `ci_sessions` VALUES ('691073f985e06133bc3ad9dbac8feead', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538801093', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('ffbce6df7357d50da105e1b1a6f3c1c7', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1538802081', 'a:6:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:73:\"http://localhost/lavon/public/assets/uploads/files/avatar/kamen_rider.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:11:\"Kamen Rider\";s:14:\"cms_user_email\";s:20:\"cristminix@gmail.com\";}');
-INSERT INTO `ci_sessions` VALUES ('c4ffd8c91368c30a4fbfdc01efc9348d', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539012188', 'a:6:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:73:\"http://localhost/lavon/public/assets/uploads/files/avatar/kamen_rider.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:11:\"Kamen Rider\";s:14:\"cms_user_email\";s:20:\"cristminix@gmail.com\";}');
-INSERT INTO `ci_sessions` VALUES ('3dc02d65c6f5c01a4076d62241f4076c', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539020564', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('969b3d914fccc46df5cb5930e34abdeb', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539021751', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('c4172c23c1b4331eb2e42a7bac3111ac', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539025789', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('9e4a17fae687e6097ee6d7a335a001cc', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539025848', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('16798532f96d5701572133ac20e2f48b', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539027886', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('3481957bbc976aa8a8daa268a3a3e8e7', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539028220', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('13f8ef0f784a897a57dfc9aa7f3f0bda', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539063394', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
-INSERT INTO `ci_sessions` VALUES ('5e27f56a9c684842e934f45135889982', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539076415', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('49859418401def67bd0c1d1171006617', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539189425', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('3014d891f3f95722441fb33d73a07cb5', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539189428', '');
+INSERT INTO `ci_sessions` VALUES ('2c3ff775db822c0b8e72ae9618ff35c6', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539189428', '');
+INSERT INTO `ci_sessions` VALUES ('f0763fd65caf2f91ad137e23f29539ca', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539189428', '');
+INSERT INTO `ci_sessions` VALUES ('3e6ae6dfbbb70af84e3db8641fea2049', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539189428', '');
+INSERT INTO `ci_sessions` VALUES ('0ce8dc7f9d29b6fe77c25d646211e1ae', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539189428', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('a77594dfa3eeeefd7d8e8fb5da5d0ec6', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539203677', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('290f2ba7d0ca2cc363a888acd87694e0', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539205191', 'a:1:{s:8:\"cms_lang\";s:10:\"indonesian\";}');
+INSERT INTO `ci_sessions` VALUES ('7d1de6ba555184183df6d5fd719309d7', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539205192', '');
 
 -- ----------------------------
 -- Table structure for `main_authorization`
@@ -76,12 +55,12 @@ CREATE TABLE `main_authorization` (
 -- ----------------------------
 -- Records of main_authorization
 -- ----------------------------
-INSERT INTO `main_authorization` VALUES ('1', 'Public', 'Pengunjung Publik Site');
-INSERT INTO `main_authorization` VALUES ('2', 'Non Group', 'Publik Namun Yang Tidak Login');
-INSERT INTO `main_authorization` VALUES ('3', 'Member Only', 'Hanya Member Yang Login');
-INSERT INTO `main_authorization` VALUES ('4', 'Roled User', 'Hanya Member Dengan Role Tertentu');
-INSERT INTO `main_authorization` VALUES ('5', 'Admin', 'Admin atau Teller');
-INSERT INTO `main_authorization` VALUES ('6', 'Super User', 'Super User (spv)');
+INSERT INTO `main_authorization` VALUES ('1', 'Publik', 'Bersifat Publik');
+INSERT INTO `main_authorization` VALUES ('2', 'Non Grup', 'Publik namun bukan pengguna yang memiliki sesi Login');
+INSERT INTO `main_authorization` VALUES ('3', 'Hanya Member', 'Hanya pengguna yang memiliki sesi Login');
+INSERT INTO `main_authorization` VALUES ('4', 'Roled User', 'Hanya pengguna yang memiliki sesi login dan diberi akses role');
+INSERT INTO `main_authorization` VALUES ('5', 'Admin', 'Pengguna dengan sesi login grup sebagai Admin');
+INSERT INTO `main_authorization` VALUES ('6', 'Superadmin', 'Pengguna dengan sesi login grup sebagai Superadmin');
 
 -- ----------------------------
 -- Table structure for `main_config`
@@ -151,10 +130,8 @@ CREATE TABLE `main_group` (
 -- ----------------------------
 -- Records of main_group
 -- ----------------------------
-INSERT INTO `main_group` VALUES ('1', 'Super Admin', 'Super Admin dapat mengakses seluruh modul situs', '1', '2018-05-07 17:00:25', 'superadmin', '2018-05-07 17:00:25', 'superadmin', '0');
-INSERT INTO `main_group` VALUES ('2', 'Admin', 'Admin Website', '1', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', '', '0');
-INSERT INTO `main_group` VALUES ('3', 'Penulis Konten', 'HAnya diperbolehkan untuk menulis dan mengubah konten', '1', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', '', '0');
-INSERT INTO `main_group` VALUES ('4', 'test', null, '1', '2018-05-07 16:55:39', 'superadmin', '2018-05-07 16:55:39', 'superadmin', '0');
+INSERT INTO `main_group` VALUES ('1', 'Superuser', 'Superadmin dapat mengakses seluruh modul situs', '1', '2018-05-07 17:00:25', 'superadmin', '2018-05-07 17:00:25', 'superadmin', '0');
+INSERT INTO `main_group` VALUES ('2', 'Admin', 'Admin dapat mengakses modul tertentu', '1', '2018-10-10 20:24:26', 'superadmin', '2018-10-10 20:24:54', 'superadmin', '0');
 
 -- ----------------------------
 -- Table structure for `main_group_navigation`
@@ -165,14 +142,15 @@ CREATE TABLE `main_group_navigation` (
   `group_id` int(5) NOT NULL,
   `navigation_id` int(5) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of main_group_navigation
 -- ----------------------------
-INSERT INTO `main_group_navigation` VALUES ('1', '1', '45');
-INSERT INTO `main_group_navigation` VALUES ('2', '2', '41');
-INSERT INTO `main_group_navigation` VALUES ('3', '1', '41');
+INSERT INTO `main_group_navigation` VALUES ('1', '1', '7');
+INSERT INTO `main_group_navigation` VALUES ('2', '2', '7');
+INSERT INTO `main_group_navigation` VALUES ('3', '1', '9');
+INSERT INTO `main_group_navigation` VALUES ('4', '2', '9');
 
 -- ----------------------------
 -- Table structure for `main_group_navigation_bak`
@@ -201,11 +179,14 @@ CREATE TABLE `main_group_privilege` (
   `group_id` int(5) NOT NULL,
   `privilege_id` int(5) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of main_group_privilege
 -- ----------------------------
+INSERT INTO `main_group_privilege` VALUES ('1', '1', '1');
+INSERT INTO `main_group_privilege` VALUES ('2', '2', '2');
+INSERT INTO `main_group_privilege` VALUES ('3', '1', '2');
 
 -- ----------------------------
 -- Table structure for `main_group_user`
@@ -250,7 +231,7 @@ CREATE TABLE `main_module` (
   `version` varchar(50) DEFAULT NULL,
   `user_id` int(5) DEFAULT NULL,
   PRIMARY KEY (`module_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of main_module
@@ -262,6 +243,7 @@ INSERT INTO `main_module` VALUES ('6', 'navigation', 'navigation', '1.0', '1');
 INSERT INTO `main_module` VALUES ('18', 'transaksi', 'transaksi', '1.0', '1');
 INSERT INTO `main_module` VALUES ('19', 'pengaturan', 'pengaturan', '1.0', '1');
 INSERT INTO `main_module` VALUES ('20', 'manajemen', 'manajemen', '1.0', '1');
+INSERT INTO `main_module` VALUES ('21', 'cms', 'cms', '1.0', '1');
 
 -- ----------------------------
 -- Table structure for `main_module_dependency`
@@ -301,19 +283,14 @@ CREATE TABLE `main_navigation` (
   `default_theme` varchar(50) DEFAULT NULL,
   `default_layout` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`navigation_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of main_navigation
 -- ----------------------------
 INSERT INTO `main_navigation` VALUES ('1', 'account_login', null, 'Account Login', 'glyphicon-home', 'Account Login', 'Login to Lavon', 'Visitor need to login for authentication', 'account/login', '2', '1', '1', '0', null, '0', 'metronic', 'single');
-INSERT INTO `main_navigation` VALUES ('2', 'apps', null, 'Apps', 'glyphicon-home', 'Apps', 'Apps', 'Apps', 'apps', '2', '1', '2', '0', null, '0', 'metronic', 'full');
-INSERT INTO `main_navigation` VALUES ('3', 'navi', null, 'Navigation', 'glyphicon-home', 'Navigation', 'Navigation', 'Site Navigation', 'navigation', '2', '1', '3', '0', null, '0', 'metronic', 'full');
-INSERT INTO `main_navigation` VALUES ('4', 'unit', null, 'unit', null, null, null, null, 'unit', '0', '1', '4', '0', null, '0', 'metronic', 'full');
-INSERT INTO `main_navigation` VALUES ('5', 'cluster', null, 'cluster', null, null, 'cluster', 'Cluster', 'cluster', '0', '1', '5', '0', null, '0', 'metronic', 'full');
-INSERT INTO `main_navigation` VALUES ('6', 'member', null, 'member', null, 'Member', 'member', 'Member', 'member', '0', '1', '6', '0', null, '0', 'metronic', 'full');
-INSERT INTO `main_navigation` VALUES ('7', 'group', null, 'group', 'glyphicon-home', 'Group', 'group', 'Group', 'group', '0', '1', '7', '0', null, '0', 'metronic', 'full');
-INSERT INTO `main_navigation` VALUES ('8', 'user', null, 'user', 'glyphicon-home', 'User', 'user', 'User', 'user', '0', '1', '8', '0', null, '0', 'metronic', 'full');
+INSERT INTO `main_navigation` VALUES ('7', 'navi', null, 'default_navi_title', 'glyphicon-home', 'default_navi_page_title', 'default_navi_keyword', 'default_navi_description', 'navi', '4', '1', '7', '0', null, '0', 'metronic', 'full');
+INSERT INTO `main_navigation` VALUES ('9', 'pengaturan_modul', null, 'pengaturan_modul', 'glyphicon-home', 'Pengaturan Modul', 'pengaturan_modul', 'Pengaturan_modul', 'pengaturan', '4', '1', '8', '0', null, '0', 'metronic', 'full');
 
 -- ----------------------------
 -- Table structure for `main_navigation_bak`
@@ -391,11 +368,7 @@ CREATE TABLE `main_privilege` (
 -- Records of main_privilege
 -- ----------------------------
 INSERT INTO `main_privilege` VALUES ('1', 'cms_install_module', 'Install Module', 'Install Module is a very critical privilege, it allow authorized user to Install a module to the CMS.<br />By Installing module, the database structure can be changed. There might be some additional navigation and privileges added.<br /><br />You\'d be better to give this authorization only authenticated and authorized user. (I suggest to make only admin have such a privilege)\r\n&nbsp;', '4');
-INSERT INTO `main_privilege` VALUES ('2', 'cms_manage_access', 'Manage Access', 'Manage access\r\n&nbsp;', '4');
-INSERT INTO `main_privilege` VALUES ('3', 'admin_menu_read', 'Admin Menu Management - READ', ' - ', '1');
-INSERT INTO `main_privilege` VALUES ('4', 'admin_menu_insert', 'Admin Menu Management - INSERT', ' - ', '1');
-INSERT INTO `main_privilege` VALUES ('5', 'admin_menu_update', 'Admin Menu Management - UPDATE', ' - ', '1');
-INSERT INTO `main_privilege` VALUES ('6', 'admin_menu_remove', 'Admin Menu Management - REMOVE', ' - ', '1');
+INSERT INTO `main_privilege` VALUES ('2', 'cms_manage_access', 'Manage Access', 'Manage access\r\n ', '4');
 
 -- ----------------------------
 -- Table structure for `main_quicklink`
@@ -446,7 +419,7 @@ CREATE TABLE `main_user` (
 -- ----------------------------
 -- Records of main_user
 -- ----------------------------
-INSERT INTO `main_user` VALUES ('1', 'admin', 'cristminix@gmail.com', 'kamen_rider.jpg', '21232f297a57a5a743894a0e4a801fc3', null, 'Kamen Rider', '1', null, null, null, null, null, null, null, null, null, '0');
+INSERT INTO `main_user` VALUES ('1', 'superadmin', 'superadmin@lavon.com', '01de6-welcome-scan.jpg', '21232f297a57a5a743894a0e4a801fc3', null, 'Ratna Sarumpeat', '1', null, null, null, null, null, null, null, null, null, '0');
 
 -- ----------------------------
 -- Table structure for `main_widget`
@@ -530,7 +503,11 @@ CREATE TABLE `m_fasilitas` (
   `nama` varchar(225) NOT NULL,
   `keterangan` varchar(500) NOT NULL,
   `gambar` varchar(500) NOT NULL,
-  `nilai_poin` int(11) NOT NULL,
+  `ppa1` int(11) NOT NULL,
+  `ppa2` int(11) NOT NULL,
+  `ppa3` int(11) NOT NULL,
+  `ppa4` int(11) NOT NULL,
+  `ppa5` int(11) NOT NULL,
   `tgl_dibuat` datetime DEFAULT NULL,
   `tgl_diubah` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -541,7 +518,7 @@ CREATE TABLE `m_fasilitas` (
 -- ----------------------------
 -- Records of m_fasilitas
 -- ----------------------------
-INSERT INTO `m_fasilitas` VALUES ('1', '1', 'Gymnastic', 'Gymnastik olahraga', '043c7-gdrive-sync.png', '12', null, null);
+INSERT INTO `m_fasilitas` VALUES ('1', '1', 'Gymnastic', 'Gymnastik olahraga', '043c7-gdrive-sync.png', '10', '5', '6', '5', '5', null, null);
 
 -- ----------------------------
 -- Table structure for `m_kota`
@@ -4101,6 +4078,27 @@ INSERT INTO `m_unit` VALUES ('1489', '', '6', '6-20-22', '5', '2017-12-28', '000
 INSERT INTO `m_unit` VALUES ('1490', '', '6', '6-20-26', '5', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_unit` VALUES ('1491', '', '6', '6-20-28', '5', '2017-12-27', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_unit` VALUES ('1492', null, '4', '4-1-67', '4', '2017-12-26', '2018-12-26', '0000-00-00 00:00:00', '2018-10-09 03:43:31', '1');
+
+-- ----------------------------
+-- Table structure for `ppa_config`
+-- ----------------------------
+DROP TABLE IF EXISTS `ppa_config`;
+CREATE TABLE `ppa_config` (
+  `kode` varchar(5) NOT NULL,
+  `min` int(11) NOT NULL,
+  `max` int(11) NOT NULL,
+  PRIMARY KEY (`kode`),
+  UNIQUE KEY `kode` (`kode`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of ppa_config
+-- ----------------------------
+INSERT INTO `ppa_config` VALUES ('ppa1', '0', '3600');
+INSERT INTO `ppa_config` VALUES ('ppa2', '3601', '7200');
+INSERT INTO `ppa_config` VALUES ('ppa3', '7201', '10800');
+INSERT INTO `ppa_config` VALUES ('ppa4', '108001', '14600');
+INSERT INTO `ppa_config` VALUES ('ppa5', '14601', '86400');
 
 -- ----------------------------
 -- Table structure for `tr_poin`

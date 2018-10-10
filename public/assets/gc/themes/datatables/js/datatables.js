@@ -103,44 +103,48 @@ $(document).ready(function() {
 
 function loadListenersForDatatables() {
 	// console.log('loadListenersForDatatables');
-	$('.refresh-data').unbind('click');
-	$('.refresh-data').click(function(){
-		var this_container = $(this).closest('.dataTablesContainer');
+	var hasHandler = $('.refresh-data').attr('hasHandler')=='yes';
+	if(!hasHandler){
+		$('.refresh-data').click(function(){
+			var this_container = $(this).closest('.dataTablesContainer');
 
-		var new_container = $("<div/>").addClass('dataTablesContainer');
+			var new_container = $("<div/>").addClass('dataTablesContainer');
 
-		this_container.after(new_container);
-		// $.components.get('animsition').init();
+			this_container.after(new_container);
+			// $.components.get('animsition').init();
 
-		$.ajax({
-			url: $(this).attr('data-url')+'?uuidv4='+uuidv4(),
-			success: function(my_output){
-				// $('.animsition').animsition('in');
-				this_container.remove();
-				new_container.html(my_output);
-				oTable = null;
-				oTableArray = [];
-				oTableMapping = [];
+			$.ajax({
+				url: $(this).attr('data-url')+'?uuidv4='+uuidv4(),
+				success: function(my_output){
+					// $('.animsition').animsition('in');
+					this_container.remove();
+					new_container.html(my_output);
+					oTable = null;
+					oTableArray = [];
+					oTableMapping = [];
 
-				$('.groceryCrudTable').each(function(index){
-					if (typeof oTableArray[index] !== 'undefined') {
-						return false;
+					$('.groceryCrudTable').each(function(index){
+						if (typeof oTableArray[index] !== 'undefined') {
+							return false;
+						}
+
+						oTableMapping[$(this).attr('id')] = index;
+
+						oTableArray[index] = loadDataTable(this);
+					});
+					//loadDataTable(new_container.find('.groceryCrudTable'));
+
+					loadListenersForDatatables();
+
+					if(typeof gc.afterRefreshGrid == 'function'){
+						gc.afterRefreshGrid(my_output);
 					}
-
-					oTableMapping[$(this).attr('id')] = index;
-
-					oTableArray[index] = loadDataTable(this);
-				});
-				//loadDataTable(new_container.find('.groceryCrudTable'));
-
-				loadListenersForDatatables();
-
-				if(typeof gc.afterRefreshGrid == 'function'){
-					gc.afterRefreshGrid(my_output);
 				}
-			}
+			});
 		});
-	});
+		$('.refresh-data').attr('hasHandler','yes');
+	}
+	
 }
 function refreshData(){
 

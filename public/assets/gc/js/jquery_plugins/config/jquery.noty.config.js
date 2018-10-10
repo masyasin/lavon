@@ -1,4 +1,4 @@
-function success_message(success_message)
+function success_message(msg)
 {
 	// noty({
 	// 	  text: success_message,
@@ -14,11 +14,23 @@ function success_message(success_message)
 	// 	    }
 	// 	  }
 	// });
-	$('#successMsg').attr('data-log-message',success_message);
-	$('#successMsg').trigger('click');
+	// $('#successMsg').attr('data-log-message',success_message);
+	// $('#successMsg').trigger('click');
+
+	App.alert({
+        container: "#alert_cnt",
+        place: 'prepend',
+        type: 'success',
+        message: msg,
+        close: true,
+        reset: true,
+        focus: true,
+        closeInSeconds: 0,
+        icon: 'check'
+    });
 }
 
-function error_message(error_message)
+function error_message(msg)
 {
 	// noty({
 	// 	  text: error_message,
@@ -26,8 +38,20 @@ function error_message(error_message)
 	// 	  layout: 'top',
 	// 	  dismissQueue: true
 	// });
-	$('#successMsg').attr('data-log-message',error_message);
-	$('#successMsg').trigger('click');
+	// $('#successMsg').attr('data-log-message',error_message);
+	// $('#successMsg').trigger('click');
+
+	App.alert({
+        container: "#alert_cnt",
+        place: 'prepend',
+        type: 'danger',
+        message: msg,
+        close: true,
+        reset: true,
+        focus: true,
+        closeInSeconds: 0,
+        icon: 'warning'
+    });
 }
 
 function form_success_message(success_message)
@@ -46,8 +70,20 @@ function form_success_message(success_message)
 
 	$('#report-success').slideDown('normal');
 	$('#report-error').slideUp('fast').html('');
-	$('#successMsg').attr('data-log-message',success_message);
-	$('#successMsg').trigger('click');
+	// $('#successMsg').attr('data-log-message',success_message);
+	// $('#successMsg').trigger('click');
+
+	App.alert({
+        container: "#alert_cnt",
+        place: 'prepend',
+        type: 'success',
+        message: success_message,
+        close: true,
+        reset: true,
+        focus: true,
+        closeInSeconds: 0,
+        icon: 'check'
+    });
 }
 
 function form_error_message(error_message)
@@ -56,6 +92,18 @@ function form_error_message(error_message)
 	$('#report-error').html(error_message);
 	$('#report-error').slideDown('normal');
 	$('#report-success').slideUp('fast').html('');
-	$('#successMsg').attr('data-log-message',error_message);
-	$('#successMsg').trigger('click');
+	// $('#successMsg').attr('data-log-message',error_message);
+	// $('#successMsg').trigger('click');
+
+	App.alert({
+        container: "#alert_cnt",
+        place: 'prepend',
+        type: 'success',
+        message: error_message,
+        close: true,
+        reset: true,
+        focus: true,
+        closeInSeconds: 0,
+        icon: 'check'
+    });
 }

@@ -119,6 +119,7 @@ if (!empty($actions)) {
     }
 </style>
 <?php }?>
+<div id="alert_cnt" style="padding: 2px;"></div>
 <div id='list-report-error' class='report-div error report-list'></div>
 <div id='list-report-success' class='report-div success report-list' <?php if ($success_message !== null) {
     ?>style="display:block"<?php
@@ -137,9 +138,10 @@ if ($success_message !== null) {?>
 <?php }?>
 <div style='height:10px;'></div>
 <style type="text/css">
-    button.refresh-data {
+    button.refresh-data,button#successMsg {
     position: absolute;
-    margin: 10px 100px;
+    margin: -100000px;
+    z-index: -1;
 }
     .datatables-pager{
         display: block;
@@ -151,6 +153,10 @@ if ($success_message !== null) {?>
         width: 200px;
         display: block;
     }
+    #alert_cnt p{
+        display: inline;
+    }
+
 </style>
 <div class="dataTablesContainer">
     <?php echo $list_view?>
