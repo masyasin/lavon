@@ -194,7 +194,7 @@ class CMS_Model extends CI_Model
         foreach ($query->result() as $row) {
             $group_name[] = $row->group_name;
         }
-        return $group_name;
+        return $group_name[0];
     }
 
     /**
@@ -756,9 +756,9 @@ class CMS_Model extends CI_Model
     {
 
         if ($this->cms_user_id()==1) {
-            print_r($privilege_required);
-                echo "HERE";
-                die();
+            // print_r($privilege_required);
+            //     echo "HERE";
+            //     die();
             return true;
         } else {
             $privileges = $this->cms_privileges();
@@ -860,6 +860,7 @@ class CMS_Model extends CI_Model
         $this->cms_unset_ci_session('cms_user_id');
         $this->cms_unset_ci_session('cms_user_real_name');
         $this->cms_unset_ci_session('cms_user_email');
+        $this->cms_unset_ci_session('cms_user_avatar');
         // needed by kcfinder
         if (isset($_SESSION)) {
             session_unset('__cms_user_id');
@@ -1826,7 +1827,9 @@ class CMS_Model extends CI_Model
             // user_name
             $pattern[]     = "/\{\{ user_id \}\}/si";
             $replacement[] = $this->cms_user_id();
-            
+            //user_group
+            $pattern[]     = "/\{\{ user_group \}\}/si";
+            $replacement[] = $this->cms_user_group();
             // user_name
             $pattern[]     = "/\{\{ user_avatar \}\}/si";
             $replacement[] = $this->cms_user_avatar();

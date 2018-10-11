@@ -136,7 +136,7 @@ class Artisan extends MX_Controller
         $twig_cache_dir  = APPPATH . 'cache/';
         $image_cache_dir = $this->config->item('image_cache_dir');
     }
-    public function add_navigation($name, $path, $auth = "4")
+    public function add_navigation($name, $path, $path2 = "", $auth = "4")
     {
         if (empty($name) or empty($path)) {
             echo "add:navigation <navigation_name> <path>\n";
@@ -146,16 +146,16 @@ class Artisan extends MX_Controller
         $nav_exist = $this->db->where('navigation_name', $name)->select("COUNT(navigation_id) cx")->get('main_navigation')->row()->cx > 0;
         if ($nav_exist) {
             echo "navigation named \"${name}\" already exists, please specify different name.\n";
-            exit;
+            // exit;
         }
 
         $last_index = $this->db->select("MAX(n.index) max_index")->get("main_navigation n")->row()->max_index + 1;
 
         $navigation = array(
             'navigation_name' => $name,
-            'url' => $path,
+            'url' => $path.(!empty($path2)?'/'.$path2:''),
             'is_static' => 0,
-            'authorization_id'=> $auth,
+            'authorization_id'=> 4,
             'index'=>$last_index,
             'default_theme' => 'metronic',
             'default_layout' => 'full',
@@ -167,10 +167,18 @@ class Artisan extends MX_Controller
 
         );
 
-        echo "INSERT main_navigation\n";
-        $this->db->insert('main_navigation', $navigation);
+        if (!$nav_exist) {
+            echo "INSERT main_navigation\n";
+            $this->db->insert('main_navigation', $navigation);
+        
+            $this->attach_navprivil($navigation['navigation_name']);
+        } else {
+            echo "UPDATE main_navigation\n";
+            $this->db->where('navigation_name', $name)->update('main_navigation', $navigation);
+        }
+        
 
-        $this->clear_cache();
+        $this->cache_clear();
     }
 
     public function dump_module_config()
@@ -227,30 +235,35 @@ class Artisan extends MX_Controller
 
     public function attach_navprivil($nav)
     {
-//      if(empty($nav)){
-//          echo "attach:navprivil <nav>\n";
-//          exit;
-//      }
-//      $nav = $this->db->where('navigation_name',$nav)->get('main_navigation')->row();
-//
-//      if(empty($nav)){
-//          echo "navigation name $name DOESNT EXISTS\n";
-//          exit;
-//      }
-//      $navprivils = config_item('konsultan_group');
-//
-//      foreach($navprivils as $group_id){
-//          $ck = $this->db->select("count(*) cx")
-//                     ->from('main_goup_navigation gn')
-//                     ->join('main_navigation mn','mn.group_id=gn.group_id')
-//                     ->where('mn.navigation_name',$nav)
-//                     ->where('gn.group_id',$group_id)
-//                     ->get()
-//                     ->row()
-//                     ->cx > 0;
-//
-//      }
-//
+        if (empty($nav)) {
+            echo "attach:navprivil <nav>\n";
+            exit;
+        }
+        $nav = $this->db->where('navigation_name', $nav)->get('main_navigation')->row();
+
+        if (empty($nav)) {
+            echo "navigation name $name DOESNT EXISTS\n";
+            exit;
+        }
+        $navprivils = ['superadmin'=>1,'admin'=>2];
+
+        foreach ($navprivils as $group_id) {
+            $ck = $this->db->select("count(*) cx")
+                    ->from('main_group_navigation gn')
+                    ->join('main_navigation mn', 'mn.navigation_id=gn.navigation_id')
+                    ->where('mn.navigation_name', $nav->navigation_name)
+                    ->where('gn.group_id', $group_id)
+                    ->get()
+                    ->row()
+                    ->cx > 0;
+            if ($ck <= 0) {
+                $row = [
+                    'group_id'=>$group_id,
+                    'navigation_id'=>$nav->navigation_id
+                ];
+                $this->db->insert('main_group_navigation', $row);
+            }
+        }
     }
     public function dump_menu_config($value = '')
     {

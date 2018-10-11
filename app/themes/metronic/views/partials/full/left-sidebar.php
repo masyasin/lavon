@@ -41,7 +41,7 @@
             </li>
 
 <!-- START LOOP -->
-<li v-bind:class="{'nav-item':true,'start':(uri==active_menu), 'active':(uri==active_menu) ,'open':(uri==active_menu)}" v-for="(uri,menu) in menus">
+<li v-bind:class="{'nav-item':true,'start':(uri==active_menu), 'active':(uri==active_menu) ,'open':(uri==active_menu)}" v-for="(uri,menu) in menus" v-if="jQuery.inArray('{{ user_group }}',menu.credentials) != -1">
     <a href="javascript:;" class="nav-link nav-toggle" v-bind:uri="uri">
         <i v-bind:class="menu.icon"></i>
         <span class="title">{{{menu.title}}}</span>
@@ -71,7 +71,8 @@
             data:{
                 menus:<?=json_encode(ci_config_item('main_menu'))?>,
                 active_menu:'<?=$this->uri->segment(1)?>',
-                active_item:'<?=$this->uri->segment(1).'/'.$this->uri->segment(2)?>'
+                active_item:'<?=$this->uri->segment(1).'/'.$this->uri->segment(2)?>',
+                jQuery: jQuery
             }
         })
     });

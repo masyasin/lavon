@@ -9,13 +9,82 @@ class Transaksi extends CMS_Controller
         $this->theme = $this->cms_get_config('site_theme');
         $this->template->set_theme($this->theme);
     }
-    public function fasilitas()
+    //---------------------------------------------------------------------fasilitas-unit
+    public function fasilitas_unit()
     {
+        $this->cms_guard_page('transaksi_fasilitas_unit');
+        
+        $data = [];
+
+        $view_config = array(
+            'title' => ' Transaksi Fasilitas Unit'
+        );
+        $this->template->set_breadcrumb('Transaksi', false)
+                       ->set_breadcrumb('Fasilitas Unit', '');
+        $this->view('fasilitas_unit', $data, 'transaksi_fasilitas_unit', $view_config);
     }
+    //---------------------------------------------------------------------redeem-point
+    public function redeem_poin()
+    {
+        $this->cms_guard_page('transaksi_redeem_poin');
+        
+        $data = [];
+
+        $view_config = array(
+            'title' => ' Transaksi Redeem Poin'
+        );
+        $this->template->set_breadcrumb('Transaksi', false)
+                       ->set_breadcrumb('Redeem Poin', '');
+        $this->view('redeem_poin', $data, 'transaksi_redeem_poin', $view_config);
+    }
+     //---------------------------------------------------------------------histori_transaksi_poin
+    public function histori_transaksi_poin()
+    {
+        $this->cms_guard_page('transaksi_histori_transaksi_poin');
+        
+        $data = [];
+
+        $view_config = array(
+            'title' => ' Histori Transaksi Poin'
+        );
+        $this->template->set_breadcrumb('Transaksi', false)
+                       ->set_breadcrumb('Histori Transaksi Poin', '');
+        $this->view('histori_transaksi_poin', $data, 'transaksi_histori_transaksi_poin', $view_config);
+    }
+       //---------------------------------------------------------------------histori_check_inout
+    public function histori_check_inout()
+    {
+        $this->cms_guard_page('transaksi_histori_check_inout');
+        
+        $data = [];
+
+        $view_config = array(
+            'title' => ' Histori Check In/Out'
+        );
+        $this->template->set_breadcrumb('Transaksi', false)
+                       ->set_breadcrumb('Histori Check In/Out', '');
+         $this->view('histori_check_inout', $data, 'transaksi_histori_check_inout', $view_config);
+    }
+      //---------------------------------------------------------------------histori_redeem_poin
+    public function histori_redeem_poin()
+    {
+        $this->cms_guard_page('transaksi_histori_redeem_poin');
+        
+        $data = [];
+
+        $view_config = array(
+            'title' => ' Histori Redeem Poin'
+        );
+        $this->template->set_breadcrumb('Transaksi', false)
+                       ->set_breadcrumb('Histori Redeem Poin', '');
+        $this->view('histori_redeem_poin', $data, 'transaksi_histori_redeem_poin', $view_config);
+    }
+    
+        
     /*START details-card-number */
     public function details_card_numbers()
     {
-
+        $this->cms_guard_page('details_card_numbers');
         $daftar_kota = $this->db->get('m_kota')->result_array();
         $jenis_identitas = ['KTP'=>'KTP','SIM'=>'SIM','Passport'=>'Passport'];
         $status_member = ['Home Owner'=>'Home Owner','Lessee'=>'Lessee'];
@@ -32,12 +101,12 @@ class Transaksi extends CMS_Controller
         );
         $this->template->set_breadcrumb('Transaksi', false)
                        ->set_breadcrumb('Member Details Card', '');
-        $this->view('details_card_numbers', $data, 'navi', $config);
+        $this->view('details_card_numbers', $data, 'details_card_numbers', $config);
     }
 
     public function details_card_numbers_save($id)
     {
-        
+        $this->cms_guard_page('details_card_numbers');
         $request_body = file_get_contents('php://input');
         $obj = json_decode($request_body);
         $input_unit = $obj->unit;
@@ -102,6 +171,7 @@ class Transaksi extends CMS_Controller
     }
     public function details_card_numbers_fetch_unit_row_json($id)
     {
+        $this->cms_guard_page('details_card_numbers');
         $unit = $this->db->select('u.*,c.nama cluster_name')->join('m_cluster c', 'c.id=u.id_cluster', 'right')->where(['u.id'=> $id,'u.is_active'=>'1'])->get('m_unit u')->row_array();
         $unit['members'] = array();
         if (!empty($unit)) {

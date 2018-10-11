@@ -16,12 +16,17 @@
         <link rel="icon" href="{{ site_favicon }}">
          <!-- Le styles -->
         <?php
-            $asset = new CMS_Asset();       
+            $asset = new CMS_Asset();
             // $asset->add_cms_css('bootstrap/css/bootstrap.min.css');
             // $asset->add_themes_css('bootstrap.min.css', '{{ used_theme }}', 'default');
             // $asset->add_themes_css('style.css', '{{ used_theme }}', 'default');
             echo $asset->compile_css();
         ?>
+        <script type="text/javascript">
+    function tmu(){
+        return '{{ theme_assets }}';
+    }
+</script>
         <!-- Le fav and touch icons -->
         <link rel="shortcut icon" href="{{ site_favicon }}">
         {{ widget_name:section_custom_script }}
@@ -52,4 +57,5 @@
 
     
 <?php echo $template['body'];?>
+
 </html>

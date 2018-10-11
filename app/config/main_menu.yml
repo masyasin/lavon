@@ -1,17 +1,24 @@
 dashboard:
+    credentials: ['superadmin','admin']
     title: Dashboard
     icon: icon-home
     items:
         dashboard/statistik: Statistik
 transaksi:
+    credentials: ['superadmin','admin']
     title: Transaksi
     icon: icon-globe
     items:
         transaksi/details-card-numbers: 'Member Details Cards'
-        transaksi/fasilitas: 'Fasilitas Member Poin'
-        transaksi/redeempoin: 'Redeem Poin'
-        transaksi/history: History
+        transaksi/fasilitas-unit: 'Fasilitas Unit'
+        transaksi/redeem-poin: 'Redeem Poin'
+        transaksi/histori-transaksi-poin: 'Histori Transaksi Poin'
+        # transaksi/pengaturan: 'Pengaturan'
+        # transaksi/pengaturan-nilai-poin: 'Pengaturan Nilai Poin'
+        # transaksi/histori-check-inout: Histori Cek In/Out
+        # transaksi/histori-redeem-poin: Histori Redeem Poin
 manajemen:
+    credentials: ['superadmin','admin']
     title: Manajemen
     icon: icon-puzzle
     items:
@@ -20,18 +27,21 @@ manajemen:
         manajemen/tenan: Tenan
         manajemen/fasilitas: Fasilitas
         manajemen/marcendaise: Marcendaise
-        manajemen/memberpoin: 'Member Poin'
+        manajemen/unit-poin: 'Unit Poin'
 laporan:
+    credentials: ['superadmin','admin']
     title: Laporan
     icon: icon-bar-chart
     items:
-        laporan/unit-member-details: 'Unit &amp; Member Details'
+        laporan/unit-poin-member-details: 'Unit, Poin &amp; Member Details'
+        # laporan/poin-unit: 'Poin Unit'
         laporan/tenan-fasilitas: 'Tenan &amp; Fasilitas'
-        laporan/unit-member-poin: 'Unit &amp; Member Poin'
-        laporan/marcendaise: Marcendaise
-        laporan/redeempoin: 'Redeem Poin'
-        laporan/memberpoin: 'Member Poin'
+        laporan/transaksi-unit-poin: 'Transaksi Unit &amp; Poin'
+        # laporan/transaksi-check-inout: Marcendaise
+        # laporan/transaksi-redeempoin: 'Redeem Poin'
+        
 pengaturan:
+    credentials: ['superadmin']
     title: Pengaturan
     icon: icon-wrench
     items:

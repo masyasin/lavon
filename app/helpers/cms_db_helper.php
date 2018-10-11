@@ -9,27 +9,26 @@ function cms_navigation_get_old_url($old_url_part = array())
     $old_url = '';
 
     # DISABLE DB CHECK OLD URL
-    /*
-    while(count($old_url_part)>0){
-
-        $query = $this->db->select('url')
+    
+    while (count($old_url_part)>0) {
+        $query = $ci->db->select('url')
             ->from(cms_table_name('main_navigation'))
             ->like('url', implode('/', $old_url_part))
             ->get();
 
-        if($query->num_rows()>0){
+        if ($query->num_rows()>0) {
             $row = $query->row();
             $old_url = $row->url;
             break;
-        }else{
+        } else {
             $new_old_url_part = array();
-            for($i=0; $i<count($old_url_part)-1; $i++){
+            for ($i=0; $i<count($old_url_part)-1; $i++) {
                 $new_old_url_part[] = $old_url_part[$i];
             }
             $old_url_part = $new_old_url_part;
         }
     }
-    */
+    
     return $old_url;
 }
 

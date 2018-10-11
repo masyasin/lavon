@@ -12,6 +12,7 @@ class Pengaturan extends CMS_Controller
 
     public function grup()
     {
+        $this->cms_guard_page('pengaturan_grup');
         $crud = $this->new_crud();
         $crud->unset_jquery();
         $crud->set_theme('datatables');
@@ -54,10 +55,11 @@ class Pengaturan extends CMS_Controller
         );
         $this->template->set_breadcrumb('Pengaturan', false)
                    ->set_breadcrumb('Grup', '');
-        $this->view('grup', $data, 'navi', $view_config);
+        $this->view('grup', $data, 'pengaturan_grup', $view_config);
     }
     public function pengguna()
     {
+        $this->cms_guard_page('pengaturan_pengguna');
          $crud = $this->new_crud();
         $crud->unset_jquery();
         $crud->set_theme('datatables');
@@ -112,7 +114,7 @@ class Pengaturan extends CMS_Controller
         );
         $this->template->set_breadcrumb('Pengaturan', false)
                    ->set_breadcrumb('Pengguna', '');
-        $this->view('pengguna', $data, 'navi', $view_config);
+        $this->view('pengguna', $data, 'pengaturan_pengguna', $view_config);
     }
     public function read_only_user_active($value, $row)
     {
@@ -137,6 +139,8 @@ class Pengaturan extends CMS_Controller
     }
     public function setting()
     {
+        $this->cms_guard_page('pengaturan_setting');
+
         $crud = $this->new_crud();
         $crud->set_theme('datatables');
         $crud->unset_jquery();
@@ -192,7 +196,7 @@ class Pengaturan extends CMS_Controller
         );
         $this->template->set_breadcrumb('Pengaturan', false)
                    ->set_breadcrumb('Settings', '');
-        $this->view('setting', $data, 'navi', $view_config);
+        $this->view('setting', $data, 'pengaturan_setting', $view_config);
     }
     public function after_insert_config($post_array, $primary_key)
     {
@@ -288,6 +292,8 @@ class Pengaturan extends CMS_Controller
     //-----------------------------------------------------------------------------------------------
     public function otoritas()
     {
+        $this->cms_guard_page('pengaturan_otoritas');
+
         $crud = $this->new_crud();
         $crud->unset_jquery();
         $crud->set_theme('datatables');
@@ -320,12 +326,12 @@ class Pengaturan extends CMS_Controller
         $this->template->set_breadcrumb('Pengaturan', false)
                    ->set_breadcrumb('Otoritas', '');
 
-        $this->view('otoritas', $output, 'pengaturan_modul', $view_config);
+        $this->view('otoritas', $output, 'pengaturan_otoritas', $view_config);
     }
     // Hak Akses ===============================================================
     public function hak_akses()
     {
-        // $this->cms_guard_page('main_privilege_management');
+        $this->cms_guard_page('pengaturan_hak_akses');
         $crud = $this->new_crud();
         $crud->unset_jquery();
         $crud->set_theme('datatables');
@@ -363,12 +369,12 @@ class Pengaturan extends CMS_Controller
         $this->template->set_breadcrumb('Pengaturan', false)
                    ->set_breadcrumb('Hak Akses', '');
 
-        $this->view('hak_akses', $output, 'priv', $view_config);
+        $this->view('hak_akses', $output, 'pengaturan_hak_akses', $view_config);
     }
     // NAVIGATION ==============================================================
     public function navigation($parent_id = null)
     {
-        // $this->cms_guard_page('main_navigation_management');
+        $this->cms_guard_page('pengaturan_akses_route');
         $crud = $this->new_crud();
         $crud->set_theme('datatables');
 
@@ -488,7 +494,7 @@ class Pengaturan extends CMS_Controller
         $this->template->set_breadcrumb('Pengaturan', false)
                    ->set_breadcrumb('Route', '');
 
-        $this->view('navigation', $output, 'priv', $view_config);
+        $this->view('navigation', $output, 'pengaturan_akses_route', $view_config);
     }
     public function action_navigation_move_up($primary_key)
     {

@@ -401,8 +401,7 @@ class CMS_Controller extends MX_Controller
      */
     protected function cms_allow_navigate($navigation_name)
     {
-        //return $this->m_cms->cms_allow_navigate($navigation_name);
-        return true;
+        return $this->m_cms->cms_allow_navigate($navigation_name);
     }
 
     /**
@@ -741,6 +740,8 @@ class CMS_Controller extends MX_Controller
                 $allowed = true;
             } elseif (is_array($privilege_required)) {
                 // privilege_required is array
+                // echo "GUARD IS HERE <BR>";
+                // print_r($privilege_required);
 
                 $allowed = true;
                 foreach ($privilege_required as $privilege) {
@@ -753,11 +754,19 @@ class CMS_Controller extends MX_Controller
                 $allowed = $this->cms_have_privilege($privilege_required);
             }
         } else {
+            // echo "GUARD IS HERE <BR>";
+            // print_r($privilege_required);
             $allowed = false;
         }
         // if not allowed then redirect
         if (!$allowed) {
-            $this->cms_redirect_not_allowed($navigation_name);
+            $privilege = $this->cms_privileges();
+
+            if (empty($privilege)) {
+                $this->cms_redirect();
+            } else {
+                $this->cms_redirect_not_allowed($navigation_name);
+            }
         }
     }
     public function cms_redirect_not_allowed($navigation_name)

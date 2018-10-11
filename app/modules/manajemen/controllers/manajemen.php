@@ -9,9 +9,14 @@ class Manajemen extends CMS_Controller
         $this->theme = $this->cms_get_config('site_theme');
         $this->template->set_theme($this->theme);
     }
+    public function unit()
+    {
+        $this->cms_guard_page('manajemen_unit');
+    }
     //---------------------------------------------------------------------CLUSTER
     public function cluster()
     {
+        $this->cms_guard_page('manajemen_cluster');
         
         $crud = $this->new_crud();
         $crud->unset_jquery();
@@ -34,7 +39,7 @@ class Manajemen extends CMS_Controller
         );
         $this->template->set_breadcrumb('Manajemen', false)
                        ->set_breadcrumb('Cluster', '');
-        $this->view('cluster', $data, 'navi', $view_config);
+        $this->view('cluster', $data, 'manajemen_cluster', $view_config);
     }
     private function before_insert_cluster($post_array)
     {
@@ -52,7 +57,7 @@ class Manajemen extends CMS_Controller
     //---------------------------------------------------------------------CLUSTER
     public function fasilitas()
     {
-        
+        $this->cms_guard_page('manajemen_fasilitas');
         $crud = $this->new_crud();
         $crud->unset_jquery();
         $crud->set_subject('Fasilitas');
@@ -87,7 +92,7 @@ class Manajemen extends CMS_Controller
         );
         $this->template->set_breadcrumb('Manajemen', false)
                        ->set_breadcrumb('Fasilitas', '');
-        $this->view('fasilitas', $data, 'navi', $view_config);
+        $this->view('fasilitas', $data, 'manajemen_fasilitas', $view_config);
     }
     private function before_insert_fasilitas($post_array)
     {
@@ -105,7 +110,7 @@ class Manajemen extends CMS_Controller
     //---------------------------------------------------------------------TENAN
     public function tenan()
     {
-        
+        $this->cms_guard_page('manajemen_tenan');
         $crud = $this->new_crud();
         $crud->unset_jquery();
         $crud->set_subject('Tenan');
@@ -127,7 +132,7 @@ class Manajemen extends CMS_Controller
         );
         $this->template->set_breadcrumb('Manajemen', false)
                        ->set_breadcrumb('Tenan', '');
-        $this->view('tenan', $data, 'navi', $view_config);
+        $this->view('tenan', $data, 'manajemen_tenan', $view_config);
     }
     private function before_insert_tenan($post_array)
     {
@@ -145,7 +150,7 @@ class Manajemen extends CMS_Controller
     //---------------------------------------------------------------------MARCENDAISE
     public function marcendaise()
     {
-        
+        $this->cms_guard_page('manajemen_marcendaise');
         $crud = $this->new_crud();
         $crud->unset_jquery();
         $crud->set_subject('Marcendaise');
@@ -172,7 +177,7 @@ class Manajemen extends CMS_Controller
         );
         $this->template->set_breadcrumb('Manajemen', false)
                        ->set_breadcrumb('Marcendaise', '');
-        $this->view('marcendaise', $data, 'navi', $view_config);
+        $this->view('marcendaise', $data, 'manajemen_marcendaise', $view_config);
     }
     private function before_insert_marcendaise($post_array)
     {
@@ -187,5 +192,18 @@ class Manajemen extends CMS_Controller
         
         return $post_array;
     }
-    //---------------------------------------------------------------------TENAN
+    //---------------------------------------------------------------------unit-poin
+    public function unit_poin()
+    {
+        $this->cms_guard_page('manajemen_unit_poin');
+        
+        $data = [];
+
+        $view_config = array(
+            'title' => ' Manajemen Unit Poin'
+        );
+        $this->template->set_breadcrumb('Manajemen', false)
+                       ->set_breadcrumb('Unit Poin', '');
+        $this->view('unit_poin', $data, 'manajemen_unit_poin', $view_config);
+    }
 }

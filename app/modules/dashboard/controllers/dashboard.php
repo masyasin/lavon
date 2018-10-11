@@ -15,6 +15,8 @@ class Dashboard extends CMS_Controller
     }
     public function statistik()
     {
+        $this->cms_guard_page('dashboard_statistik');
+        
         $data = [];
 
         $view_config = array(
@@ -22,6 +24,6 @@ class Dashboard extends CMS_Controller
         );
         $this->template->set_breadcrumb('Dashboard', false)
                        ->set_breadcrumb('Statistik', '');
-        $this->view('statistik', $data, 'navi', $view_config);
+        $this->view('statistik', $data, 'dashboard_statistik', $view_config);
     }
 }

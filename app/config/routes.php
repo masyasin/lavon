@@ -65,8 +65,32 @@
 | provided in the URL cannot be matched to a valid route.
 |
 */
+$route['manajemen/unit-poin']               = 'manajemen/unit_poin';
+$route['manajemen/unit-poin/(:any)']         = 'manajemen/unit_poin/$1';
+
+
+
+$route['transaksi/histori-redeem-poin']               = 'transaksi/histori_redeem_poin';
+$route['transaksi/histori-redeem-poin/(:any)']         = 'transaksi/histori_redeem_poin/$1';
+
+$route['transaksi/histori-check-inout']               = 'transaksi/histori_check_inout';
+$route['transaksi/histori-check-inout/(:any)']         = 'transaksi/histori_check_inout/$1';
+
+$route['transaksi/histori-transaksi-poin']               = 'transaksi/histori_transaksi_poin';
+$route['transaksi/histori-transaksi-poin/(:any)']         = 'transaksi/histori_transaksi_poin/$1';
+
+
+
+$route['transaksi/fasilitas-unit']               = 'transaksi/fasilitas_unit';
+$route['transaksi/fasilitas-unit/(:any)']         = 'transaksi/fasilitas_unit/$1';
+
+$route['transaksi/redeem-poin']               = 'transaksi/redeem_poin';
+$route['transaksi/redeem-poin/(:any)']         = 'transaksi/redeem_poin/$1';
+
 $route['transaksi/details-card-numbers-fetch-unit-row-json']               = 'transaksi/details_card_numbers_fetch_unit_row_json';
 $route['transaksi/details-card-numbers-fetch-unit-row-json/(:any)']         = 'transaksi/details_card_numbers_fetch_unit_row_json/$1';
+
+
 $route['transaksi/details-card-numbers-save']               = 'transaksi/details_card_numbers_save';
 $route['transaksi/details-card-numbers-save/(:any)']         = 'transaksi/details_card_numbers_save/$1';
 $route['transaksi/details-card-numbers']               = 'transaksi/details_card_numbers';
