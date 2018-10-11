@@ -69,4 +69,17 @@ class Account extends CMS_Controller
         $this->cms_do_logout();
         redirect('account/login');
     }
+    public function profile()
+    {
+        $this->cms_guard_page('account_profile');
+        
+        $data = [];
+
+        $view_config = array(
+            'title' => ' Profile'
+        );
+        $this->template->set_breadcrumb('Account', false)
+                       ->set_breadcrumb('Profile', '');
+         $this->view('profile', $data, 'account_profile', $view_config);
+    }
 }

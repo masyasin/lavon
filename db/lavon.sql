@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-10-11 20:44:46
+Date: 2018-10-11 21:11:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,7 +33,7 @@ CREATE TABLE `ci_sessions` (
 -- ----------------------------
 INSERT INTO `ci_sessions` VALUES ('6956d87387d8d0c173eaa77dec4aa7c4', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539260458', 'a:8:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:10:\"superadmin\";s:15:\"cms_user_avatar\";s:80:\"http://localhost/lavon/public/assets/uploads/files/avatar/01de6-welcome-scan.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:15:\"Ratna Sarumpeat\";s:14:\"cms_user_email\";s:20:\"superadmin@lavon.com\";s:21:\"flash:old:cms_old_url\";s:21:\"pengaturan/navigation\";s:21:\"flash:new:cms_old_url\";s:21:\"pengaturan/navigation\";}');
 INSERT INTO `ci_sessions` VALUES ('8b3d7ed48e96fd37d562f5d9a4fe0653', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539264971', 'a:3:{s:8:\"cms_lang\";s:10:\"indonesian\";s:21:\"flash:old:cms_old_url\";s:17:\"manajemen/cluster\";s:21:\"flash:new:cms_old_url\";s:17:\"manajemen/cluster\";}');
-INSERT INTO `ci_sessions` VALUES ('267fa0c0dfa12b8d9de900668a40f731', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539265226', 'a:6:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:80:\"http://localhost/lavon/public/assets/uploads/files/avatar/01de6-welcome-scan.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:15:\"Ratna Sarumpeat\";s:14:\"cms_user_email\";s:20:\"superadmin@lavon.com\";}');
+INSERT INTO `ci_sessions` VALUES ('e8a67cfa7332666dac9bce11ad93f959', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539265784', 'a:6:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:80:\"http://localhost/lavon/public/assets/uploads/files/avatar/01de6-welcome-scan.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:15:\"Ratna Sarumpeat\";s:14:\"cms_user_email\";s:20:\"superadmin@lavon.com\";}');
 
 -- ----------------------------
 -- Table structure for `main_authorization`
@@ -136,7 +136,7 @@ CREATE TABLE `main_group_navigation` (
   `group_id` int(5) NOT NULL,
   `navigation_id` int(5) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of main_group_navigation
@@ -185,6 +185,8 @@ INSERT INTO `main_group_navigation` VALUES ('43', '1', '34');
 INSERT INTO `main_group_navigation` VALUES ('44', '2', '34');
 INSERT INTO `main_group_navigation` VALUES ('45', '1', '35');
 INSERT INTO `main_group_navigation` VALUES ('46', '2', '35');
+INSERT INTO `main_group_navigation` VALUES ('47', '1', '36');
+INSERT INTO `main_group_navigation` VALUES ('48', '2', '36');
 
 -- ----------------------------
 -- Table structure for `main_group_privilege`
@@ -299,7 +301,7 @@ CREATE TABLE `main_navigation` (
   `default_theme` varchar(50) DEFAULT NULL,
   `default_layout` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`navigation_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of main_navigation
@@ -326,6 +328,7 @@ INSERT INTO `main_navigation` VALUES ('32', 'transaksi_fasilitas_unit', null, 't
 INSERT INTO `main_navigation` VALUES ('33', 'transaksi_histori_transaksi_poin', null, 'transaksi_histori_transaksi_poin', 'glyphicon-home', 'Transaksi_histori_transaksi_poin', 'transaksi_histori_transaksi_poin', 'Transaksi_histori_transaksi_poin', 'transaksi/histori_transaksi_poin', '4', '1', '26', '0', null, '0', 'metronic', 'full');
 INSERT INTO `main_navigation` VALUES ('34', 'transaksi_histori_check_inout', null, 'transaksi_histori_check_inout', 'glyphicon-home', 'Transaksi_histori_check_inout', 'transaksi_histori_check_inout', 'Transaksi_histori_check_inout', 'transaksi/histori_check_inout', '4', '1', '27', '0', null, '0', 'metronic', 'full');
 INSERT INTO `main_navigation` VALUES ('35', 'transaksi_histori_redeem_poin', null, 'transaksi_histori_redeem_poin', 'glyphicon-home', 'Transaksi_histori_redeem_poin', 'transaksi_histori_redeem_poin', 'Transaksi_histori_redeem_poin', 'transaksi/histori_redeem_poin', '4', '1', '28', '0', null, '0', 'metronic', 'full');
+INSERT INTO `main_navigation` VALUES ('36', 'account_profile', null, 'account_profile', 'glyphicon-home', 'Account_profile', 'account_profile', 'Account_profile', 'account/profile', '4', '1', '29', '0', null, '0', 'metronic', 'full');
 
 -- ----------------------------
 -- Table structure for `main_privilege`
