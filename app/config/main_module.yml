@@ -46,3 +46,9 @@ cms:
     module_path: cms
     version: '1.0'
     user_id: '1'
+laporan:
+    module_id: '22'
+    module_name: laporan
+    module_path: laporan
+    version: '1.0'
+    user_id: '1'

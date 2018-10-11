@@ -1,8 +1,8 @@
 <body class=" login">
         <!-- BEGIN LOGO -->
         <div class="logo">
-            <a href="index.html">
-                <img src="{{ theme_assets }}/pages/img/logo-big.png" alt="" /> </a>
+            <a href="{{ base_url }}">
+                <img src="{{ theme_assets }}/img/logo.png" alt="" /> </a>
         </div>
         <!-- END LOGO -->
         <!-- BEGIN LOGIN -->

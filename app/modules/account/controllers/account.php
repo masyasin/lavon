@@ -76,7 +76,7 @@ class Account extends CMS_Controller
         $data = [];
 
         $view_config = array(
-            'title' => ' Profile'
+            'title' => ' Account Profile'
         );
         $this->template->set_breadcrumb('Account', false)
                        ->set_breadcrumb('Profile', '');
