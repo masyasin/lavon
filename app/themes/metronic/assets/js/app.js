@@ -159,19 +159,39 @@ Vue.filter('timeago',function(date){
          });
      }
  }
- $(document).ready(function(){
-    $('#alert_cnt').ajaxError(function(){
-        console.log(arguments);
+ 
+
+//  $(document).ajaxError(function(){
+//     console.log(arguments);
+    
+// });
+
+$(document).ajaxComplete(function(event, xhr, options){
+    // var data = $.httpData(xhr,options.dataType);
+
+    console.log(arguments);
+    if(xhr.status != 200){
+        var message = xhr.responseText;
+
+        if(message.match(/Database\sError/m)&&message.match(/FOREIGN\sKEY|REFERENCES/m)){
+            message = "Record couldnot be deleted because its used by anothers";
+        }
         App.alert({
             container: "#alert_cnt",
             place: 'prepend',
             type: 'danger',
-            message: 'Couldn\'t complete operation',
+            message: xhr.responseText,
             close: true,
             reset: true,
             focus: true,
             closeInSeconds: 0,
             icon: 'warning'
         });
-    });
- });
+    }else{
+        if(xhr.responseText == 'LOGINREQUIRED'){
+            document.location.href = site_url() + 'account/login';
+        }
+    }
+    
+
+});

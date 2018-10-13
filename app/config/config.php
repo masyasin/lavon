@@ -282,8 +282,7 @@ $config['cache_path'] = '';
 | http://codeigniter.com/user_guide/libraries/sessions.html
 |
 */
-$config['crc_key']='berkebun-di-akhir-tahun-2018-thank-you-mister-andri-wongso';
-$config['encryption_key'] = md5($config['crc_key']);
+$config['encryption_key']='berkebun-di-akhir-tahun-2018-thank-you-mister-andri-wongso';
 
 /*
 |--------------------------------------------------------------------------
@@ -308,15 +307,15 @@ $config['encryption_key'] = md5($config['crc_key']);
 */
 $config['sess_driver']          = 'cookie';
 $config['sess_valid_drivers']   = array();
-$config['sess_cookie_name']     = crc32($config['crc_key']);
-$config['sess_expiration']      = 8600;
+$config['sess_cookie_name']     = 'applavon';
+$config['sess_expiration']      = 0;
 $config['sess_expire_on_close'] = false;
 $config['sess_encrypt_cookie']  = true;
 $config['sess_use_database']    = true;
 $config['sess_table_name']      = 'ci_sessions';
 $config['sess_match_ip']        = false;
 $config['sess_match_useragent'] = true;
-$config['sess_time_to_update']  = 8600;
+$config['sess_time_to_update']  = 300;
 
 /*
 |--------------------------------------------------------------------------
@@ -361,10 +360,10 @@ $config['global_xss_filtering'] = true;
 | 'csrf_regenerate' = Regenerate token on every submission
 | 'csrf_exclude_uris' = Array of URIs which ignore CSRF checks
 */
-$config['csrf_salt'] = '_UTFHSTlqOVo2UlFmSnhWUWFRU0wrUT09'.$config['crc_key'];
+$config['csrf_salt'] = '_UTFHSTlqOVo2UlFmSnhWUWFRU0wrUT09';
 $config['csrf_protection'] = false;
-$config['csrf_token_name'] = md5(date('Y-m-d').$config['csrf_salt']);
-$config['csrf_cookie_name'] = md5($config['csrf_salt']);
+$config['csrf_token_name'] = $config['csrf_salt'];
+$config['csrf_cookie_name'] = $config['csrf_salt'];
 $config['csrf_expire'] = 7200;
 $config['csrf_regenerate'] = true;
 $config['csrf_exclude_uris'] = array('account/login');

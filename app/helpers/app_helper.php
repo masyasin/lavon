@@ -553,14 +553,14 @@ function create_pagination($uri, $total_rows, $limit = null, $uri_segment = 4, $
 
 function date_format_id($mysql_date)
 {
-    date('d/m/Y', strtotime($mysql_date));
+    return date('d/m/Y', strtotime($mysql_date));
 }
 
 function date_format_mysql($id_date)
 {
     $str = explode('/', $id_date);
-    $Y   = isset($str[2])?$str[2]:'0000';
-    $m   = isset($str[1])?$str[1]:'00';
-    $d   = isset($str[0])?$str[0]:'00';
+    $Y   = $str[2];
+    $m   = $str[1];
+    $d   = $str[0];
     return date('Y-m-d', strtotime("$Y-$m-$d"));
 }
