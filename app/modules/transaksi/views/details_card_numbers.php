@@ -194,7 +194,7 @@
                             </div>
 
                         </div>
-                        <div class="row">
+                        <div class="row" v-if="false">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="control-label col-md-2 bold text-left">Status</label>

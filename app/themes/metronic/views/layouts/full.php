@@ -102,4 +102,7 @@
     margin-left: 24px;
     width: 108px;
 }
+#alert_cnt p a{
+    display: none;
+}
 </style>

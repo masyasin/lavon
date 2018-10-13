@@ -27,3 +27,10 @@
         </div>
     </div>
 </div>
+<style type="text/css">
+    td.field-ppa1,
+    td.field-ppa2,
+    td.field-ppa3,
+    td.field-ppa4,
+    td.field-ppa5{text-align: center;font-weight: bold;}
+</style>

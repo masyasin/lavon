@@ -167,10 +167,8 @@ Vue.filter('timeago',function(date){
 // });
 
 $(document).ajaxComplete(function(event, xhr, options){
-    // var data = $.httpData(xhr,options.dataType);
-
-    console.log(arguments);
-    if(xhr.status != 200){
+   
+    if(xhr.status >= 500){
         var message = xhr.responseText;
 
         if(message.match(/Database\sError/m)&&message.match(/FOREIGN\sKEY|REFERENCES/m)){
