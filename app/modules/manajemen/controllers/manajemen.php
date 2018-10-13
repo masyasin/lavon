@@ -1,28 +1,7 @@
 <?php
 class Manajemen extends CMS_Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-       
-        $this->load->driver('session');
-        $this->theme = $this->cms_get_config('site_theme');
-        $this->template->set_theme($this->theme);
-    }
-    public function unit()
-    {
-        $this->cms_guard_page('manajemen_unit');
     
-
-        $data = [];
-
-        $view_config = array(
-            'title' => ' Manajemen Unit'
-        );
-        $this->template->set_breadcrumb('Manajemen', false)
-                       ->set_breadcrumb('Unit', '');
-         $this->view('unit', $data, 'manajemen_unit', $view_config);
-    }
     //---------------------------------------------------------------------CLUSTER
     public function cluster()
     {

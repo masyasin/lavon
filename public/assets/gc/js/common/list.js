@@ -47,12 +47,13 @@ var fnOpenEditForm = function(this_element,event){
 				type: 'post',
 				dataType: 'json',
 				beforeSend: function() {
-					// this_element.closest('.flexigrid').addClass('loading-opacity');
-					//$.components.get('animsition').init();
+					App.blockUI({
+			            target: ".dataTablesContainer",
+			           
+			        });
 				},
 				complete: function(){
-					// this_element.closest('.flexigrid').removeClass('loading-opacity');
-					//$('.animsition').animsition('in');
+					App.unblockUI('.dataTablesContainer');
 				},
 				success: function (data) {
 					if (typeof CKEDITOR !== 'undefined' && typeof CKEDITOR.instances !== 'undefined') {

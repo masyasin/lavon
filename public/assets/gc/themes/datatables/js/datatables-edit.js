@@ -13,21 +13,27 @@ $(function(){
 			url: validation_url,
 			dataType: 'json',
 			beforeSend: function(){
-				// $.components.get('animsition').init();
+				App.blockUI({
+		            target: ".dataTablesContainer",
+		            // boxed: !0
+		        });
 			},
 			cache: false,
 			success: function(data){
-				// $('.animsition').animsition('in');
+				App.unblockUI('.dataTablesContainer');
 				if(data.success)
 				{
 					$('#crudForm').ajaxSubmit({
 						dataType: 'text',
 						cache: false,
 						beforeSend: function(){
-							// $.components.get('animsition').init();
+							App.blockUI({
+					            target: "#crudForm",
+					            // boxed: !0
+					        });
 						},
 						success: function(result){
-							// $('.animsition').animsition('in');
+							App.unblockUI('#crudForm');
 							data = $.parseJSON( result );
 							if(data.success)
 							{

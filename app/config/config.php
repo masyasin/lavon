@@ -1,4 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (! defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 /**
  * CodeIgniter
  *
@@ -16,12 +18,12 @@
  * through the world wide web, please send an email to
  * licensing@ellislab.com so we can send you a copy immediately.
  *
- * @package		CodeIgniter
- * @author		EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2013, EllisLab, Inc. (http://ellislab.com/)
- * @license		http://opensource.org/licenses/AFL-3.0 Academic Free License (AFL 3.0)
- * @link		http://codeigniter.com
- * @since		Version 1.0
+ * @package     CodeIgniter
+ * @author      EllisLab Dev Team
+ * @copyright   Copyright (c) 2008 - 2013, EllisLab, Inc. (http://ellislab.com/)
+ * @license     http://opensource.org/licenses/AFL-3.0 Academic Free License (AFL 3.0)
+ * @link        http://codeigniter.com
+ * @since       Version 1.0
  * @filesource
  */
 
@@ -33,21 +35,21 @@
 | URL to your CodeIgniter root. Typically this will be your base URL,
 | WITH a trailing slash:
 |
-|	http://example.com/
+|   http://example.com/
 |
 | If this is not set then CodeIgniter will guess the protocol, domain and
 | path to your installation.
 |
 */
-if(!isset($_SERVER['HTTP_HOST'])){
-	$_SERVER['HTTP_HOST'] = 'localhost';
+if (!isset($_SERVER['HTTP_HOST'])) {
+    $_SERVER['HTTP_HOST'] = 'localhost';
 }
-if(!isset($_SERVER['REMOTE_ADDR'])){
-	$_SERVER['REMOTE_ADDR'] = '127.0.0.1';
+if (!isset($_SERVER['REMOTE_ADDR'])) {
+    $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 }
 $config['base_url']  = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on')) ?  "https" : "http";
 $config['base_url'] .= "://".$_SERVER['HTTP_HOST'];
-$config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
+$config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
 
 /*
 |--------------------------------------------------------------------------
@@ -70,14 +72,14 @@ $config['index_page'] = '';
 | URI string.  The default setting of 'AUTO' works for most servers.
 | If your links do not seem to work, try one of the other delicious flavors:
 |
-| 'AUTO'		Default - auto detects
-| 'CLI' or 'argv'	Uses $_SERVER['argv'] (for php-cli only)
-| 'PATH_INFO'		Uses $_SERVER['PATH_INFO']
-| 'REQUEST_URI'		Uses $_SERVER['REQUEST_URI']
-| 'QUERY_STRING'	Uses $_SERVER['QUERY_STRING']
+| 'AUTO'        Default - auto detects
+| 'CLI' or 'argv'   Uses $_SERVER['argv'] (for php-cli only)
+| 'PATH_INFO'       Uses $_SERVER['PATH_INFO']
+| 'REQUEST_URI'     Uses $_SERVER['REQUEST_URI']
+| 'QUERY_STRING'    Uses $_SERVER['QUERY_STRING']
 |
 */
-$config['uri_protocol']	= 'AUTO';
+$config['uri_protocol'] = 'AUTO';
 
 /*
 |--------------------------------------------------------------------------
@@ -102,7 +104,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'indonesia';
+$config['language'] = 'indonesia';
 
 /*
 |--------------------------------------------------------------------------
@@ -126,7 +128,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = false;
 
 
 /*
@@ -189,8 +191,8 @@ $config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-\=';
 | use segment based URLs.
 |
 */
-$config['allow_get_array']      = TRUE;
-$config['enable_query_strings'] = FALSE;
+$config['allow_get_array']      = true;
+$config['enable_query_strings'] = false;
 $config['controller_trigger']   = 'c';
 $config['function_trigger']     = 'm';
 $config['directory_trigger']    = 'd'; // experimental not currently in use
@@ -205,15 +207,15 @@ $config['directory_trigger']    = 'd'; // experimental not currently in use
 | You can enable error logging by setting a threshold over zero. The
 | threshold determines what gets logged. Threshold options are:
 |
-|	0 = Disables logging, Error logging TURNED OFF
-|	1 = Error Messages (including PHP errors)
-|	2 = Debug Messages
-|	3 = Informational Messages
-|	4 = All Messages
+|   0 = Disables logging, Error logging TURNED OFF
+|   1 = Error Messages (including PHP errors)
+|   2 = Debug Messages
+|   3 = Informational Messages
+|   4 = All Messages
 |
 | You can also pass in a array with threshold levels to show individual error types
 |
-| 	array(2) = Debug Messages, without Error Messages
+|   array(2) = Debug Messages, without Error Messages
 |
 | For a live site you'll usually only enable Errors (1) to be logged otherwise
 | your log files will fill up very fast.
@@ -288,33 +290,33 @@ $config['encryption_key'] = md5($config['crc_key']);
 | Session Variables
 |--------------------------------------------------------------------------
 |
-| 'sess_driver'				= the driver to load: cookie (Classic), native (PHP sessions),
-|	or your custom driver name
-| 'sess_valid_drivers'		= additional valid drivers which may be loaded
-| 'sess_cookie_name'		= the name you want for the cookie
-| 'sess_expiration'			= the number of SECONDS you want the session to last.
+| 'sess_driver'             = the driver to load: cookie (Classic), native (PHP sessions),
+|   or your custom driver name
+| 'sess_valid_drivers'      = additional valid drivers which may be loaded
+| 'sess_cookie_name'        = the name you want for the cookie
+| 'sess_expiration'         = the number of SECONDS you want the session to last.
 |   by default sessions last 7200 seconds (two hours).  Set to zero for no expiration.
-| 'sess_expire_on_close'	= Whether to cause the session to expire automatically
+| 'sess_expire_on_close'    = Whether to cause the session to expire automatically
 |   when the browser window is closed
-| 'sess_encrypt_cookie'		= Whether to encrypt the cookie
-| 'sess_use_database'		= Whether to save the session data to a database
-| 'sess_table_name'			= The name of the session database table
-| 'sess_match_ip'			= Whether to match the user's IP address when reading the session data
-| 'sess_match_useragent'	= Whether to match the User Agent when reading the session data
-| 'sess_time_to_update'		= how many seconds between CI refreshing Session Information
+| 'sess_encrypt_cookie'     = Whether to encrypt the cookie
+| 'sess_use_database'       = Whether to save the session data to a database
+| 'sess_table_name'         = The name of the session database table
+| 'sess_match_ip'           = Whether to match the user's IP address when reading the session data
+| 'sess_match_useragent'    = Whether to match the User Agent when reading the session data
+| 'sess_time_to_update'     = how many seconds between CI refreshing Session Information
 |
 */
 $config['sess_driver']          = 'cookie';
 $config['sess_valid_drivers']   = array();
 $config['sess_cookie_name']     = crc32($config['crc_key']);
-$config['sess_expiration']      = 0;
-$config['sess_expire_on_close'] = FALSE;
-$config['sess_encrypt_cookie']  = TRUE;
-$config['sess_use_database']    = TRUE;
+$config['sess_expiration']      = 8600;
+$config['sess_expire_on_close'] = false;
+$config['sess_encrypt_cookie']  = true;
+$config['sess_use_database']    = true;
 $config['sess_table_name']      = 'ci_sessions';
-$config['sess_match_ip']        = FALSE;
-$config['sess_match_useragent'] = TRUE;
-$config['sess_time_to_update']  = 300;
+$config['sess_match_ip']        = false;
+$config['sess_match_useragent'] = true;
+$config['sess_time_to_update']  = 8600;
 
 /*
 |--------------------------------------------------------------------------
@@ -331,8 +333,8 @@ $config['sess_time_to_update']  = 300;
 $config['cookie_prefix']    = '';
 $config['cookie_domain']    = '';
 $config['cookie_path']      = '/';
-$config['cookie_secure']    = FALSE;
-$config['cookie_httponly']  = FALSE;
+$config['cookie_secure']    = false;
+$config['cookie_httponly']  = false;
 
 /*
 |--------------------------------------------------------------------------
@@ -343,7 +345,7 @@ $config['cookie_httponly']  = FALSE;
 | COOKIE data is encountered
 |
 */
-$config['global_xss_filtering'] = TRUE;
+$config['global_xss_filtering'] = true;
 
 /*
 |--------------------------------------------------------------------------
@@ -360,11 +362,11 @@ $config['global_xss_filtering'] = TRUE;
 | 'csrf_exclude_uris' = Array of URIs which ignore CSRF checks
 */
 $config['csrf_salt'] = '_UTFHSTlqOVo2UlFmSnhWUWFRU0wrUT09'.$config['crc_key'];
-$config['csrf_protection'] = FALSE;
-$config['csrf_token_name'] = md5(date('Y-m-d').$config['csrf_salt'] );
-$config['csrf_cookie_name'] = md5($config['csrf_salt'] );
+$config['csrf_protection'] = false;
+$config['csrf_token_name'] = md5(date('Y-m-d').$config['csrf_salt']);
+$config['csrf_cookie_name'] = md5($config['csrf_salt']);
 $config['csrf_expire'] = 7200;
-$config['csrf_regenerate'] = TRUE;
+$config['csrf_regenerate'] = true;
 $config['csrf_exclude_uris'] = array('account/login');
 
 /*
@@ -384,7 +386,7 @@ $config['csrf_exclude_uris'] = array('account/login');
 | by the output class.  Do not 'echo' any values with compression enabled.
 |
 */
-$config['compress_output'] = FALSE;
+$config['compress_output'] = false;
 
 /*
 |--------------------------------------------------------------------------
@@ -396,7 +398,7 @@ $config['compress_output'] = FALSE;
 | code less readable.
 |
 */
-$config['minify_output'] = FALSE;
+$config['minify_output'] = false;
 
 /*
 |--------------------------------------------------------------------------
@@ -422,7 +424,7 @@ $config['time_reference'] = 'local';
 | in your view files.  Options are TRUE or FALSE (boolean)
 |
 */
-$config['rewrite_short_tags'] = FALSE;
+$config['rewrite_short_tags'] = false;
 
 
 /*
@@ -438,8 +440,8 @@ $config['rewrite_short_tags'] = FALSE;
 | You can use both an array or a comma-separated list of proxy addresses,
 | as well as specifying whole subnets. Here are a few examples:
 |
-| Comma-separated:	'10.0.1.200,192.168.5.0/24'
-| Array:		array('10.0.1.200', '192.168.5.0/24')
+| Comma-separated:  '10.0.1.200,192.168.5.0/24'
+| Array:        array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
 

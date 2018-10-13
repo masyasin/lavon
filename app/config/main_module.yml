@@ -40,12 +40,6 @@ manajemen:
     module_path: manajemen
     version: '1.0'
     user_id: '1'
-cms:
-    module_id: '21'
-    module_name: cms
-    module_path: cms
-    version: '1.0'
-    user_id: '1'
 laporan:
     module_id: '22'
     module_name: laporan

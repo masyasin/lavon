@@ -84,7 +84,7 @@ class Transaksi extends CMS_Controller
     /*START details-card-number */
     public function details_card_numbers()
     {
-        $this->cms_guard_page('details_card_numbers');
+        $this->cms_guard_page('transaksi_detail_card_numbers');
         $daftar_kota = $this->db->get('m_kota')->result_array();
         $jenis_identitas = ['KTP'=>'KTP','SIM'=>'SIM','Passport'=>'Passport'];
         $status_member = ['Home Owner'=>'Home Owner','Lessee'=>'Lessee'];
@@ -101,17 +101,20 @@ class Transaksi extends CMS_Controller
         );
         $this->template->set_breadcrumb('Transaksi', false)
                        ->set_breadcrumb('Member Details Card', '');
-        $this->view('details_card_numbers', $data, 'details_card_numbers', $config);
+        $this->view('details_card_numbers', $data, 'transaksi_detail_card_numbers', $config);
     }
 
     public function details_card_numbers_save($id)
     {
-        $this->cms_guard_page('details_card_numbers');
+        $this->cms_guard_page('transaksi_detail_card_numbers');
         $request_body = file_get_contents('php://input');
         $obj = json_decode($request_body);
         $input_unit = $obj->unit;
         $deleted_queue_ids = $obj->deleted_queue_ids;
         // print_r($input_unit);
+
+        $input_unit->tgl_berlaku = date_format_mysql($input_unit->tgl_berlaku);
+        $input_unit->tgl_berakhir = date_format_mysql($input_unit->tgl_berakhir);
 
         $members = $input_unit->members;
         $now=date('Y-m-d H:i:s');
@@ -125,6 +128,7 @@ class Transaksi extends CMS_Controller
         $this->db->where('id', $input_unit->id)->update('m_unit', $unit);
 
         foreach ($members as $member) {
+            $member->tgl_lahir = date_format_mysql($member->tgl_lahir);
             $data = [
                 'id_unit' => $input_unit->id,
                 'tgl_berlaku' =>  $input_unit->tgl_berlaku,
@@ -171,11 +175,19 @@ class Transaksi extends CMS_Controller
     }
     public function details_card_numbers_fetch_unit_row_json($id)
     {
-        $this->cms_guard_page('details_card_numbers');
+        $this->cms_guard_page('transaksi_detail_card_numbers');
         $unit = $this->db->select('u.*,c.nama cluster_name')->join('m_cluster c', 'c.id=u.id_cluster', 'right')->where(['u.id'=> $id,'u.is_active'=>'1'])->get('m_unit u')->row_array();
+
+        $unit['tgl_berlaku'] =date_format_id($unit['tgl_berlaku']);
+        $unit['tgl_berakhir'] = date_format_id($unit['tgl_berakhir']);
+
         $unit['members'] = array();
         if (!empty($unit)) {
             $unit['members'] = $this->db->where('id_unit', $id)->get('m_member')->result_array();
+
+            foreach ($unit['members'] as &$member) {
+                $member['tgl_lahir'] =  date_format_id($unit['tgl_lahir']);
+            }
         }
         $unit['member_count'] = count($unit['members']);
         $unit['has_member'] = $unit['member_count'] > 0;

@@ -194,6 +194,17 @@
                             </div>
 
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2 bold text-left">Status</label>
+                                    <div class="col-md-10">
+                                        <input disabled type="text" class="form-control" name="status_pemilik" v-model="unit.status_pemilik"> 
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                         <div id="member_list">
                         <div class="alert alert-warning" v-if="!has_valid_unit">No Members To Display, please specify unit number to display.</div>    
                         <members :unit="unit" 
@@ -251,7 +262,13 @@
             $vm={};
             
             $(document).ready(function(){
-               $.fn.datepicker.defaults.format = "yyyy-mm-dd"; 
+               $.fn.datepicker.defaults = $.extend($.fn.datepicker.defaults,{
+                    format: 'dd/mm/yyyy',
+                    // container: container,
+                    todayHighlight: true,
+                    autoclose: true,
+               }); 
+
                 $('form.prevent-submit').submit(function(event){event.preventDefault();return false;});
                 Vue.component('members', {
                     props: ['parent','unit','daftar_kota','jenis_identitas','status_member','enable_editing','has_valid_unit','max_member_atempt'],

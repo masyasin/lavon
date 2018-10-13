@@ -1127,7 +1127,7 @@ class grocery_CRUD_Model_Driver extends grocery_CRUD_Field_Types
                 }
             }
         }
-
+       
         if ($this->theme_config['crud_paging'] === true) {
             if ($this->limit === null) {
                 $default_per_page = $this->config->default_per_page;
@@ -1327,7 +1327,7 @@ class grocery_CRUD_Layout extends grocery_CRUD_Model_Driver
 
     protected $_view_files              = array();
     protected $_view_file_base          = '';
-
+    protected $_overide_theme_config    = array();
     public function set_view_file_base($dir)
     {
         $this->_view_file_base = $dir;
@@ -1370,7 +1370,7 @@ class grocery_CRUD_Layout extends grocery_CRUD_Model_Driver
         $data = $this->get_common_data();
 
         $data->order_by     = $this->order_by;
-
+        $data->display_row  = true;
         $data->types        = $this->get_field_types();
 
         $data->list = $this->get_list();
@@ -1418,6 +1418,33 @@ class grocery_CRUD_Layout extends grocery_CRUD_Model_Driver
             $data->list[$num_row]->read_url = $data->read_url.'/'.$row->{$data->primary_key};
         }
 
+        $column_keys = [];
+        foreach ($data->columns as $column) {
+            $column_keys[] = $column->field_name;
+        }
+
+        if ($this->theme_config['load_data_only']) {
+            $new_list = [];
+            $index = 0;
+            foreach ($data->list as $row) {
+                $row_array = [];
+                $row_array[] = $index+1;
+
+                foreach ($column_keys as $key) {
+                    $row_array[] = $row->{$key};
+                }
+                $row_array[] = '<a href="'.$row->edit_url.'" class="gc-bt-edit edit_button btn btn-sm btn-icon btn-pure btn-default" role="button"> <i class="icon wb-edit" aria-hidden="true"></i> </a> <a onclick="javascript: return delete_row(\''.$row->delete_url.'\', \''.$index.'\')" href="javascript:void(0)" class="gc-bt-delete delete_button btn btn-sm btn-icon btn-pure btn-default" role="button"> <i class="icon wb-trash" aria-hidden="true"></i> </a>';
+               // $row_array['DT_RowId'] = 'row-'.$index;
+                $new_list[]=$row_array;
+                $index+=1;
+            }
+            $data->data = $new_list;
+            $data->display_row = false;
+            unset($data->list);
+            $data->list_view = $this->_theme_view('list.php', $data, true);
+            echo json_encode($data);
+            exit();
+        }
         if (!$ajax) {
             $this->_add_js_vars(array('dialog_forms' => $this->config->dialog_forms));
 
@@ -2552,9 +2579,18 @@ class grocery_CRUD_Layout extends grocery_CRUD_Model_Driver
             $this->theme_path = $this->theme_path.'/';
         }
 
+        if (!empty($this->_overide_theme_config)) {
+            $this->theme_config = $this->_overide_theme_config;
+            return;
+        }
         include($this->theme_path.$this->theme.'/config.php');
 
         $this->theme_config = $config;
+    }
+
+    public function set_theme_config($config = array())
+    {
+        $this->_overide_theme_config = $config;
     }
 
     public function set_theme($theme = null)
@@ -4091,9 +4127,19 @@ class Grocery_CRUD extends grocery_CRUD_States
                 if ($this->theme === null) {
                     $this->set_theme($this->default_theme);
                 }
+                $ci =& get_instance();
+                $loadDataOnly = $ci->input->get('dataOnly');
+
+                if (!empty($loadDataOnly)) {
+                    $this->_overide_theme_config['load_data_only'] = true;
+                    $this->theme_config['load_data_only'] = true;
+                }
+
                 $this->setThemeBasics();
 
                 $this->set_basic_Layout();
+
+
 
                 $state_info = $this->getStateInfo();
                 $this->set_ajax_list_queries($state_info);

@@ -107,38 +107,62 @@ function loadListenersForDatatables() {
 	if(!hasHandler){
 		$('.refresh-data').click(function(){
 			var this_container = $(this).closest('.dataTablesContainer');
-
 			var new_container = $("<div/>").addClass('dataTablesContainer');
 
-			this_container.after(new_container);
-			// $.components.get('animsition').init();
+			App.blockUI({
+                target: ".dataTablesContainer",
+                // boxed: !0
+            });
+			var dataOnly=gc.settings.loadDataOnly;
 
 			$.ajax({
-				url: $(this).attr('data-url')+'?uuidv4='+uuidv4(),
+				url: $(this).attr('data-url')+'?uuidv4='+uuidv4()+(dataOnly?'&dataOnly=true':''),
+				dataType: dataOnly?'json':'html',
 				success: function(my_output){
-					// $('.animsition').animsition('in');
-					this_container.remove();
-					new_container.html(my_output);
-					oTable = null;
-					oTableArray = [];
-					oTableMapping = [];
+					App.unblockUI('.dataTablesContainer');
 
-					$('.groceryCrudTable').each(function(index){
-						if (typeof oTableArray[index] !== 'undefined') {
-							return false;
+					if(dataOnly){
+						var data = my_output;
+						this_container.after(new_container);
+						new_container.html(data.list_view);
+						$('.groceryCrudTable').DataTable( {
+        					data: data.data
+    					});
+						
+					}else{
+						
+
+						this_container.after(new_container);
+ 
+						this_container.remove();
+						new_container.html(my_output);
+						oTable = null;
+						oTableArray = [];
+						oTableMapping = [];
+
+						$('.groceryCrudTable').each(function(index) {
+						    if (typeof oTableArray[index] !== 'undefined') {
+						        return false;
+						    }
+
+						    oTableMapping[$(this).attr('id')] = index;
+
+						    oTableArray[index] = loadDataTable(this);
+
+						    gc.oTable = oTable;
+						    gc.oTableArray = oTableArray;
+						    gc.oTableMapping = oTableMapping;
+						});
+
+
+						loadListenersForDatatables();
+
+						if (typeof gc.afterRefreshGrid == 'function') {
+						    gc.afterRefreshGrid(my_output);
 						}
-
-						oTableMapping[$(this).attr('id')] = index;
-
-						oTableArray[index] = loadDataTable(this);
-					});
-					//loadDataTable(new_container.find('.groceryCrudTable'));
-
-					loadListenersForDatatables();
-
-					if(typeof gc.afterRefreshGrid == 'function'){
-						gc.afterRefreshGrid(my_output);
 					}
+					
+					
 				}
 			});
 		});
@@ -215,6 +239,10 @@ function delete_row(delete_url , row_id)
 {
 	if(confirm(message_alert_delete))
 	{
+		App.blockUI({
+            target: ".dataTablesContainer",
+            // boxed: !0
+        });
 		$.ajax({
 			url: delete_url+'?uuidv4='+uuidv4(),
 			dataType: 'json',
@@ -234,6 +262,9 @@ function delete_row(delete_url , row_id)
 				{
 					error_message(data.error_message);
 				}
+			},
+			complete:function(){
+				App.unblockUI('.dataTablesContainer');
 			}
 		});
 	}
