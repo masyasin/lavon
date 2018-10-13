@@ -9,20 +9,7 @@ class Transaksi extends CMS_Controller
         $this->theme = $this->cms_get_config('site_theme');
         $this->template->set_theme($this->theme);
     }
-    //---------------------------------------------------------------------fasilitas-unit
-    public function fasilitas_unit()
-    {
-        $this->cms_guard_page('transaksi_fasilitas_unit');
-        
-        $data = [];
 
-        $view_config = array(
-            'title' => ' Transaksi Fasilitas Unit'
-        );
-        $this->template->set_breadcrumb('Transaksi', false)
-                       ->set_breadcrumb('Fasilitas Unit', '');
-        $this->view('fasilitas_unit', $data, 'transaksi_fasilitas_unit', $view_config);
-    }
     //---------------------------------------------------------------------redeem-point
     public function redeem_poin()
     {
