@@ -164,7 +164,8 @@ class Transaksi extends CMS_Controller
     {
         $this->cms_guard_page('transaksi_detail_card_numbers');
         $unit = $this->db->select('u.*,c.nama cluster_name')->join('m_cluster c', 'c.id=u.id_cluster', 'right')->where(['u.id'=> $id,'u.is_active'=>'1'])->get('m_unit u')->row_array();
-
+        
+        
         $unit['tgl_berlaku'] =date_format_id($unit['tgl_berlaku']);
         $unit['tgl_berakhir'] = date_format_id($unit['tgl_berakhir']);
 

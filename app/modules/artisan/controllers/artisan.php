@@ -324,7 +324,7 @@ class Artisan extends MX_Controller
         // $dom = pQuery::parseStr($src_html);
         // $script_tags = $dom->query('link');
 
-        $unexistens = "global/plugins/typeahead/typeahead.css,global/plugins/typeahead/handlebars.min.js,global/plugins/typeahead/typeahead.bundle.min.js";
+        $unexistens = "global/plugins/icheck/skins/minimal/grey.png";
         
         $files = explode(",", $unexistens);
         foreach ($files as $file) {

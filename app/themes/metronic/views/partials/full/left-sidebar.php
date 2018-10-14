@@ -44,14 +44,14 @@
 <li v-bind:class="{'nav-item':true,'start':(uri==active_menu), 'active':(uri==active_menu) ,'open':(uri==active_menu)}" v-for="(uri,menu) in menus" v-if="jQuery.inArray('{{ user_group }}',menu.credentials) != -1">
     <a href="javascript:;" class="nav-link nav-toggle" v-bind:uri="uri">
         <i v-bind:class="menu.icon"></i>
-        <span class="title">{{{menu.title}}}</span>
+        <span class="title" v-text="menu.title"></span>
         <span v-bind:class="{'selected':(uri==active_menu)}"></span>
         <span v-bind:class="{'arrow':true,'open':(uri==active_menu)}"></span>
     </a>
     <ul class="sub-menu">
         <li v-bind:class="{'nav-item':true,'start':(url==active_item), 'active':(url==active_item), 'open':(url==active_item)}" v-for="(url,caption) in menu.items">
             <a v-bind:href="'{{ base_url }}'+url" class="nav-link ">
-                <span class="title">{{{caption}}}</span>
+                <span class="title" v-text="caption"></span>
             </a>
         </li>
 
