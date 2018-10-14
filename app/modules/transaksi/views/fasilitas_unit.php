@@ -231,30 +231,38 @@
                         
                 <div class="row">
 
-                <div class="col-md-12">
+                <div class="col-md-12" v-show="has_valid_unit">
                     <!--  -->
+                    <h4>Fasilitas </h4>
                     <div class="m-grid m-grid-flex m-grid-responsive-xs m-grid-demo">
-                        <div class="m-grid-row" v-for="fg in daftar_fasilitas">
-                            <div v-for="f in fg" v-bind:class="{'font-white':1,'f-bg':1,'m-grid-col':1, 'm-grid-col-middle':1, 'm-grid-col-center':1}" v-bind:style="'background-image:url('+f.url_gambar+')'"><input @change="onSelectFasilitas(f.id)" type="checkbox" v-bind:value="f.id" data-checkbox="icheckbox_flat-blue" class="icheck id_fasilitas"><span v-text="f.nama" class="sp-text" v-bind:value="f.id" ></span></div>
+                        <div class="m-grid-row" v-for="fg in daftar_fasilitas_to_display">
+                            <div v-for="f in fg" v-bind:class="{'font-white':1,'f-bg':1,'m-grid-col':1, 'm-grid-col-middle':1, 'm-grid-col-center':1}" v-bind:style="'background-image:url('+f.url_gambar+')'"><input  type="checkbox" :checked="f.is_checked" v-bind:value="f.id" data-checkbox="icheckbox_flat-blue" class="icheck id_fasilitas"><span v-text="f.nama" class="sp-text" v-bind:value="f.id" ></span></div>
                         </div>
                     </div>
                     <!--  -->
                     </div>
                 </div>
                     </div>
-                    <div class="form-actions">
-                        <div class="col-md-12">
+                    <div class="form-actions" v-if="has_valid_unit">
+                         <div class="form-group"><div class="col-md-12">
 
-                            <button disabled type="button" class="btn btn-warning bold" @click="cancelEditing()">Cancel</button>
+                             <div class="col-md-2">Point Earned</div>
+                             <div class="col-md-6"><input disabled type="text" class="form-control" name="calculated_poin" v-model="unit.calculated_poin"></div>
+                             <div class="col-md-2"><button :disabled="unit.calculated_poin<=0" type="button" class="btn btn-success  margin-left-1em bold" @click="goToRedeem(unit.id)">Redeem</button></div>
+                         </div></div>
+                      
+                    <div class="col-md-12 text-center">
+
+                            <!-- <button disabled type="button" class="btn btn-warning bold" @click="cancelEditing()">Cancel</button> -->
 
 
-                            <button disabled type="button" class="btn btn-success fr margin-left-1em bold" @click="saveEditing(unit.id)">Submit</button>
+                            <button :disabled="unit.already_checkin" type="button" class="btn btn-success  margin-left-1em bold" @click="doCheckIn(unit.id)">Check-In</button>
                             
-                            <button  :disabled="enable_editing || !has_valid_unit" type="button" class="btn btn-info fr bold" @click="toggleEnableEditing()">Edit</button>
+                           <!--  <button  :disabled="enable_editing || !has_valid_unit" type="button" class="btn btn-info fr bold" @click="toggleEnableEditing()">Edit</button> -->
 
                         </div>
-                    </div>
-                     <div v-if="$index>0 && !member.collapse" style="padding-top: 2em"></div>
+                    </div>  
+                     
                 </form>
                 <!-- END FORM-->
             </div>
@@ -312,6 +320,7 @@
                         status_member : <?=json_encode($status_member)?>,
                         daftar_unit : <?=json_encode($daftar_unit)?>,
                         daftar_fasilitas:<?=json_encode($daftar_fasilitas)?>,
+                        daftar_fasilitas_to_display:[],
                         has_valid_unit:false,
                         max_member_atempt:0,
                         deleted_queue_ids:[],
@@ -335,22 +344,22 @@
                         ac_unit.init(this);
                         this.$set('vm',this);
 
-                        this.$nextTick(function(){
-                            $('input[type=checkbox].icheck.id_fasilitas').each(function(i,ck){
-                                var parent = $(ck).closest('div.icheckbox_flat-blue');
-                                console.log(parent);
-                                parent.find('ins').click(function(){
-                                    var checked = parent.hasClass('checked');
-                                    $('div.icheckbox_flat-blue.checked').not(parent).find('ins').trigger('click');
-                                    console.log(checked);
-                                });
-                            });
-                        });
+                        // this.$nextTick(function(){
+                        //     $('input[type=checkbox].icheck.id_fasilitas').each(function(i,ck){
+                        //         var parent = $(ck).closest('div.icheckbox_flat-blue');
+                        //         console.log(parent);
+                        //         parent.find('ins').click(function(){
+                        //             var checked = parent.hasClass('checked');
+                        //             $('div.icheckbox_flat-blue.checked').not(parent).find('ins').trigger('click');
+                        //             console.log(checked);
+                        //         });
+                        //     });
+                        // });
                     },
                     methods: {
                         resetEditing:function(){
-                            this.$set('max_member_atempt',0);
-                            this.$set('enable_editing',false);
+                            // this.$set('max_member_atempt',0);
+                            // this.$set('enable_editing',false);
                             this.$set('has_valid_unit',false);
 
                         },
@@ -366,106 +375,55 @@
                             var url_proxy = site_url()+'transaksi/fasilitas-unit/details_card_numbers_fetch_unit_row_json/'+unit.id+'?uuid='+uuidv4();
                             this.$http({url: url_proxy, method: 'GET'}).then(function (response) {
                                 var unit = response.data;
-                                this.$set('max_member_atempt',unit.member_count);
+                                //this.$set('max_member_atempt',unit.member_count);
+                                if(unit.already_checkin){
+                                    this.$set('daftar_fasilitas_to_display',$.extend({},this.$get('daftar_fasilitas')));
+                                }else{
+                                    this.$set('daftar_fasilitas_to_display',unit.daftar_fasilitas);
+
+                                }
                                 this.$set('unit', unit);
                                 //Or we as we did before
                                 //vm.stories = response.data
                                 this.$set('has_valid_unit',true);
 
-                                if(unit.member_count < 1 && unit.max_member > 0){
-                                    this.setEmptyMemberForm(unit);
-                                }
-                            })
+                                // if(unit.member_count < 1 && unit.max_member > 0){
+                                //     this.setEmptyMemberForm(unit);
+                                // }
+                            });
 
                         },
-                        toggleEnableEditing:function(){
-                            // this.$set('enable_editing',!this.$get('enable_editing'));
-                            // var textbox = $('input[name=card_number]');
+                        goToRedeem:function(){
+                            var unit = this.$get('unit');
+                            document.location.href = site_url()+'transaksi/redeem_poin/'+unit.id+'?uuidv4='+uuidv4();
+                        },
+                        doCheckIn:function(id_unit){
+                            if(confirmCheckIn()){
+                                var url_proxy = site_url()+'transaksi/fasilitas-unit/do_checkin/'+id_unit+'?uuid='+uuidv4();
+                                    this.$http({url: url_proxy, method: 'POST'}).then(function (response) {
+                                        // 
+                                });
+                            }
+                        },
+                        doCheckOut:function(id_unit){
+                            if(confirmCheckOut()){
+                                var url_proxy = site_url()+'transaksi/fasilitas-unit/do_checkout/'+id_unit+'?uuid='+uuidv4();
+                                this.$http({url: url_proxy, method: 'POST'}).then(function (response) {
+                                    // 
+                                });
+                            }
+                        },
+                        updateFasilitasTerpilih: function(){
 
-                            // textbox.show("fast", function () {
-                            //     textbox[0].focus();
-                            // });
                         },
-                        cancelEditing:function(){
-                            // this.$set('enable_editing',false);
-                        },
-                        setEmptyMemberForm:function(unit){
-                            // this.$set('max_member_atempt',1);
-                            // var member = $.extend(true, {},this.$get('member_data_template'));
-                            // member.id_unit = unit.id;
+                        confirmCheckIn :function() {
                             
-                            // member.tgl_berlaku  = unit.tgl_berlaku;
-                            // member.tgl_berakhir = unit.tgl_berakhir;
-
-                            // unit.members = [member];
-                            // unit.member_count = unit.members.length;
-                            // this.$set('unit', unit);
-                        },
-                        addMemberFormInstance :function() {
-                            // body...
-                            
-                            // var unit = this.$get('unit');
-                            // var max_member_atempt = this.$get('max_member_atempt');
-
-                            // if(max_member_atempt >= unit.max_member ){
-                            //     console.log('can\'t addMemberFormInstance exceed max_member unit is ' + unit.max_member);
-                            //     return;
-                            // }
-                            // console.log('addMemberFormInstance');
-                            // var member =  $.extend(true, {},this.$get('member_data_template'));
-                            // member.id_unit = unit.id;
-                     
-                            
-                            // member.tgl_berlaku  = unit.tgl_berlaku;
-                            // member.tgl_berakhir = unit.tgl_berakhir;
-
-                            // unit.members.push(member);
-                            // this.$set('unit', unit);
-                            // unit.member_count = unit.members.length;
-                            // this.$set('max_member_atempt',max_member_atempt+1);
 
                         },
-                        removeMemberFormInstance:function(index){
-                            // var unit = this.$get('unit');
-                            // var deleted_queue_ids = this.$get('deleted_queue_ids');
-                            // var member = unit.members[index];
-                            // var max_member_atempt = this.$get('max_member_atempt');
-                            
-                            // if(member.id != ''){
-                            //     console.log('This were existent record in dbs');
-                            //     if(confirm('This were existent record in dbs are you sure want to delete this member ?')){
-                            //         console.log('Add id deleted_queue_ids');
-                            //         deleted_queue_ids.push(member.id);
-                            //         unit.members.splice(index, 1);
-                            //         unit.member_count = unit.members.length;
-                            //         this.$set('max_member_atempt',max_member_atempt-1);
-
-                            //         console.log('Sent ajax request by with deleted_queue_ids as params after user click submit');
-                            //     }
-                            // }else{
-                            //     console.log('This were unexistent record in dbs');
-
-                            //     unit.members.splice(index, 1);
-                            //     unit.member_count = unit.members.length;
-
-                            //     this.$set('max_member_atempt',max_member_atempt-1);
-                            // }
+                        confirmCheckOut:function(){
+                             
                         },
-                        saveEditing:function(id){
-                            // var data = {
-                            //     deleted_queue_ids : this.$get('deleted_queue_ids'),
-                            //     unit: this.$get('unit')
-                            // };
-                            // var url_proxy = site_url()+'transaksi/details-card-numbers-save/'+id+'?uuid='+uuidv4()
-                            // this.$http.post(url_proxy, data).then(function(response) {
-                            //     var unit = response.data;
-                            //     this.$set('enable_editing',false);
-
-                            //     this.setUnit(unit);
-                            //     console.log(response);
-                            // });
-
-                        }
+                        
                     }        
                 });
             });

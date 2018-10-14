@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-10-13 21:08:10
+Date: 2018-10-14 13:38:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,7 +31,8 @@ CREATE TABLE `ci_sessions` (
 -- ----------------------------
 -- Records of ci_sessions
 -- ----------------------------
-INSERT INTO `ci_sessions` VALUES ('3337bfe21e1aba01aef7b620c1a26185', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539439484', 'a:6:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:80:\"http://localhost/lavon/public/assets/uploads/files/avatar/01de6-welcome-scan.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:15:\"Ratna Sarumpeat\";s:14:\"cms_user_email\";s:20:\"superadmin@lavon.com\";}');
+INSERT INTO `ci_sessions` VALUES ('8b6078d88475e4d14a463be6e2109eb4', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539492531', 'a:6:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:80:\"http://localhost/lavon/public/assets/uploads/files/avatar/01de6-welcome-scan.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:14:\"Ratna Surampea\";s:14:\"cms_user_email\";s:20:\"superadmin@lavon.com\";}');
+INSERT INTO `ci_sessions` VALUES ('4934eaeb6e80310dd53a4f6dea78148e', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539499040', 'a:8:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:80:\"http://localhost/lavon/public/assets/uploads/files/avatar/01de6-welcome-scan.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:14:\"Ratna Surampea\";s:14:\"cms_user_email\";s:20:\"superadmin@lavon.com\";s:21:\"flash:old:cms_old_url\";s:24:\"transaksi/fasilitas-unit\";s:21:\"flash:new:cms_old_url\";s:24:\"transaksi/fasilitas-unit\";}');
 
 -- ----------------------------
 -- Table structure for `main_authorization`
@@ -396,7 +397,7 @@ CREATE TABLE `main_user` (
 -- ----------------------------
 -- Records of main_user
 -- ----------------------------
-INSERT INTO `main_user` VALUES ('1', 'admin', 'superadmin@lavon.com', '01de6-welcome-scan.jpg', '21232f297a57a5a743894a0e4a801fc3', null, 'Ratna Sarumpeat', '1', null, null, null, null, null, null, null, null, null, '0');
+INSERT INTO `main_user` VALUES ('1', 'admin', 'superadmin@lavon.com', '01de6-welcome-scan.jpg', '21232f297a57a5a743894a0e4a801fc3', null, 'Ratna Surampea', '1', null, null, null, null, null, null, null, null, null, '0');
 
 -- ----------------------------
 -- Table structure for `main_widget`
@@ -4105,9 +4106,11 @@ CREATE TABLE `tr_poin` (
   `waktu_checkin` time NOT NULL,
   `waktu_chekout` time NOT NULL,
   `durasi` int(11) NOT NULL,
+  `calculated` int(11) DEFAULT '0',
   `tgl_berlaku` datetime NOT NULL,
   `tgl_dibuat` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `tgl_diubah` datetime NOT NULL,
+  `is_complete` int(11) DEFAULT NULL,
   `dibuat_oleh` int(11) DEFAULT NULL,
   `diupdate_oleh` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),

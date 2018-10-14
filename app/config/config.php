@@ -310,10 +310,10 @@ $config['sess_valid_drivers']   = array();
 $config['sess_cookie_name']     = 'applavon';
 $config['sess_expiration']      = 0;
 $config['sess_expire_on_close'] = false;
-$config['sess_encrypt_cookie']  = true;
+$config['sess_encrypt_cookie']  = false;
 $config['sess_use_database']    = true;
 $config['sess_table_name']      = 'ci_sessions';
-$config['sess_match_ip']        = false;
+$config['sess_match_ip']        = true;
 $config['sess_match_useragent'] = true;
 $config['sess_time_to_update']  = 300;
 
