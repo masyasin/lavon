@@ -1,4 +1,5 @@
 <link rel="stylesheet" type="text/css" href="{{ theme_assets }}/global/plugins/icheck/skins/all.css">
+<link rel="stylesheet" type="text/css" href="{{ theme_assets }}/global/plugins/bootstrap-sweetalert/sweetalert.css">
 <h1 class="page-title"> Transaksi Fasilitas Unit
     <small>cek in dan cek out fasilitas</small>
 </h1>
@@ -236,7 +237,7 @@
                     <h4>Fasilitas </h4>
                     <div class="m-grid m-grid-flex m-grid-responsive-xs m-grid-demo">
                         <div class="m-grid-row" v-for="fg in daftar_fasilitas_to_display">
-                            <div v-for="f in fg" v-bind:class="{'font-white':1,'f-bg':1,'m-grid-col':1, 'm-grid-col-middle':1, 'm-grid-col-center':1}" v-bind:style="'background-image:url('+f.url_gambar+')'"><input  type="checkbox" :checked="f.is_checked" v-bind:value="f.id" data-checkbox="icheckbox_flat-blue" class="icheck id_fasilitas"><span v-text="f.nama" class="sp-text" v-bind:value="f.id" ></span></div>
+                            <div v-for="f in fg" v-bind:class="{'font-white':1,'f-bg':1,'m-grid-col':1, 'm-grid-col-middle':1, 'm-grid-col-center':1}" v-bind:style="'background-image:url('+f.url_gambar+')'"><input v-if="!unit.already_checkin && unit.card_number != ''"  type="checkbox"  v-bind:value="f.id" data-checkbox="icheckbox_flat-blue" class="form-control icheck id_fasilitas" v-model="f.is_checked" @click="updateFasilitasTerpilih(f)"><span v-text="f.nama" class="sp-text" v-bind:value="f.id" ></span></div>
                         </div>
                     </div>
                     <!--  -->
@@ -247,7 +248,7 @@
                          <div class="form-group"><div class="col-md-12">
 
                              <div class="col-md-2">Point Earned</div>
-                             <div class="col-md-6"><input disabled type="text" class="form-control" name="calculated_poin" v-model="unit.calculated_poin"></div>
+                             <div class="col-md-8"><input disabled type="text" class="form-control" name="calculated_poin" v-model="unit.calculated_poin"></div>
                              <div class="col-md-2"><button :disabled="unit.calculated_poin<=0" type="button" class="btn btn-success  margin-left-1em bold" @click="goToRedeem(unit.id)">Redeem</button></div>
                          </div></div>
                       
@@ -256,7 +257,8 @@
                             <!-- <button disabled type="button" class="btn btn-warning bold" @click="cancelEditing()">Cancel</button> -->
 
 
-                            <button :disabled="unit.already_checkin" type="button" class="btn btn-success  margin-left-1em bold" @click="doCheckIn(unit.id)">Check-In</button>
+                            <button :disabled="unit.already_checkin|| unit.card_number==''||fasilitas_terpilih.length==0" type="button" class="btn btn-success  margin-left-1em bold" @click="doCheckIn(unit.id)">Check-In</button>
+                            <button v-if="unit.already_checkin" type="button" class="btn btn-danger  margin-left-1em bold" @click="doCheckOut(unit.id)">Check-Out</button>
                             
                            <!--  <button  :disabled="enable_editing || !has_valid_unit" type="button" class="btn btn-info fr bold" @click="toggleEnableEditing()">Edit</button> -->
 
@@ -268,6 +270,7 @@
             </div>
         </div>
 <script src="{{ theme_assets }}/global/plugins/icheck/icheck.min.js" type="text/javascript"></script>
+<script src="{{ theme_assets }}/global/plugins/bootstrap-sweetalert/sweetalert.min.js"></script>
 <script src="{{ theme_assets }}/pages/scripts/form-icheck.min.js" type="text/javascript"></script>
         <script type="text/javascript">
             $=jQuery;
@@ -321,6 +324,7 @@
                         daftar_unit : <?=json_encode($daftar_unit)?>,
                         daftar_fasilitas:<?=json_encode($daftar_fasilitas)?>,
                         daftar_fasilitas_to_display:[],
+                        fasilitas_terpilih:[],
                         has_valid_unit:false,
                         max_member_atempt:0,
                         deleted_queue_ids:[],
@@ -361,25 +365,27 @@
                             // this.$set('max_member_atempt',0);
                             // this.$set('enable_editing',false);
                             this.$set('has_valid_unit',false);
+                            this.$set('fasilitas_terpilih',[]);
 
                         },
                         setUnit:function(unit){
-                            var is_editing_enabled = this.$get('enable_editing');
-                            if(is_editing_enabled){
-                                if(!confirm('Are you sure want to cancel editing that are not already saved ?')){
+                            // var is_editing_enabled = this.$get('enable_editing');
+                            // if(is_editing_enabled){
+                            //     if(!confirm('Are you sure want to cancel editing that are not already saved ?')){
 
-                                    return;
-                                }
-                            }
+                            //         return;
+                            //     }
+                            // }
                             this.resetEditing();
                             var url_proxy = site_url()+'transaksi/fasilitas-unit/details_card_numbers_fetch_unit_row_json/'+unit.id+'?uuid='+uuidv4();
                             this.$http({url: url_proxy, method: 'GET'}).then(function (response) {
                                 var unit = response.data;
                                 //this.$set('max_member_atempt',unit.member_count);
-                                if(unit.already_checkin){
-                                    this.$set('daftar_fasilitas_to_display',$.extend({},this.$get('daftar_fasilitas')));
+                                if(!unit.already_checkin){
+                                    var daftar_fasilitas = this.$get('daftar_fasilitas');
+                                    this.$set('daftar_fasilitas_to_display',$.extend({},daftar_fasilitas));
                                 }else{
-                                    this.$set('daftar_fasilitas_to_display',unit.daftar_fasilitas);
+                                    this.$set('daftar_fasilitas_to_display',unit.fasilitas);
 
                                 }
                                 this.$set('unit', unit);
@@ -398,31 +404,62 @@
                             document.location.href = site_url()+'transaksi/redeem_poin/'+unit.id+'?uuidv4='+uuidv4();
                         },
                         doCheckIn:function(id_unit){
-                            if(confirmCheckIn()){
-                                var url_proxy = site_url()+'transaksi/fasilitas-unit/do_checkin/'+id_unit+'?uuid='+uuidv4();
-                                    this.$http({url: url_proxy, method: 'POST'}).then(function (response) {
-                                        // 
+                            var unit = this.$get('unit');
+                            var daftar_fasilitas = this.$get('daftar_fasilitas');
+                            var fasilitas_terpilih = this.$get('fasilitas_terpilih');
+                            var fasilitas_terpilih_text = [];
+
+                            $.each(daftar_fasilitas,function(i,sub) {
+                               $.each(sub,function(j,f){
+                                console.log(f)
+                                if($.inArray(f.id,fasilitas_terpilih) != -1){
+                                    fasilitas_terpilih_text.push(f.nama);
+                                }
+                               }); 
+                            });
+                            var self = this;
+                            swal({
+                              title: "Apakah anda sudah yakin?",
+                              text: "Fasilitas yang sudah dipilih adalah sebagai berikut:\n"+fasilitas_terpilih_text.join(', '),
+                              type: "warning",
+                              showCancelButton: true,
+                              confirmButtonClass: "btn-danger",
+                              confirmButtonText: "Yes, Check-In",
+                              closeOnConfirm: false
+                            },
+                            function(){
+                                $('.sweet-alert button.cancel').click();
+                                App.blockUI({
+                                    target:'.form-body'
                                 });
-                            }
+                                var url_proxy = site_url()+'transaksi/fasilitas-unit/do_checkin/'+id_unit+'?uuid='+uuidv4();
+                                self.$http({url: url_proxy, method: 'POST',data:{fasilitas:fasilitas_terpilih}}).then(function (response) {
+                                    App.unblockUI('.form-body');
+                                    self.setUnit(unit); 
+                                });
+                                return true;
+                            });
                         },
                         doCheckOut:function(id_unit){
-                            if(confirmCheckOut()){
+                            if(this.confirmCheckOut()){
                                 var url_proxy = site_url()+'transaksi/fasilitas-unit/do_checkout/'+id_unit+'?uuid='+uuidv4();
                                 this.$http({url: url_proxy, method: 'POST'}).then(function (response) {
-                                    // 
+                                    
                                 });
                             }
                         },
-                        updateFasilitasTerpilih: function(){
-
-                        },
-                        confirmCheckIn :function() {
+                        updateFasilitasTerpilih: function(f){
                             
+                            var fasilitas_terpilih  = [];
 
-                        },
-                        confirmCheckOut:function(){
-                             
-                        },
+                            $('input[type=checkbox].form-control.icheck.id_fasilitas:checked').each(function(){
+                                var value= this.value;
+                                fasilitas_terpilih.push(value);
+                            });
+                            this.$set('fasilitas_terpilih',fasilitas_terpilih);
+                            console.log(fasilitas_terpilih);
+                        }
+                        
                         
                     }        
                 });

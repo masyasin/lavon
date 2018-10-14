@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-10-14 13:38:57
+Date: 2018-10-14 16:43:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,7 +32,7 @@ CREATE TABLE `ci_sessions` (
 -- Records of ci_sessions
 -- ----------------------------
 INSERT INTO `ci_sessions` VALUES ('8b6078d88475e4d14a463be6e2109eb4', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539492531', 'a:6:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:80:\"http://localhost/lavon/public/assets/uploads/files/avatar/01de6-welcome-scan.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:14:\"Ratna Surampea\";s:14:\"cms_user_email\";s:20:\"superadmin@lavon.com\";}');
-INSERT INTO `ci_sessions` VALUES ('4934eaeb6e80310dd53a4f6dea78148e', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539499040', 'a:8:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:80:\"http://localhost/lavon/public/assets/uploads/files/avatar/01de6-welcome-scan.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:14:\"Ratna Surampea\";s:14:\"cms_user_email\";s:20:\"superadmin@lavon.com\";s:21:\"flash:old:cms_old_url\";s:24:\"transaksi/fasilitas-unit\";s:21:\"flash:new:cms_old_url\";s:24:\"transaksi/fasilitas-unit\";}');
+INSERT INTO `ci_sessions` VALUES ('713e7939129ce98b0966a66f85ff6618', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539510039', 'a:8:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:80:\"http://localhost/lavon/public/assets/uploads/files/avatar/01de6-welcome-scan.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:14:\"Ratna Surampea\";s:14:\"cms_user_email\";s:20:\"superadmin@lavon.com\";s:21:\"flash:old:cms_old_url\";s:24:\"transaksi/fasilitas-unit\";s:21:\"flash:new:cms_old_url\";s:24:\"transaksi/fasilitas-unit\";}');
 
 -- ----------------------------
 -- Table structure for `main_authorization`
@@ -4104,25 +4104,28 @@ CREATE TABLE `tr_poin` (
   `id_fasilitas` int(11) NOT NULL,
   `nilai_poin` int(11) NOT NULL,
   `waktu_checkin` time NOT NULL,
-  `waktu_chekout` time NOT NULL,
+  `waktu_checkout` time NOT NULL,
   `durasi` int(11) NOT NULL,
-  `calculated` int(11) DEFAULT '0',
+  `calculated` int(11) NOT NULL DEFAULT '0',
   `tgl_berlaku` datetime NOT NULL,
   `tgl_dibuat` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `tgl_diubah` datetime NOT NULL,
-  `is_complete` int(11) DEFAULT NULL,
-  `dibuat_oleh` int(11) DEFAULT NULL,
-  `diupdate_oleh` int(11) DEFAULT NULL,
+  `is_complete` int(11) NOT NULL DEFAULT '0',
+  `dibuat_oleh` int(11) NOT NULL,
+  `diupdate_oleh` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_member` (`id_unit`),
   KEY `id_fasilitas` (`id_fasilitas`),
-  CONSTRAINT `tr_poin_ibfk_1` FOREIGN KEY (`id_unit`) REFERENCES `m_member` (`id`),
-  CONSTRAINT `tr_poin_ibfk_2` FOREIGN KEY (`id_fasilitas`) REFERENCES `m_fasilitas` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `tr_poin_ibfk_2` FOREIGN KEY (`id_fasilitas`) REFERENCES `m_fasilitas` (`id`),
+  CONSTRAINT `tr_poin_ibfk_3` FOREIGN KEY (`id_unit`) REFERENCES `m_unit` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tr_poin
 -- ----------------------------
+INSERT INTO `tr_poin` VALUES ('1', '1', '2', '0', '16:12:34', '16:12:34', '0', '0', '2018-12-30 00:00:00', '2018-10-14 16:12:34', '2018-10-14 16:12:34', '0', '1', '1');
+INSERT INTO `tr_poin` VALUES ('2', '1', '6', '0', '16:12:34', '16:12:34', '0', '0', '2018-12-30 00:00:00', '2018-10-14 16:12:34', '2018-10-14 16:12:34', '0', '1', '1');
+INSERT INTO `tr_poin` VALUES ('3', '1', '12', '0', '16:12:34', '16:12:34', '0', '0', '2018-12-30 00:00:00', '2018-10-14 16:12:34', '2018-10-14 16:12:34', '0', '1', '1');
 
 -- ----------------------------
 -- Table structure for `tr_redeem`
@@ -4137,9 +4140,7 @@ CREATE TABLE `tr_redeem` (
   `tgl_dibuat` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `id_member` (`id_member`),
-  KEY `tr_redeem_ibfk_1` (`id_unit`),
-  CONSTRAINT `tr_redeem_ibfk_1` FOREIGN KEY (`id_unit`) REFERENCES `m_unit` (`id`),
-  CONSTRAINT `tr_redeem_ibfk_2` FOREIGN KEY (`id_member`) REFERENCES `m_member` (`id`)
+  KEY `tr_redeem_ibfk_1` (`id_unit`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------

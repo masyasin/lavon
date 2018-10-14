@@ -324,7 +324,7 @@ class Artisan extends MX_Controller
         // $dom = pQuery::parseStr($src_html);
         // $script_tags = $dom->query('link');
 
-        $unexistens = "global/plugins/icheck/skins/minimal/grey.png";
+        $unexistens = "global/plugins/bootstrap-sweetalert/sweetalert.min.js";
         
         $files = explode(",", $unexistens);
         foreach ($files as $file) {
