@@ -52,8 +52,8 @@
 
         <style type="text/css">
 .dataTables_wrapper .dataTables_paginate .paginate_button{
-    display: inline;
-    padding: 0;
+    display: inline-block;
+    padding: 0 0 0 1px;
 }            
 
 .btn.refresh-data{

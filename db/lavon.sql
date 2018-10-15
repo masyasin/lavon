@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-10-14 16:43:36
+Date: 2018-10-15 12:29:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,7 +32,8 @@ CREATE TABLE `ci_sessions` (
 -- Records of ci_sessions
 -- ----------------------------
 INSERT INTO `ci_sessions` VALUES ('8b6078d88475e4d14a463be6e2109eb4', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539492531', 'a:6:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:80:\"http://localhost/lavon/public/assets/uploads/files/avatar/01de6-welcome-scan.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:14:\"Ratna Surampea\";s:14:\"cms_user_email\";s:20:\"superadmin@lavon.com\";}');
-INSERT INTO `ci_sessions` VALUES ('713e7939129ce98b0966a66f85ff6618', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539510039', 'a:8:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:80:\"http://localhost/lavon/public/assets/uploads/files/avatar/01de6-welcome-scan.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:14:\"Ratna Surampea\";s:14:\"cms_user_email\";s:20:\"superadmin@lavon.com\";s:21:\"flash:old:cms_old_url\";s:24:\"transaksi/fasilitas-unit\";s:21:\"flash:new:cms_old_url\";s:24:\"transaksi/fasilitas-unit\";}');
+INSERT INTO `ci_sessions` VALUES ('91e18e231783ca8b94af02bc516b1ee7', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539581357', 'a:8:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:80:\"http://localhost/lavon/public/assets/uploads/files/avatar/01de6-welcome-scan.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:14:\"Ratna Surampea\";s:14:\"cms_user_email\";s:20:\"superadmin@lavon.com\";s:21:\"flash:old:cms_old_url\";s:24:\"transaksi/fasilitas-unit\";s:21:\"flash:new:cms_old_url\";s:24:\"transaksi/fasilitas-unit\";}');
+INSERT INTO `ci_sessions` VALUES ('4e3e59d04dc1f9033808ea62f51632a1', '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:62.0) Gecko/20100101 Firefox/62.0', '1539579386', 'a:8:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:80:\"http://localhost/lavon/public/assets/uploads/files/avatar/01de6-welcome-scan.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:14:\"Ratna Surampea\";s:14:\"cms_user_email\";s:20:\"superadmin@lavon.com\";s:21:\"flash:old:cms_old_url\";s:19:\"dashboard/statistik\";s:21:\"flash:new:cms_old_url\";s:19:\"dashboard/statistik\";}');
 
 -- ----------------------------
 -- Table structure for `main_authorization`
@@ -315,7 +316,7 @@ INSERT INTO `main_navigation` VALUES ('20', 'pengaturan_setting', null, 'pengatu
 INSERT INTO `main_navigation` VALUES ('21', 'pengaturan_pengguna', null, 'pengaturan_pengguna', 'glyphicon-home', 'Pengaturan_pengguna', 'pengaturan_pengguna', 'Pengaturan_pengguna', 'pengaturan/pengguna', '4', '1', '13', '0', null, '0', 'metronic', 'full');
 INSERT INTO `main_navigation` VALUES ('22', 'pengaturan_grup', null, 'pengaturan_grup', 'glyphicon-home', 'Pengaturan_grup', 'pengaturan_grup', 'Pengaturan_grup', 'pengaturan/grup', '4', '1', '14', '0', null, '0', 'metronic', 'full');
 INSERT INTO `main_navigation` VALUES ('23', 'dashboard_statistik', null, 'dashboard_statistik', 'glyphicon-home', 'Dashboard_statistik', 'dashboard_statistik', 'Dashboard_statistik', 'dashboard/statistik', '4', '1', '15', '0', null, '0', 'metronic', 'full');
-INSERT INTO `main_navigation` VALUES ('24', 'transaksi_detail_card_numbers', null, 'transaksi_detail_card_numbers', 'glyphicon-home', 'Transaksi_detail_card_numbers', 'transaksi_detail_card_numbers', 'Transaksi_detail_card_numbers', 'transaksi/details-card-numbers', '4', '1', '16', '0', null, '0', 'metronic', 'full');
+INSERT INTO `main_navigation` VALUES ('24', 'manajemen_member', null, 'manajemen_member', 'glyphicon-home', 'manajemen_member', 'manajemen_member', 'manajemen_member', 'manajemen/member', '4', '1', '16', '0', null, '0', 'metronic', 'full');
 INSERT INTO `main_navigation` VALUES ('25', 'manajemen_unit', null, 'manajemen_unit', 'glyphicon-home', 'Manajemen_unit', 'manajemen_unit', 'Manajemen_unit', 'manajemen/unit', '4', '1', '17', '0', null, '0', 'metronic', 'full');
 INSERT INTO `main_navigation` VALUES ('26', 'manajemen_cluster', null, 'manajemen_cluster', 'glyphicon-home', 'Manajemen_cluster', 'manajemen_cluster', 'Manajemen_cluster', 'manajemen/cluster', '4', '1', '18', '0', null, '0', 'metronic', 'full');
 INSERT INTO `main_navigation` VALUES ('27', 'manajemen_fasilitas', null, 'manajemen_fasilitas', 'glyphicon-home', 'Manajemen_fasilitas', 'manajemen_fasilitas', 'Manajemen_fasilitas', 'manajemen/fasilitas', '4', '1', '19', '0', null, '0', 'metronic', 'full');
@@ -323,7 +324,7 @@ INSERT INTO `main_navigation` VALUES ('28', 'manajemen_tenan', null, 'manajemen_
 INSERT INTO `main_navigation` VALUES ('29', 'manajemen_marcendaise', null, 'manajemen_marcendaise', 'glyphicon-home', 'Manajemen_marcendaise', 'manajemen_marcendaise', 'Manajemen_marcendaise', 'manajemen/marcendaise', '4', '1', '21', '0', null, '0', 'metronic', 'full');
 INSERT INTO `main_navigation` VALUES ('30', 'manajemen_unit_poin', null, 'manajemen_unit_poin', 'glyphicon-home', 'Manajemen_unit_poin', 'manajemen_unit_poin', 'Manajemen_unit_poin', 'manajemen/unit_poin', '4', '1', '22', '0', null, '0', 'metronic', 'full');
 INSERT INTO `main_navigation` VALUES ('31', 'transaksi_redeem_poin', null, 'transaksi_redeem_poin', 'glyphicon-home', 'Transaksi_redeem_poin', 'transaksi_redeem_poin', 'Transaksi_redeem_poin', 'transaksi/redeem_poin', '4', '1', '24', '0', null, '0', 'metronic', 'full');
-INSERT INTO `main_navigation` VALUES ('32', 'transaksi_fasilitas_unit', null, 'transaksi_fasilitas_unit', 'glyphicon-home', 'Transaksi_fasilitas_unit', 'transaksi_fasilitas_unit', 'Transaksi_fasilitas_unit', 'transaksi/fasilitas_unit', '4', '1', '25', '0', null, '0', 'metronic', 'full');
+INSERT INTO `main_navigation` VALUES ('32', 'transaksi_fasilitas_unit', null, 'transaksi_fasilitas_unit', 'glyphicon-home', 'Transaksi_fasilitas_unit', 'transaksi_fasilitas_unit', 'Transaksi_fasilitas_unit', 'transaksi/fasilitas', '4', '1', '25', '0', null, '0', 'metronic', 'full');
 INSERT INTO `main_navigation` VALUES ('33', 'transaksi_histori_transaksi_poin', null, 'transaksi_histori_transaksi_poin', 'glyphicon-home', 'Transaksi_histori_transaksi_poin', 'transaksi_histori_transaksi_poin', 'Transaksi_histori_transaksi_poin', 'transaksi/histori_transaksi_poin', '4', '1', '26', '0', null, '0', 'metronic', 'full');
 INSERT INTO `main_navigation` VALUES ('34', 'transaksi_histori_check_inout', null, 'transaksi_histori_check_inout', 'glyphicon-home', 'Transaksi_histori_check_inout', 'transaksi_histori_check_inout', 'Transaksi_histori_check_inout', 'transaksi/histori_check_inout', '4', '1', '27', '0', null, '0', 'metronic', 'full');
 INSERT INTO `main_navigation` VALUES ('35', 'transaksi_histori_redeem_poin', null, 'transaksi_histori_redeem_poin', 'glyphicon-home', 'Transaksi_histori_redeem_poin', 'transaksi_histori_redeem_poin', 'Transaksi_histori_redeem_poin', 'transaksi/histori_redeem_poin', '4', '1', '28', '0', null, '0', 'metronic', 'full');
@@ -987,12 +988,13 @@ CREATE TABLE `m_marcendaise` (
   `tgl_dibuat` datetime NOT NULL,
   `tgl_diubah` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_marcendaise
 -- ----------------------------
-INSERT INTO `m_marcendaise` VALUES ('1', 'Uang Dollar', '6a576-kz_tenge_1.png', 'Uang Mainan', '4', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `m_marcendaise` VALUES ('1', 'Uang Rusia', '6a576-kz_tenge_1.png', 'Uang Rusia Mainan', '4', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `m_marcendaise` VALUES ('2', 'Uang 1 Dollar US', 'e847c-us_dollar_1.png', 'Uang Dollar', '4', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- ----------------------------
 -- Table structure for `m_member`
@@ -2512,11 +2514,11 @@ INSERT INTO `m_member` VALUES ('1488', '1488', 'YUSANTI DEWI', 'KTP', '317301570
 INSERT INTO `m_member` VALUES ('1489', '1489', 'FELDA DIANA T', 'KTP', '-', '0000-00-00', '', '', 'RUKO DE MANSION', 'JL JALUR SUTERA BLOK A NO 8 KUNCIRAN PINANG', null, 'Home Owner', '2017-12-28', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_member` VALUES ('1490', '1490', 'ANGGA SUGIHARTO PRATAMA', 'KTP', '3671081607900002', '0000-00-00', '', '', 'PERSADA RAYA ', 'GEMBOR', null, 'Home Owner', '2017-12-20', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_member` VALUES ('1491', '1491', 'JIMMY', 'KTP', '-', '0000-00-00', '', '', 'RUKO DE MANSION', 'JL JALUR SUTERA BLOK A NO 8 KUNCIRAN PINANG', null, 'Home Owner', '2017-12-27', '0000-00-00', '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
-INSERT INTO `m_member` VALUES ('1498', '1', 'EDI', 'KTP', '3172012505760000', '1970-01-01', '8977175234', 'edi@gmail.com', 'JELAMBAR RT/RW 06/06 PEJAGALAN', 'PENJARINGAN', '3', 'Home Owner', '2017-09-24', '2020-12-12', '2018-04-21 10:23:00', '2018-10-13 18:50:37', '1');
-INSERT INTO `m_member` VALUES ('1499', '1', 'INDRA', 'KTP', '3172012505760000', '1970-01-01', '8977175234', 'indra@gmail.com', 'JELAMBAR RT/RW 06/06 PEJAGALAN', 'PENJARINGAN', '3', 'Lessee', '2017-09-24', '2020-12-12', '2018-04-21 10:23:00', '2018-10-13 18:50:37', '1');
+INSERT INTO `m_member` VALUES ('1498', '1', 'EDI', 'KTP', '3172012505760000', '1970-01-01', '8977175234', 'edi@gmail.com', 'JELAMBAR RT/RW 06/06 PEJAGALAN', 'PENJARINGAN', '3', 'Home Owner', '2017-09-24', '2024-12-11', '2018-04-21 10:23:00', '2018-10-15 12:11:04', '1');
+INSERT INTO `m_member` VALUES ('1499', '1', 'INDRA', 'KTP', '3172012505760000', '1970-01-01', '8977175234', 'indra@gmail.com', 'JELAMBAR RT/RW 06/06 PEJAGALAN', 'PENJARINGAN', '3', 'Lessee', '2017-09-24', '2024-12-11', '2018-04-21 10:23:00', '2018-10-15 12:11:04', '1');
 INSERT INTO `m_member` VALUES ('1500', '1492', 'Putra', 'KTP', '4566666', '1986-09-18', '', '', '', 'Grinting', '69', 'Home Owner', '2017-12-26', '2018-12-26', '2018-10-09 03:33:45', '2018-10-09 03:43:31', '1');
 INSERT INTO `m_member` VALUES ('1501', '399', 'YUSUF', 'KTP', '66666666', '2018-10-26', '444444444444', 'yaskdssss@gmail.com', '', 'SSS', '19', 'Lessee', '2017-12-20', '2020-12-28', '2018-10-09 14:47:03', '2018-10-09 14:47:03', '1');
-INSERT INTO `m_member` VALUES ('1502', '1', '', 'KTP', '', '1970-01-01', '', '', '', '', '15', 'Home Owner', '2017-09-24', '2020-12-12', '2018-10-09 15:32:58', '2018-10-13 18:50:37', '1');
+INSERT INTO `m_member` VALUES ('1502', '1', '', 'KTP', '', '1970-01-01', '', '', '', '', '15', 'Home Owner', '2017-09-24', '2024-12-11', '2018-10-09 15:32:58', '2018-10-15 12:11:04', '1');
 
 -- ----------------------------
 -- Table structure for `m_poin_unit`
@@ -2580,7 +2582,7 @@ CREATE TABLE `m_unit` (
 -- ----------------------------
 -- Records of m_unit
 -- ----------------------------
-INSERT INTO `m_unit` VALUES ('1', '3190992624', '1', '1-15-23', '5', 'Sewa', '2017-09-24', '2020-12-12', null, '2018-04-21 10:23:00', '2018-10-13 18:50:37', '1');
+INSERT INTO `m_unit` VALUES ('1', '3190992624', '1', '1-15-23', '5', 'Sewa', '2017-09-24', '2024-12-11', null, '2018-04-21 10:23:00', '2018-10-15 12:11:04', '1');
 INSERT INTO `m_unit` VALUES ('2', '12345678', '1', '1-15-35', '5', 'Sewa', '2017-12-08', '2018-01-31', null, '2018-04-21 10:23:00', '2018-10-09 04:02:04', '1');
 INSERT INTO `m_unit` VALUES ('3', '', '1', '1-9-15', '5', 'Sewa', '2017-12-27', '0000-00-00', null, '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');
 INSERT INTO `m_unit` VALUES ('4', '', '1', '1-11-28', '5', 'Sewa', '2017-12-02', '0000-00-00', null, '2018-04-21 10:23:00', '2018-04-22 08:00:00', '1');

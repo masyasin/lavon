@@ -343,7 +343,7 @@
                                 }
                             }
                             this.resetEditing();
-                            var url_proxy = site_url()+'transaksi/details-card-numbers-fetch-unit-row-json/'+unit.id+'?uuid='+uuidv4();
+                            var url_proxy = site_url()+'manajemen/member/fetch_unit_row_json/'+unit.id+'?uuid='+uuidv4();
                             this.$http({url: url_proxy, method: 'GET'}).then(function (response) {
                                 var unit = response.data;
                                 this.$set('max_member_atempt',unit.member_count);
@@ -436,7 +436,7 @@
                                 deleted_queue_ids : this.$get('deleted_queue_ids'),
                                 unit: this.$get('unit')
                             };
-                            var url_proxy = site_url()+'transaksi/details-card-numbers-save/'+id+'?uuid='+uuidv4()
+                            var url_proxy = site_url()+'manajemen/member/save/'+id+'?uuid='+uuidv4()
                             this.$http.post(url_proxy, data).then(function(response) {
                                 var unit = response.data;
                                 this.$set('enable_editing',false);

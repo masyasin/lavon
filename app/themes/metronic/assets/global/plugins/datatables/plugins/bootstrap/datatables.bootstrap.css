@@ -1,4 +1,7 @@
-table.dataTable {
+table.dataTable{
+    width: 100% !important;
+}
+/*table.dataTable {
     clear: both;
     margin-top: 6px !important;
     margin-bottom: 6px !important;
@@ -45,11 +48,13 @@ div.dataTables_wrapper div.dataTables_paginate {
     margin: 0;
     white-space: nowrap;
     text-align: right;
-}
+}*/
+
 div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     margin: 2px 0;
     white-space: nowrap;
 }
+/*
 table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_desc, table.dataTable thead>tr>th.sorting, table.dataTable thead>tr>td.sorting_asc, table.dataTable thead>tr>td.sorting_desc, table.dataTable thead>tr>td.sorting {
     padding-right: 30px;
 }
@@ -121,4 +126,4 @@ table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td
 }
 div.dataTables_scrollHead table.table-bordered {
     border-bottom-width: 0;
-}
+}*/

@@ -81,18 +81,18 @@ $route['transaksi/histori-transaksi-poin/(:any)']         = 'transaksi/histori_t
 
 
 
-$route['transaksi/fasilitas-unit']               = 'transaksi/fasilitas_unit';
-$route['transaksi/fasilitas-unit/(:any)']         = 'transaksi/fasilitas_unit/$1';
+$route['transaksi/fasilitas']               = 'transaksi/fasilitas_unit';
+$route['transaksi/fasilitas/(:any)']         = 'transaksi/fasilitas_unit/$1';
 
 $route['transaksi/redeem-poin']               = 'transaksi/redeem_poin';
 $route['transaksi/redeem-poin/(:any)']         = 'transaksi/redeem_poin/$1';
 
-$route['transaksi/details-card-numbers-fetch-unit-row-json']               = 'transaksi/details_card_numbers_fetch_unit_row_json';
-$route['transaksi/details-card-numbers-fetch-unit-row-json/(:any)']         = 'transaksi/details_card_numbers_fetch_unit_row_json/$1';
+// $route['transaksi/details-card-numbers-fetch-unit-row-json']               = 'transaksi/details_card_numbers_fetch_unit_row_json';
+// $route['transaksi/details-card-numbers-fetch-unit-row-json/(:any)']         = 'transaksi/details_card_numbers_fetch_unit_row_json/$1';
 
 
-$route['transaksi/details-card-numbers-save']               = 'transaksi/details_card_numbers_save';
-$route['transaksi/details-card-numbers-save/(:any)']         = 'transaksi/details_card_numbers_save/$1';
-$route['transaksi/details-card-numbers']               = 'transaksi/details_card_numbers';
+// $route['transaksi/details-card-numbers-save']               = 'transaksi/details_card_numbers_save';
+// $route['transaksi/details-card-numbers-save/(:any)']         = 'transaksi/details_card_numbers_save/$1';
+// $route['transaksi/details-card-numbers']               = 'transaksi/details_card_numbers';
 
 $route['default_controller'] = 'dashboard';

@@ -9,8 +9,8 @@ transaksi:
     title: Transaksi
     icon: icon-globe
     items:
-        transaksi/details-card-numbers: 'Member Details Cards'
-        transaksi/fasilitas-unit: 'Fasilitas Unit'
+        transaksi/fasilitas: 'Fasilitas'
+        transaksi/tenan: 'Tenan'
         transaksi/redeem-poin: 'Redeem Poin'
         transaksi/histori-transaksi-poin: 'Histori Transaksi Poin'
         # transaksi/pengaturan: 'Pengaturan'
@@ -23,20 +23,21 @@ manajemen:
     icon: icon-puzzle
     items:
         manajemen/cluster: Cluster
+        manajemen/member: 'Member'
         manajemen/unit: Unit
         manajemen/tenan: Tenan
         manajemen/fasilitas: Fasilitas
         manajemen/marcendaise: Marcendaise
-        manajemen/unit-poin: 'Unit Poin'
+        # manajemen/unit-poin: 'Unit Poin'
 laporan:
     credentials: ['superadmin','admin']
     title: Laporan
     icon: icon-bar-chart
     items:
-        laporan/unit-poin-member-details: 'Unit, Poin &amp; Member Details'
+        laporan/unit-poin-member-details: 'Unit, Poin & Member Details'
         # laporan/poin-unit: 'Poin Unit'
-        laporan/tenan-fasilitas: 'Tenan &amp; Fasilitas'
-        laporan/transaksi-unit-poin: 'Transaksi Unit &amp; Poin'
+        laporan/tenan-fasilitas: 'Tenan & Fasilitas'
+        laporan/transaksi-unit-poin: 'Transaksi Unit & Poin'
         # laporan/transaksi-check-inout: Marcendaise
         # laporan/transaksi-redeempoin: 'Redeem Poin'
         
