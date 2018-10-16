@@ -185,12 +185,20 @@ class Fasilitas_unit extends CMS_Controller
             $dt_sekarang = date('Y-m-d H:i:s', time());
             $dt_obj = new DateTime($sekarang);
             //getting data
+            $index  = 0;
             foreach ($fasilitas_ids as $id_fasilitas) {
-                $this->db->or_where('id', $id_fasilitas);
+                if ($index==0) {
+                    $this->db->where('id_fasilitas', $id_fasilitas);
+                }
+                if ($index > 0) {
+                    $this->db->or_where('id_fasilitas', $id_fasilitas);
+                }
+                $index += 1;
             }
             $tps = $this->db->get('tr_poin')->result_array();
             
-            
+            // echo $this->db->last_query();
+            // die();
             //updating
             // perhitungan poin
             $ppa_config=$this->db->select('kode,min,max')->get('ppa_config')->result_array();
@@ -199,7 +207,7 @@ class Fasilitas_unit extends CMS_Controller
                 $dt_sekarang = date('Y-m-d H:i:s', time());
                 $dt_sekarang_obj = new DateTime($sekarang);
 
-                
+            $total_poin = 0;
             foreach ($tps as &$tp) {
                 $tgl_dibuat=$tp['tgl_dibuat'];
                 $dt_checkin = date('Y-m-d H:i:s', strtotime($tgl_dibuat));
@@ -214,7 +222,7 @@ class Fasilitas_unit extends CMS_Controller
 
                 $durasi = $dt_sekarang_obj->format('U') - $dt_checkin_obj->format('U');
                 $tp['durasi']=$durasi;
-                $tp['ago']=str_replace(' yang lalu', '', time_ago(strtotime($tgl_dibuat)));
+                // $tp['ago']=str_replace(' yang lalu', '', time_ago(strtotime($tgl_dibuat)));
                 // $tp['ppa']=$ppa_fasilitas_tmp;
                 
 
@@ -226,21 +234,29 @@ class Fasilitas_unit extends CMS_Controller
                     if ($tp['durasi']>= $min && $tp['durasi']<= $max) {
                         $tp['calculated']=$tp_ppa[$ppa_name];
                         $tp['nilai_poin']=$tp['calculated'];
+                        $total_poin += $tp['calculated'];
                     }
                 }
 
-               
-
-                //GET POIN
+                $this->load->model('poin/m_poin');
+                
+                //update
+                $tp['waktu_checkout']=date('H:i:s', time());
+                $id_tp = $tp['id'];
+                unset($tp['id']);
+                
+                $tp['is_complete']=1;
+                $tgl_diubah = date('Y-m-d H:i:s', time());
+                $this->db->where('id', $id_tp)->update('tr_poin', $tp);
             }
-
+            $this->m_poin->update($id_unit, $total_poin);
             $data = [
             
                 'tps'=> $tps,
                 'ppa_config'=>$ppa_config
             ];
 
-
+            //UPDATE POIN UNIT
             echo json_encode($data);
         }
     }

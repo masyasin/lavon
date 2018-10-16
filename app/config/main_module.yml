@@ -46,3 +46,9 @@ laporan:
     module_path: laporan
     version: '1.0'
     user_id: '1'
+poin:
+    module_id: '23'
+    module_name: poin
+    module_path: poin
+    version: '1.0'
+    user_id: '1'
