@@ -324,7 +324,7 @@ class Artisan extends MX_Controller
         // $dom = pQuery::parseStr($src_html);
         // $script_tags = $dom->query('link');
 
-        $unexistens = "global/plugins/bootstrap-sweetalert/sweetalert.min.js";
+        $unexistens = "global/plugins/bootstrap-sweetalert/sweetalert.css";
         
         $files = explode(",", $unexistens);
         foreach ($files as $file) {
@@ -419,5 +419,12 @@ class Artisan extends MX_Controller
         }
 
         file_put_contents(APPPATH.'config/new_routes.php', $buffer);
+    }
+    public function do_test()
+    {
+        echo "BEGIN DATE ARITHMETIC\n";
+        $dt_sekarang = date('Y-m-d H:i:s', time());
+        $dt_obj = new DateTime($sekarang);
+        echo $dt_obj->format('Y-m-d H:i:s');
     }
 }

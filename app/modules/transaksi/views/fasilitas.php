@@ -236,8 +236,16 @@
                     <!--  -->
                     <h4>Fasilitas </h4>
                     <div class="m-grid m-grid-flex m-grid-responsive-xs m-grid-demo">
-                        <div class="m-grid-row" v-for="fg in daftar_fasilitas_to_display">
-                            <div v-for="f in fg" v-bind:class="{'font-white':1,'f-bg':1,'m-grid-col':1, 'm-grid-col-middle':1, 'm-grid-col-center':1}" v-bind:style="'background-image:url('+f.url_gambar+')'"><input v-if="!unit.already_checkin && unit.card_number != ''"  type="checkbox"  v-bind:value="f.id" data-checkbox="icheckbox_flat-blue" class="form-control icheck id_fasilitas" v-model="f.is_checked" @click="updateFasilitasTerpilih(f)"><span v-text="f.nama" class="sp-text" v-bind:value="f.id" ></span></div>
+                        <div class="m-grid-row fasilitas-item" v-for="fg in daftar_fasilitas_to_display">
+                            <div v-for="f in fg" v-bind:class="{'f-hand':!unit.already_checkin,'font-white':1,'f-bg':1,'m-grid-col':1, 'm-grid-col-bottom':1, 'm-grid-col-center':1}" v-bind:style="'background-image:url('+f.url_gambar+')'">
+                                <div class="col-md-12">
+                                    <input v-if="!unit.already_checkin && unit.card_number != ''"  type="checkbox"  v-bind:value="f.id" class="form-control id_fasilitas" v-model="f.is_checked" @click="updateFasilitasTerpilih(f)">
+                                  <label v-text="f.nama" class="sp-text" v-bind:value="f.id" ></label>
+
+                                
+                                
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!--  -->
@@ -348,17 +356,7 @@
                         ac_unit.init(this);
                         this.$set('vm',this);
 
-                        // this.$nextTick(function(){
-                        //     $('input[type=checkbox].icheck.id_fasilitas').each(function(i,ck){
-                        //         var parent = $(ck).closest('div.icheckbox_flat-blue');
-                        //         console.log(parent);
-                        //         parent.find('ins').click(function(){
-                        //             var checked = parent.hasClass('checked');
-                        //             $('div.icheckbox_flat-blue.checked').not(parent).find('ins').trigger('click');
-                        //             console.log(checked);
-                        //         });
-                        //     });
-                        // });
+
                     },
                     methods: {
                         resetEditing:function(){
@@ -377,7 +375,7 @@
                             //     }
                             // }
                             this.resetEditing();
-                            var url_proxy = site_url()+'transaksi/fasilitas-unit/details_card_numbers_fetch_unit_row_json/'+unit.id+'?uuid='+uuidv4();
+                            var url_proxy = site_url()+'transaksi/fasilitas-unit/fetch_unit_row_json/'+unit.id+'?uuid='+uuidv4();
                             this.$http({url: url_proxy, method: 'GET'}).then(function (response) {
                                 var unit = response.data;
                                 //this.$set('max_member_atempt',unit.member_count);
@@ -396,6 +394,13 @@
                                 // if(unit.member_count < 1 && unit.max_member > 0){
                                 //     this.setEmptyMemberForm(unit);
                                 // }
+                                this.$nextTick(function(){
+                        
+                                $('.f-hand').click(function(){
+                                    // console.log(this);
+                                    $(this).find('input[type=checkbox]').click();
+                                });
+                            });
                             });
 
                         },
@@ -435,24 +440,56 @@
                                 var url_proxy = site_url()+'transaksi/fasilitas-unit/do_checkin/'+id_unit+'?uuid='+uuidv4();
                                 self.$http({url: url_proxy, method: 'POST',data:{fasilitas:fasilitas_terpilih}}).then(function (response) {
                                     App.unblockUI('.form-body');
+                                    var unit = response.data;
+                                    self.$set('fasilitas_terpilih',unit.fasilitas_ids);
                                     self.setUnit(unit); 
                                 });
                                 return true;
                             });
                         },
                         doCheckOut:function(id_unit){
-                            if(this.confirmCheckOut()){
-                                var url_proxy = site_url()+'transaksi/fasilitas-unit/do_checkout/'+id_unit+'?uuid='+uuidv4();
-                                this.$http({url: url_proxy, method: 'POST'}).then(function (response) {
-                                    
+                            var unit = this.$get('unit');
+                            var daftar_fasilitas = this.$get('daftar_fasilitas_to_display');  
+                            var fasilitas_terpilih = []  
+                            var fasilitas_terpilih_text = [];
+
+                            $.each(daftar_fasilitas,function(i,sub) {
+                               $.each(sub,function(j,f){
+                                console.log(f)
+                            
+                                    fasilitas_terpilih_text.push(f.nama);
+                                    fasilitas_terpilih.push(f.id)
+                               }); 
+                            });
+                            var self = this;
+                            swal({
+                              title: "Apakah anda sudah yakin?",
+                              text: "Fasilitas yang sudah dipilih adalah sebagai berikut:\n"+fasilitas_terpilih_text.join(', '),
+                              type: "warning",
+                              showCancelButton: true,
+                              confirmButtonClass: "btn-danger",
+                              confirmButtonText: "Yes, Check-Out",
+                              closeOnConfirm: false
+                            },
+                            function(){
+                                $('.sweet-alert button.cancel').click();
+                                App.blockUI({
+                                    target:'.form-body'
                                 });
-                            }
+                                var url_proxy = site_url()+'transaksi/fasilitas-unit/do_checkout/'+id_unit+'?uuid='+uuidv4();
+                                self.$http({url: url_proxy, method: 'POST',data:{fasilitas:fasilitas_terpilih}}).then(function (response) {
+                                    App.unblockUI('.form-body');
+                                    self.setUnit(unit); 
+                                });
+                                return true;
+                            });
+                           
                         },
                         updateFasilitasTerpilih: function(f){
                             
                             var fasilitas_terpilih  = [];
 
-                            $('input[type=checkbox].form-control.icheck.id_fasilitas:checked').each(function(){
+                            $('input[type=checkbox].id_fasilitas:checked').each(function(){
                                 var value= this.value;
                                 fasilitas_terpilih.push(value);
                             });
@@ -485,4 +522,11 @@
     text-shadow: rgb(43, 54, 67) 1px 1px 1px;
  
             }
+            .id_fasilitas{
+                width:1em;height:1em;display: inline; 
+                } 
+            .f-hand{
+                cursor: pointer;
+            }
+            
         </style>

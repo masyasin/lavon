@@ -564,3 +564,14 @@ function date_format_mysql($id_date)
     $d   = $str[0];
     return date('Y-m-d', strtotime("$Y-$m-$d"));
 }
+function array_kv($arr, $key)
+{
+    $tmp=[];
+    foreach ($arr as $r) {
+        $kkey= $r[$key];
+        unset($r[$key]);
+        $tmp[$kkey]=$r;
+    }
+
+    return $tmp;
+}

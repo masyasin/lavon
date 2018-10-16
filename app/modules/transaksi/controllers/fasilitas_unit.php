@@ -13,7 +13,7 @@ class Fasilitas_unit extends CMS_Controller
     public function index()
     {
         $this->cms_guard_page('transaksi_fasilitas_unit');
-        
+        $this->delete_incomplete();
  
         $daftar_kota_tmp = $this->db->get('m_kota')->result_array();
         $daftar_kota = [];
@@ -47,29 +47,29 @@ class Fasilitas_unit extends CMS_Controller
         }
 
         $data = array(
-            'daftar_kota' => $daftar_kota,
-            'jenis_identitas' => $jenis_identitas,
-            'status_member'=>$status_member,
-            'daftar_unit'=>$daftar_unit,
-            'daftar_fasilitas'=>$daftar_fasilitas_paged
+        'daftar_kota' => $daftar_kota,
+        'jenis_identitas' => $jenis_identitas,
+        'status_member'=>$status_member,
+        'daftar_unit'=>$daftar_unit,
+        'daftar_fasilitas'=>$daftar_fasilitas_paged
         );
 
         $view_config = array(
         'title' => ' Transaksi Fasilitas Unit'
         );
         $this->template->set_breadcrumb('Transaksi', false)
-                   ->set_breadcrumb('Fasilitas Unit', '');
-        $this->view('fasilitas_unit', $data, 'transaksi_fasilitas_unit', $view_config);
+               ->set_breadcrumb('Fasilitas', '');
+        $this->view('fasilitas', $data, 'transaksi_fasilitas_unit', $view_config);
     }
     public function check_if_already_check_in($id_unit)
     {
         $tgl_sekarang = date('Y-m-d', time());
-        return $this->db->select("COUNT(*) cx")->where(['id_unit'=>$id_unit,'DATE(tgl_dibuat)'=>$tgl_sekarang,'is_complete'=>0])->get('tr_poin')->row()->cx > 0;
+        return $this->db->select("COUNT(*) cx")->where(['id_unit'=>$id_unit,'DATE(tgl_dibuat)'=>$tgl_sekarang,'is_complete'=>0,'jenis_transaksi'=>0])->get('tr_poin')->row()->cx > 0;
     }
     public function get_check_in_data($id_unit)
     {
         $tgl_sekarang = date('Y-m-d', time());
-        $daftar_fasilitas = $this->db->select('tp.id as id_tr,f.id,f.nama,f.gambar')->join('m_fasilitas f', 'tp.id_fasilitas=f.id')->where(['tp.id_unit'=>$id_unit,'DATE(tp.tgl_dibuat)'=>$tgl_sekarang, 'tp.is_complete'=>0])->get('tr_poin tp')->result_array();
+        $daftar_fasilitas = $this->db->select('tp.id as id_tr,f.id,f.nama,f.gambar')->join('m_fasilitas f', 'tp.id_fasilitas=f.id')->where(['tp.id_unit'=>$id_unit,'DATE(tp.tgl_dibuat)'=>$tgl_sekarang, 'tp.is_complete'=>0,'jenis_transaksi'=>0])->get('tr_poin tp')->result_array();
         $daftar_fasilitas_paged=[];
         $row = [];
         $max_index = count($daftar_fasilitas);
@@ -91,13 +91,20 @@ class Fasilitas_unit extends CMS_Controller
         }
         return $daftar_fasilitas_paged;
     }
-    public function details_card_numbers_fetch_unit_row_json($id)
+    public function fetch_unit_row_json($id)
     {
-        $this->cms_guard_page('transaksi_detail_card_numbers');
+
+        $this->cms_guard_page('transaksi_fasilitas_unit');
         $unit = $this->db->select('u.*,c.nama cluster_name')->join('m_cluster c', 'c.id=u.id_cluster', 'right')->where(['u.id'=> $id,'u.is_active'=>'1'])->get('m_unit u')->row_array();
         
-        $now = time();
-        $unit['is_expired'] = strtotime($unit['tgl_berakhir'])>$now;
+        $dt_sekarang = date('Y-m-d H:i:s', time());
+        $dt_obj = new DateTime($sekarang);
+        
+        $dt_berakhir = date('Y-m-d H:i:s', strtotime($unit['tgl_berakhir']));
+        $dt_berakhir_obj = new DateTime($dt_berakhir);
+ 
+
+        $unit['is_expired'] = $dt_berakhir_obj < $dt_sekarang;
 
         $unit['tgl_berlaku'] =date_format_id($unit['tgl_berlaku']);
         $unit['tgl_berakhir'] = date_format_id($unit['tgl_berakhir']);
@@ -136,30 +143,121 @@ class Fasilitas_unit extends CMS_Controller
             $waktu_sekarang = date('H:i:s', time());
             foreach ($fasilitas_ids as $id_fasilitas) {
                 $tr_poin = [
-                    'id_fasilitas' => $id_fasilitas,
-                    'is_complete' => 0,
-                    'tgl_dibuat' => $tgl_sekarang,
-                    'calculated' => 0,
-                    'durasi'=>0,
-                    'waktu_checkin' => $waktu_sekarang,
-                    'waktu_checkout' => $waktu_sekarang,
-                    'nilai_poin' => 0,
-                    'id_unit' => $id_unit,
-                    'dibuat_oleh' => $this->cms_user_id(),
-                    'diupdate_oleh' => $this->cms_user_id(),
-                    'tgl_dibuat'=>$tgl_sekarang.' '.$waktu_sekarang,
-                    'tgl_diubah'=>$tgl_sekarang.' '.$waktu_sekarang,
-                    'tgl_berlaku'=> date('Y-'.'12-30', time())
+                'id_fasilitas' => $id_fasilitas,
+                'is_complete' => 0,
+                'tgl_dibuat' => $tgl_sekarang,
+                'calculated' => 0,
+                'durasi'=>0,
+                'jenis_transaksi'=>0,
+                'waktu_checkin' => $waktu_sekarang,
+                'waktu_checkout' => $waktu_sekarang,
+                'nilai_poin' => 0,
+                'id_unit' => $id_unit,
+                'dibuat_oleh' => $this->cms_user_id(),
+                'diupdate_oleh' => $this->cms_user_id(),
+                'tgl_dibuat'=>$tgl_sekarang.' '.$waktu_sekarang,
+                'tgl_diubah'=>$tgl_sekarang.' '.$waktu_sekarang,
+                'tgl_berlaku'=> date('Y-'.'12-30', time())
                 ];
 
                 $this->db->insert('tr_poin', $tr_poin);
             }
 
-            echo json_encode(['id_unit'=>$id_unit,'success'=>true]);
+            echo json_encode(['id_unit'=>$id_unit,'success'=>true,'fasilitas_ids'=> $fasilitas_ids ]);
         }
     }
-    public function do_checkout($value = '')
+    public function do_checkout($id_unit)
     {
-        # code...
+        $already_checkin = $this->check_if_already_check_in();
+        if (!$already_checkin) {
+            $request_body = file_get_contents('php://input');
+            $obj = json_decode($request_body);
+            $fasilitas_ids = $obj->fasilitas;
+            $tgl_sekarang = date('Y-m-d', time());
+            $waktu_sekarang = date('H:i:s', time());
+
+
+            //
+
+
+            $waktu_sekarang = date('H:i:s', time());
+
+            $dt_sekarang = date('Y-m-d H:i:s', time());
+            $dt_obj = new DateTime($sekarang);
+            //getting data
+            foreach ($fasilitas_ids as $id_fasilitas) {
+                $this->db->or_where('id', $id_fasilitas);
+            }
+            $tps = $this->db->get('tr_poin')->result_array();
+            
+            
+            //updating
+            // perhitungan poin
+            $ppa_config=$this->db->select('kode,min,max')->get('ppa_config')->result_array();
+            $ppa_config=array_kv($ppa_config, 'kode');
+            //array_kv
+                $dt_sekarang = date('Y-m-d H:i:s', time());
+                $dt_sekarang_obj = new DateTime($sekarang);
+
+                
+            foreach ($tps as &$tp) {
+                $tgl_dibuat=$tp['tgl_dibuat'];
+                $dt_checkin = date('Y-m-d H:i:s', strtotime($tgl_dibuat));
+                $dt_checkin_obj= new DateTime($dt_checkin);
+
+                // $waktu_checkin=$tp['waktu_checkin'];
+                $tp_ppa= $this->db->select('ppa1,ppa2,ppa3,ppa4,ppa5')->where('id', $tp['id_fasilitas'])->get('m_fasilitas')->row_array();
+                // $ppa_fasilitas = [];
+                // foreach ($ppa_fasilitas_tmp as $k => $v) {
+                //     $ppa_fasilitas[$v['kode']]=$v;
+                // }
+
+                $durasi = $dt_sekarang_obj->format('U') - $dt_checkin_obj->format('U');
+                $tp['durasi']=$durasi;
+                $tp['ago']=str_replace(' yang lalu', '', time_ago(strtotime($tgl_dibuat)));
+                // $tp['ppa']=$ppa_fasilitas_tmp;
+                
+
+                //cek durasi
+                foreach ($ppa_config as $ppa_name => $config) {
+                    $min=$config['min'];
+                    $max=$config['max'];
+
+                    if ($tp['durasi']>= $min && $tp['durasi']<= $max) {
+                        $tp['calculated']=$tp_ppa[$ppa_name];
+                        $tp['nilai_poin']=$tp['calculated'];
+                    }
+                }
+
+               
+
+                //GET POIN
+            }
+
+            $data = [
+            
+                'tps'=> $tps,
+                'ppa_config'=>$ppa_config
+            ];
+
+
+            echo json_encode($data);
+        }
+    }
+    protected function delete_incomplete($id_unit)
+    {
+        $dt_sekarang = date('Y-m-d H:i:s', time());
+        // $dt_obj = new DateTime($sekarang);
+        
+        // $dt_berakhir = date('Y-m-d H:i:s', strtotime($unit['tgl_berakhir']));
+        // $dt_berakhir_obj = new DateTime($dt_berakhir);
+
+        $condition=[
+            "tgl_dibuat < DATE('$dt_sekarang')",
+            'is_complete' => 0,
+            'durasi'=>0,
+            'jenis_transaksi'=>0
+        ];
+        // $this->db->where($condition)->delete('tr_poin');
     }
 }

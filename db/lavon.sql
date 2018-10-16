@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-10-15 12:29:43
+Date: 2018-10-16 17:08:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,7 +32,7 @@ CREATE TABLE `ci_sessions` (
 -- Records of ci_sessions
 -- ----------------------------
 INSERT INTO `ci_sessions` VALUES ('8b6078d88475e4d14a463be6e2109eb4', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539492531', 'a:6:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:80:\"http://localhost/lavon/public/assets/uploads/files/avatar/01de6-welcome-scan.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:14:\"Ratna Surampea\";s:14:\"cms_user_email\";s:20:\"superadmin@lavon.com\";}');
-INSERT INTO `ci_sessions` VALUES ('91e18e231783ca8b94af02bc516b1ee7', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539581357', 'a:8:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:80:\"http://localhost/lavon/public/assets/uploads/files/avatar/01de6-welcome-scan.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:14:\"Ratna Surampea\";s:14:\"cms_user_email\";s:20:\"superadmin@lavon.com\";s:21:\"flash:old:cms_old_url\";s:24:\"transaksi/fasilitas-unit\";s:21:\"flash:new:cms_old_url\";s:24:\"transaksi/fasilitas-unit\";}');
+INSERT INTO `ci_sessions` VALUES ('93d0096afdfef7890556c33bf6c5fdaa', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36', '1539684112', 'a:8:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:80:\"http://localhost/lavon/public/assets/uploads/files/avatar/01de6-welcome-scan.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:14:\"Ratna Surampea\";s:14:\"cms_user_email\";s:20:\"superadmin@lavon.com\";s:21:\"flash:old:cms_old_url\";s:24:\"transaksi/fasilitas-unit\";s:21:\"flash:new:cms_old_url\";s:24:\"transaksi/fasilitas-unit\";}');
 INSERT INTO `ci_sessions` VALUES ('4e3e59d04dc1f9033808ea62f51632a1', '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:62.0) Gecko/20100101 Firefox/62.0', '1539579386', 'a:8:{s:8:\"cms_lang\";s:10:\"indonesian\";s:13:\"cms_user_name\";s:5:\"admin\";s:15:\"cms_user_avatar\";s:80:\"http://localhost/lavon/public/assets/uploads/files/avatar/01de6-welcome-scan.jpg\";s:11:\"cms_user_id\";s:1:\"1\";s:18:\"cms_user_real_name\";s:14:\"Ratna Surampea\";s:14:\"cms_user_email\";s:20:\"superadmin@lavon.com\";s:21:\"flash:old:cms_old_url\";s:19:\"dashboard/statistik\";s:21:\"flash:new:cms_old_url\";s:19:\"dashboard/statistik\";}');
 
 -- ----------------------------
@@ -4112,6 +4112,7 @@ CREATE TABLE `tr_poin` (
   `tgl_berlaku` datetime NOT NULL,
   `tgl_dibuat` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `tgl_diubah` datetime NOT NULL,
+  `jenis_transaksi` int(11) NOT NULL DEFAULT '0',
   `is_complete` int(11) NOT NULL DEFAULT '0',
   `dibuat_oleh` int(11) NOT NULL,
   `diupdate_oleh` int(11) NOT NULL,
@@ -4120,14 +4121,21 @@ CREATE TABLE `tr_poin` (
   KEY `id_fasilitas` (`id_fasilitas`),
   CONSTRAINT `tr_poin_ibfk_2` FOREIGN KEY (`id_fasilitas`) REFERENCES `m_fasilitas` (`id`),
   CONSTRAINT `tr_poin_ibfk_3` FOREIGN KEY (`id_unit`) REFERENCES `m_unit` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tr_poin
 -- ----------------------------
-INSERT INTO `tr_poin` VALUES ('1', '1', '2', '0', '16:12:34', '16:12:34', '0', '0', '2018-12-30 00:00:00', '2018-10-14 16:12:34', '2018-10-14 16:12:34', '0', '1', '1');
-INSERT INTO `tr_poin` VALUES ('2', '1', '6', '0', '16:12:34', '16:12:34', '0', '0', '2018-12-30 00:00:00', '2018-10-14 16:12:34', '2018-10-14 16:12:34', '0', '1', '1');
-INSERT INTO `tr_poin` VALUES ('3', '1', '12', '0', '16:12:34', '16:12:34', '0', '0', '2018-12-30 00:00:00', '2018-10-14 16:12:34', '2018-10-14 16:12:34', '0', '1', '1');
+INSERT INTO `tr_poin` VALUES ('1', '1', '1', '0', '14:55:18', '14:55:18', '0', '0', '2018-12-30 00:00:00', '2018-10-16 14:55:18', '2018-10-16 14:55:18', '0', '0', '1', '1');
+INSERT INTO `tr_poin` VALUES ('2', '1', '2', '0', '14:55:18', '14:55:18', '0', '0', '2018-12-30 00:00:00', '2018-10-16 14:55:18', '2018-10-16 14:55:18', '0', '0', '1', '1');
+INSERT INTO `tr_poin` VALUES ('3', '1', '3', '0', '14:55:18', '14:55:18', '0', '0', '2018-12-30 00:00:00', '2018-10-16 14:55:18', '2018-10-16 14:55:18', '0', '0', '1', '1');
+INSERT INTO `tr_poin` VALUES ('4', '1', '4', '0', '14:55:18', '14:55:18', '0', '0', '2018-12-30 00:00:00', '2018-10-16 14:55:18', '2018-10-16 14:55:18', '0', '0', '1', '1');
+INSERT INTO `tr_poin` VALUES ('5', '1', '5', '0', '14:55:18', '14:55:18', '0', '0', '2018-12-30 00:00:00', '2018-10-16 14:55:18', '2018-10-16 14:55:18', '0', '0', '1', '1');
+INSERT INTO `tr_poin` VALUES ('6', '1', '6', '0', '14:55:18', '14:55:18', '0', '0', '2018-12-30 00:00:00', '2018-10-16 14:55:18', '2018-10-16 14:55:18', '0', '0', '1', '1');
+INSERT INTO `tr_poin` VALUES ('7', '1', '7', '0', '14:55:18', '14:55:18', '0', '0', '2018-12-30 00:00:00', '2018-10-16 14:55:18', '2018-10-16 14:55:18', '0', '0', '1', '1');
+INSERT INTO `tr_poin` VALUES ('8', '1', '8', '0', '14:55:18', '14:55:18', '0', '0', '2018-12-30 00:00:00', '2018-10-16 14:55:18', '2018-10-16 14:55:18', '0', '0', '1', '1');
+INSERT INTO `tr_poin` VALUES ('9', '1', '9', '0', '14:55:18', '14:55:18', '0', '0', '2018-12-30 00:00:00', '2018-10-16 14:55:18', '2018-10-16 14:55:18', '0', '0', '1', '1');
+INSERT INTO `tr_poin` VALUES ('10', '1', '15', '0', '14:55:18', '14:55:18', '0', '0', '2018-12-30 00:00:00', '2018-10-16 14:55:18', '2018-10-16 14:55:18', '0', '0', '1', '1');
 
 -- ----------------------------
 -- Table structure for `tr_redeem`
