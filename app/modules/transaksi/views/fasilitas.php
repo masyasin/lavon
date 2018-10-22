@@ -440,9 +440,9 @@
                                 var url_proxy = site_url()+'transaksi/fasilitas-unit/do_checkin/'+id_unit+'?uuid='+uuidv4();
                                 self.$http({url: url_proxy, method: 'POST',data:{fasilitas:fasilitas_terpilih}}).then(function (response) {
                                     App.unblockUI('.form-body');
-                                    var unit = response.data;
-                                    self.$set('fasilitas_terpilih',unit.fasilitas_ids);
-                                    self.setUnit(unit); 
+                                    var data = response.data;
+                                    self.$set('fasilitas_terpilih',data.fasilitas_ids);
+                                    self.setUnit(data.unit); 
                                 });
                                 return true;
                             });

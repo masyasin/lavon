@@ -91,7 +91,7 @@ class Fasilitas_unit extends CMS_Controller
         }
         return $daftar_fasilitas_paged;
     }
-    public function fetch_unit_row_json($id)
+    public function fetch_unit_row_json($id,$return=false)
     {
 
         $this->cms_guard_page('transaksi_fasilitas_unit');
@@ -128,7 +128,9 @@ class Fasilitas_unit extends CMS_Controller
         }
         $unit['member_count'] = count($unit['members']);
         $unit['has_member'] = $unit['member_count'] > 0;
-
+        if ($return) {
+            return $unit;
+        }
         echo json_encode($unit);
     }
 
@@ -163,7 +165,7 @@ class Fasilitas_unit extends CMS_Controller
                 $this->db->insert('tr_poin', $tr_poin);
             }
 
-            echo json_encode(['id_unit'=>$id_unit,'success'=>true,'fasilitas_ids'=> $fasilitas_ids ]);
+            echo json_encode(['unit'=>$this->fetch_unit_row_json($id_unit,true),'success'=>true,'fasilitas_ids'=> $fasilitas_ids ]);
         }
     }
     public function do_checkout($id_unit)
