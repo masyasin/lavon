@@ -71,16 +71,16 @@
 															<form role="form" action="#">
 																<div class="form-group">
 																	<label class="control-label">First Name</label>
-																	<input type="text" name="first_name" class="form-control" value="<?=$first_name?>"> </div>
+																	<input v-model="first_name" type="text" name="first_name" class="form-control" value="<?=$first_name?>"> </div>
 																	<div class="form-group">
 																		<label class="control-label">Last Name</label>
-																		<input type="text" name="last_name"  class="form-control" value="<?=$last_name?>"> </div>
+																		<input type="text" v-model="last_name" name="last_name"  class="form-control" value="<?=$last_name?>"> </div>
 																		<div class="form-group">
 																			<label class="control-label">Email</label>
 																			<input type="text" name="email" value="<?=$email?>" class="form-control"> </div>
 
 																			<div class="margin-top-10">
-																				<a href="javascript:;" class="btn green"> Simpan </a>
+																				<a href="javascript:;" class="btn green" @click="doSave()"> Simpan </a>
 																				<a href="javascript:;" class="btn default"> Cancel </a>
 																			</div>
 
@@ -109,7 +109,7 @@
 																						</div>
 																					</div>
 																					<div class="margin-top-10">
-																						<a href="javascript:;" class="btn green"> Submit </a>
+																						<a href="javascript:;" class="btn green" @click="doUpload()"> Submit </a>
 																						<a href="javascript:;" class="btn default"> Cancel </a>
 																					</div>
 																				</form>
