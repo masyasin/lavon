@@ -6,38 +6,38 @@ dashboard:
         dashboard/statistik: Statistik
 transaksi:
     credentials: ['superadmin','admin']
-    title: Transaksi
+    title: Transaction
     icon: icon-globe
     items:
-        transaksi/fasilitas: 'Fasilitas'
-        transaksi/tenan: 'Tenan'
-        transaksi/redeem-poin: 'Redeem Poin'
-        transaksi/histori-transaksi-poin: 'Histori Transaksi Poin'
+        transaksi/fasilitas: 'Facilities'
+        transaksi/tenan: 'Tenant'
+        transaksi/redeem-poin: 'Redeem Points'
+        transaksi/histori-transaksi-poin: 'History Points'
         # transaksi/pengaturan: 'Pengaturan'
         # transaksi/pengaturan-nilai-poin: 'Pengaturan Nilai Poin'
         # transaksi/histori-check-inout: Histori Cek In/Out
         # transaksi/histori-redeem-poin: Histori Redeem Poin
 manajemen:
     credentials: ['superadmin','admin']
-    title: Manajemen
+    title: Management
     icon: icon-puzzle
     items:
-        manajemen/cluster: Cluster
         manajemen/member: 'Member'
-        manajemen/unit: Unit
-        manajemen/tenan: Tenan
-        manajemen/fasilitas: Fasilitas
-        manajemen/marcendaise: Marcendaise
-        # manajemen/unit-poin: 'Unit Poin'
+        manajemen/cluster: Cluster
+        manajemen/unit: Units
+        manajemen/tenan: Tenant
+        manajemen/fasilitas: Facilities
+        manajemen/marcendaise: Merchandise
+        manajemen/unit-poin: 'Unit Points'
 laporan:
     credentials: ['superadmin','admin']
-    title: Laporan
+    title: Reporting
     icon: icon-bar-chart
     items:
-        laporan/unit-poin-member-details: 'Unit, Poin & Member Details'
+        laporan/unit-poin-member-details: 'Member & Points'
         # laporan/poin-unit: 'Poin Unit'
-        laporan/tenan-fasilitas: 'Tenan & Fasilitas'
-        laporan/transaksi-unit-poin: 'Transaksi Unit & Poin'
+        laporan/tenan-fasilitas: 'Club House Facilities'
+        laporan/transaksi-unit-poin: 'Club House Tenant'
         # laporan/transaksi-check-inout: Marcendaise
         # laporan/transaksi-redeempoin: 'Redeem Poin'
         
