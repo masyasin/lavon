@@ -422,9 +422,27 @@ class Artisan extends MX_Controller
     }
     public function do_test()
     {
-        echo "BEGIN DATE ARITHMETIC\n";
-        $dt_sekarang = date('Y-m-d H:i:s', time());
-        $dt_obj = new DateTime($sekarang);
-        echo $dt_obj->format('Y-m-d H:i:s');
+        // echo "BEGIN DATE ARITHMETIC\n";
+        // $dt_sekarang = date('Y-m-d H:i:s', time());
+        // $dt_obj = new DateTime($sekarang);
+        // echo $dt_obj->format('Y-m-d H:i:s');
+
+        $real_name = 'Ratna Surampeat';
+        $real_name = explode(' ', $real_name);
+        foreach ($real_name as $index => $name) {
+            if($index == 0){
+                $first_name=$name;
+            }else{
+                $last_name=" ".$name;
+            }
+        }
+        $email= 'cistminix@gmail,xom';
+        $data = [
+            'first_name'=>$first_name,
+            'last_name'=>$last_name,
+            'email'=>$email
+        ];
+
+        print_r($data);
     }
 }

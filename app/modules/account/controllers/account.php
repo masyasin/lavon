@@ -76,8 +76,21 @@ class Account extends CMS_Controller
     public function profile()
     {
         $this->cms_guard_page('account_profile');
-        
-        $data = [];
+        $real_name = $this->cms_user_real_name();
+        $real_name = explode(' ', $real_name);
+        foreach ($real_name as $index => $name) {
+            if($index == 0){
+                $first_name=$name;
+            }else{
+                $last_name=" ".$name;
+            }
+        }
+        $email= $this->cms_user_email();
+        $data = [
+            'first_name'=>$first_name,
+            'last_name'=>$last_name,
+            'email'=>$email
+        ];
 
         $view_config = array(
             'title' => ' Account Profile'
